@@ -1,17 +1,20 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=12567244&assignment_repo_type=AssignmentRepo)
-# Nome do projeto
-Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
+
+# Sistema de Gerenciamento de Biblioteca
+
+Desenvolver um sistema de gerenciamento de biblioteca em Java. Tal sistema deve gerir informações de livros, teses, 
+revistas, CDs e DVDs. Alguns itens são são emprestáveis e outro emprestáveis. Cada usuário pode pegar uma 
+determinada quantidade de itens simultaneamente, mas não pode pegar um novo quanto tiver algum empréstimo em atraso. 
+Além disso, o sistema deve apresentar um menu no terminal. 
 
 ## Alunos integrantes da equipe
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
-* Nome completo do aluno 4
-* Nome completo do aluno 4
+* Guilherme Lage da Costa
+* Lucas Cabral Soares
+* Maria Eduarda Amaral Muniz
+* Vitor Lagares Stahlberg
 
 ## Professor responsável 
 
-* Nome completo do professor 1
+* Prof. Dr. Johnatan Alves de Oliveira
 
