@@ -18,7 +18,6 @@ public class Emprestimo extends Item{
         super();
     }
 
-
     public Emprestimo(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao, StatusEmprestimo statusEmprestimo) {
         super(titulo, dataPublicacao, statusClassificacao);
         this.statusEmprestimo = statusEmprestimo;

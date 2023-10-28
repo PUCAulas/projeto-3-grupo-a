@@ -69,4 +69,15 @@ public class Usuario {
     public int getQTD_MAX_ITENS_EMPRESTADOS() {
         return QTD_MAX_ITENS_EMPRESTADOS;
     }
+
+
+    public void addEmprestimo(Emprestimo emprestimo) {
+        this.getEmprestimos().add(emprestimo);
+    }
+
+    public void removerEmpresimo(Emprestimo emprestimo) {
+        this.getEmprestimos().remove(emprestimo);
+    }
+
+
 }
