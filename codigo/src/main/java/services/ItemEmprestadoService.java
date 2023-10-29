@@ -1,11 +1,10 @@
 package main.java.services;
 
-import main.java.interfaces.GerenciarBiblioteca;
-import main.java.interfaces.GerenciarEmprestimoBiblioteca;
+import main.java.interfaces.GerenciarEmprestimo;
 import main.java.models.Biblioteca;
 import main.java.models.itens.Emprestimo;
 
-public class ItemEmprestadoService implements GerenciarBiblioteca, GerenciarEmprestimoBiblioteca {
+public class ItemEmprestadoService implements GerenciarEmprestimo {
     private Biblioteca biblioteca;
     private Emprestimo emprestimo;
 
