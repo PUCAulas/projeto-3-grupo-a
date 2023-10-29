@@ -46,4 +46,18 @@ public class Faixa {
     public void setDuracao(Duration duracao) {
         this.duracao = duracao;
     }
+
+
+    public String toString() {
+        return "Título: "
+             + this.getTitulo()
+             + "\nCompositor: "
+             + this.getCompositor()
+             + "\nDuração: "
+             + this.getDuracao()
+             + "\nNúmero da faixa: "
+             + this.getNumeroFaixa();
+    }
+
+
 }

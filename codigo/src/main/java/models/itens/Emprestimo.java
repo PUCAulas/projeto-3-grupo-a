@@ -64,6 +64,31 @@ public class Emprestimo extends Item{
     }
 
 
+    @Override
+    public String toString() {
+        return "Dados do item: \n"
+                + super.toString()
+                + "\n"
+                + "Status do empréstimo: "
+                + this.getStatusEmprestimo()
+                + this.auxToString();
+    }
+
+
+    public String auxToString() {
+        if(this.getStatusEmprestimo() == StatusEmprestimo.EMPRESTADO) {
+            return "\nQuantidade do item do empréstimo: "
+                 + this.getQtdEmprestimo()
+                 + "\nDias de empréstimo: "
+                 + this.getDiaEmprestimo()
+                 + "\nData do empréstimo: "
+                 + this.getDataEmprestimo()
+                 + "\nQuantidade de dias limite para o empréstimo: "
+                 + this.getQTD_MAX_DIAS_EMPRESTIMO();
+        }
+        return " ";
+    }
+
 
 
 

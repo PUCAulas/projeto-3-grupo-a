@@ -11,6 +11,8 @@ public class Usuario {
     private static int PROX_ID = 0;
 
     private String senha;
+
+    private String nome;
     private String email;
     private LocalDate dataNascimento;
     private int qtdItensEmprestados;
@@ -70,6 +72,13 @@ public class Usuario {
         return QTD_MAX_ITENS_EMPRESTADOS;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
     public void addEmprestimo(Emprestimo emprestimo) {
         this.getEmprestimos().add(emprestimo);
@@ -77,6 +86,38 @@ public class Usuario {
 
     public void removerEmpresimo(Emprestimo emprestimo) {
         this.getEmprestimos().remove(emprestimo);
+    }
+
+
+    public String listarEmprestimo() {
+        StringBuilder emprestimos = new StringBuilder();
+        for (Emprestimo emprestimo : this.getEmprestimos()) {
+            emprestimos.append(emprestimo);
+            emprestimos.append("\n");
+        }
+        return emprestimos.toString();
+    }
+
+    public boolean verificarEmprestimo() {
+        return this.getEmprestimos().isEmpty();
+    }
+
+
+    @Override
+    public String toString() {
+        return "Dados do usuário: "
+             + "\nNome: "
+             + this.getNome()
+             + "\nData de nascimento: "
+             + this.getDataNascimento()
+             + "\nE-mail: "
+             + this.getEmail()
+             + "\nQuantidade de itens emprestados: "
+             + this.getQtdItensEmprestados()
+             + "\nQuantidade máxima de itens para empréstimo: "
+             + this.getQTD_MAX_ITENS_EMPRESTADOS()
+             + "\nEmpréstimos feitos: \n"
+             + (verificarEmprestimo() ? listarEmprestimo() : "Nenhum empréstimo");
     }
 
 

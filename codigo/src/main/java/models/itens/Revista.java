@@ -45,9 +45,26 @@ public final class Revista extends Item{
         this.artigos = artigos;
     }
 
+
+    public String listarArtigos() {
+        StringBuilder artigos = new StringBuilder();
+        for (String artigo : this.getArtigos()) {
+            artigos.append(artigo);
+            artigos.append("\n");
+        }
+        return artigos.toString();
+    }
+
+
     @Override
     public String toString() {
-        return " ";
+        return super.toString()
+             + "\nEdição: "
+             + this.getEdicao()
+             + "\nEditora: "
+             + this.getEditora()
+             + "\nArtigos: \n"
+             + this.listarArtigos();
     }
 
 

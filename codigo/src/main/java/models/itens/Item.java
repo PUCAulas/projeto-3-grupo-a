@@ -53,4 +53,16 @@ public class Item {
     }
 
 
+    @Override
+    public String toString() {
+        return "Dados do item: \n"
+             + "Título: "
+             + this.getTitulo()
+             + "\nData de publicação: "
+             + this.getDataPublicacao()
+             + "\nClassificação indicativa: "
+             + this.getStatusClassificacao();
+    }
+
+
 }

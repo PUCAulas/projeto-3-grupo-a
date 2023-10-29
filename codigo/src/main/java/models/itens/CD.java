@@ -48,12 +48,23 @@ public final class CD extends Emprestimo{
     }
 
     public String listarFaixas() {
-        return "";
+        StringBuilder faixas = new StringBuilder();
+        for (Faixa faixa : this.getFaixas()) {
+            faixas.append(faixa.toString());
+            faixas.append("\n");
+        }
+        return faixas.toString();
     }
 
     @Override
     public String toString() {
-        return "";
+        return super.toString()
+             + "\nArtista: "
+             + this.getArtista()
+             + "\nDuração: "
+             + this.getDuracao()
+             + "\nTodas as faixas: \n"
+             + listarFaixas();
     }
 
 

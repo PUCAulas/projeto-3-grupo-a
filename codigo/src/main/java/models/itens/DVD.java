@@ -14,6 +14,7 @@ public final class DVD extends Emprestimo{
     private String genero;
 
     public DVD() {
+
         super();
     }
 
@@ -68,6 +69,16 @@ public final class DVD extends Emprestimo{
 
     @Override
     public String toString() {
-        return "";
+        return super.toString()
+             + "\nDiretor: "
+             + this.getDiretor()
+             + "\nDuração: "
+             + this.getDuracao()
+             + "\nIdioma: "
+             + this.getIdioma()
+             + "\nGênero: "
+             + this.getGenero()
+             + "\nSinopse: \n"
+             + this.getSinopse();
     }
 }

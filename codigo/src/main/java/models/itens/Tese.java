@@ -55,8 +55,27 @@ public final class Tese extends Item{
         this.capitulos = capitulos;
     }
 
+
+    public String listarArtigos() {
+        StringBuilder capitulos = new StringBuilder();
+        for (String capitulo : this.getCapitulos()) {
+            capitulos.append(capitulo);
+            capitulos.append("\n");
+        }
+        return capitulos.toString();
+    }
+
     @Override
     public String toString() {
-        return "";
+        return super.toString()
+             + "\nAutor: "
+             + this.getAutor()
+             + "\nOrientador: "
+             + this.getOrientador()
+             + "\nData da defesa de tese: "
+             + this.getDataDefesa()
+             + "\nArtigos: \n"
+             + this.listarArtigos();
+
     }
 }

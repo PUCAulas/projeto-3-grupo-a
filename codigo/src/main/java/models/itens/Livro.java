@@ -100,7 +100,21 @@ public final class Livro extends Emprestimo{
 
     @Override
     public String toString() {
-        return "";
+        return super.toString()
+             + "\nAutor: "
+             + this.getAutor()
+             + "\nNúmero de páginas: "
+             + this.getNumeroPaginas()
+             + "\nEdição: "
+             + this.getEdicao()
+             + "\nEditora: "
+             + this.getEditora()
+             + "\nIdioma: "
+             + this.getIdioma()
+             + "\nGênero: "
+             + this.getGenero()
+             + "\nVolume: "
+             + this.getVolume();
     }
 
 
