@@ -4,14 +4,14 @@ import main.java.interfaces.GerenciarBiblioteca;
 import main.java.models.Biblioteca;
 import main.java.models.itens.Item;
 
-public class ItemServico implements GerenciarBiblioteca {
+public class ItemService implements GerenciarBiblioteca {
     public Biblioteca biblioteca;
     public Item item;
 
-    public ItemServico() {
+    public ItemService() {
     }
 
-    public ItemServico(Biblioteca biblioteca, Item item) {
+    public ItemService(Biblioteca biblioteca, Item item) {
         this.biblioteca = biblioteca;
         this.item = item;
     }
