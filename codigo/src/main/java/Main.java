@@ -22,6 +22,15 @@ public class Main {
         // Cadastrar
         usuarioService.criar();
 
+        // Atualizar (ou editar)
+        usuarioService.atualizar();
+
+        // Deletar
+        usuarioService.deletar();
+
+        // listar usuários
+        usuarioService.listar();
+
 
     }
 
