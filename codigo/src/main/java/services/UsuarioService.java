@@ -41,6 +41,7 @@ public class UsuarioService implements GerenciarBiblioteca {
 
 
 
+
         //this.getBiblioteca().addUsuario(this.getUsuario());
     }
 

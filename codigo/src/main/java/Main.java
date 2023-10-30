@@ -19,6 +19,8 @@ public class Main {
         Usuario usuario1 = new Usuario();
         UsuarioService usuarioService = new UsuarioService(biblioteca, usuario1);
 
+        // Cadastrar
+        usuarioService.criar();
 
 
     }
