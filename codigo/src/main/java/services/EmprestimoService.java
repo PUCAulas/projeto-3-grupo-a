@@ -4,14 +4,14 @@ import main.java.interfaces.GerenciarEmprestimo;
 import main.java.models.Biblioteca;
 import main.java.models.itens.Emprestimo;
 
-public class ItemEmprestadoService implements GerenciarEmprestimo {
+public class EmprestimoService implements GerenciarEmprestimo {
     private Biblioteca biblioteca;
     private Emprestimo emprestimo;
 
-    public ItemEmprestadoService() {
+    public EmprestimoService() {
     }
 
-    public ItemEmprestadoService(Biblioteca biblioteca, Emprestimo emprestimo) {
+    public EmprestimoService(Biblioteca biblioteca, Emprestimo emprestimo) {
         this.biblioteca = biblioteca;
         this.emprestimo = emprestimo;
     }
