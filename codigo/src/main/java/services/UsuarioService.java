@@ -18,23 +18,30 @@ public class UsuarioService implements GerenciarBiblioteca {
     }
 
     public Biblioteca getBiblioteca() {
+
         return biblioteca;
     }
 
     public void setBiblioteca(Biblioteca biblioteca) {
+
         this.biblioteca = biblioteca;
     }
 
     public Usuario getUsuario() {
+
         return usuario;
     }
 
     public void setUsuario(Usuario usuario) {
+
         this.usuario = usuario;
     }
 
     public void criar() {
 
+
+
+        //this.getBiblioteca().addUsuario(this.getUsuario());
     }
 
     public void atualizar() {

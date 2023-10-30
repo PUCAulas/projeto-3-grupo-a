@@ -1,7 +1,7 @@
 package main.java.models;
 
 import main.java.enums.FiltroPesquisa;
-import main.java.interfaces.ComAutor;
+import main.java.interfaces.AutorFiltro;
 import main.java.interfaces.Relatorio;
 import main.java.models.itens.*;
 
@@ -16,6 +16,7 @@ public class Biblioteca implements Relatorio {
     }
 
     public Biblioteca(Estoque estoque) {
+
         this.estoque = estoque;
     }
 
@@ -121,8 +122,8 @@ public class Biblioteca implements Relatorio {
             case ANO:
                 return Integer.toString(item.getDataPublicacao().getYear());
             case AUTOR:
-                if (item instanceof ComAutor) {
-                    return ((ComAutor) item).getAutor();
+                if (item instanceof AutorFiltro) {
+                    return ((AutorFiltro) item).getAutor();
                 }
                 break;
             case LIVRO:

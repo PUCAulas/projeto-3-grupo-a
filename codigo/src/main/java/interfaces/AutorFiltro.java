@@ -1,5 +1,5 @@
 package main.java.interfaces;
 
-public interface ComAutor {
+public interface AutorFiltro {
     String getAutor();
 }

@@ -1,8 +1,8 @@
 package main.java.models;
 
 import main.java.models.itens.Item;
-
 import java.util.List;
+
 
 public class Estoque {
     private List<Item> itens;
@@ -10,7 +10,8 @@ public class Estoque {
     public Estoque() {
     }
 
-    public Estoque(List<Item> itens) {
+    private Estoque(List<Item> itens) {
+
         this.itens = itens;
     }
 
@@ -27,11 +28,13 @@ public class Estoque {
     }
 
     public void removeItem(Item item) {
+
         this.getItens().add(item);
     }
 
 
     public int qtdEmEstoque() {
+
         return this.getItens().size();
     }
 
