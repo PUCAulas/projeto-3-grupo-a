@@ -1,9 +1,10 @@
 package main.java;
 
+import java.util.Scanner;
+
 import main.java.models.Biblioteca;
 import main.java.models.Estoque;
-import main.java.models.Usuario;
-import main.java.services.UsuarioService;
+import main.java.utils.Cadastro;
 
 public class Main {
 
@@ -13,30 +14,30 @@ public class Main {
         // Quem tem que setar os atributos é o método criar do serviço
         // Estoque também tem que ser instanciado pelo construtor padrão.
 
-
         Estoque estoque = new Estoque();
         Biblioteca biblioteca = new Biblioteca(estoque);
-        Usuario usuario1 = new Usuario();
-        UsuarioService usuarioService = new UsuarioService(biblioteca, usuario1);
 
-        // Cadastrar
-        usuarioService.criar();
+        Scanner sc = new Scanner(System.in);
 
-        // Atualizar (ou editar)
-        usuarioService.atualizar();
+        while (true) {
+            System.out.println("Escolha a operação desejada:");
+            System.out.println("1. Gerenciar usuários");
+            System.out.println("5. Sair");
 
-        // Deletar
-        usuarioService.deletar();
+            int escolha = sc.nextInt();
+            switch (escolha) {
+                case 1:
+                    Cadastro.gerenciarUsuarios(biblioteca);
+                    break;
+                case 5:
+                    System.out.println("Saindo...");
+                    sc.close();
+                    return;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
 
-        // listar usuários
-        usuarioService.listar();
-
+        }
 
     }
-
-
-
-
-
 }
-

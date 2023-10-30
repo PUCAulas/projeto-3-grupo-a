@@ -3,6 +3,8 @@ package main.java.models;
 import main.java.models.itens.Emprestimo;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
@@ -19,20 +21,22 @@ public class Usuario {
     private List<Emprestimo> emprestimos;
     private final int QTD_MAX_ITENS_EMPRESTADOS = 3;
 
-
     public Usuario() {
+        this.id = PROX_ID++;
+        emprestimos = new ArrayList<>();
     }
 
     private Usuario(String senha, String email, LocalDate dataNascimento) {
+        this();
         this.senha = senha;
         this.email = email;
         this.dataNascimento = dataNascimento;
+
     }
 
     public int getId() {
         return id;
     }
-
 
     public String getSenha() {
         return senha;
@@ -62,11 +66,9 @@ public class Usuario {
         return qtdItensEmprestados;
     }
 
-
     public List<Emprestimo> getEmprestimos() {
         return emprestimos;
     }
-
 
     public int getQTD_MAX_ITENS_EMPRESTADOS() {
         return QTD_MAX_ITENS_EMPRESTADOS;
@@ -88,7 +90,6 @@ public class Usuario {
         this.getEmprestimos().remove(emprestimo);
     }
 
-
     public String listarEmprestimo() {
         StringBuilder emprestimos = new StringBuilder();
         for (Emprestimo emprestimo : this.getEmprestimos()) {
@@ -102,23 +103,23 @@ public class Usuario {
         return this.getEmprestimos().isEmpty();
     }
 
-
     @Override
     public String toString() {
         return "Dados do usuário: "
-             + "\nNome: "
-             + this.getNome()
-             + "\nData de nascimento: "
-             + this.getDataNascimento()
-             + "\nE-mail: "
-             + this.getEmail()
-             + "\nQuantidade de itens emprestados: "
-             + this.getQtdItensEmprestados()
-             + "\nQuantidade máxima de itens para empréstimo: "
-             + this.getQTD_MAX_ITENS_EMPRESTADOS()
-             + "\nEmpréstimos feitos: \n"
-             + (verificarEmprestimo() ? listarEmprestimo() : "Nenhum empréstimo");
+                + "\nId: "
+                + this.getId()
+                + "\nNome: "
+                + this.getNome()
+                + "\nData de nascimento: "
+                + this.getDataNascimento()
+                + "\nE-mail: "
+                + this.getEmail()
+                + "\nQuantidade de itens emprestados: "
+                + this.getQtdItensEmprestados()
+                + "\nQuantidade máxima de itens para empréstimo: "
+                + this.getQTD_MAX_ITENS_EMPRESTADOS()
+                + "\nEmpréstimos feitos: \n"
+                + (verificarEmprestimo() ? listarEmprestimo() : "Nenhum empréstimo");
     }
-
 
 }

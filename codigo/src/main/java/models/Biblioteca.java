@@ -4,6 +4,7 @@ import main.java.enums.FiltroPesquisa;
 import main.java.interfaces.AutorFiltro;
 import main.java.interfaces.Relatorio;
 import main.java.models.itens.*;
+import main.java.services.UsuarioService;
 
 import java.util.*;
 
@@ -13,10 +14,11 @@ public class Biblioteca implements Relatorio {
     private Estoque estoque;
 
     public Biblioteca() {
+        this.usuarios = new ArrayList<>();
     }
 
     public Biblioteca(Estoque estoque) {
-
+        this();
         this.estoque = estoque;
     }
 
@@ -154,7 +156,4 @@ public class Biblioteca implements Relatorio {
         }
         return null;
     }
-
-
-
 }
