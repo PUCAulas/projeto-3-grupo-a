@@ -16,7 +16,8 @@ public final class CD extends Emprestimo{
         super();
     }
 
-    public CD(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao, StatusEmprestimo statusEmprestimo, String artista, Duration duracao, List<Faixa> faixas) {
+    private CD(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao,
+         StatusEmprestimo statusEmprestimo, String artista, Duration duracao, List<Faixa> faixas) {
         super(titulo, dataPublicacao, statusClassificacao, statusEmprestimo);
         this.artista = artista;
         this.duracao = duracao;

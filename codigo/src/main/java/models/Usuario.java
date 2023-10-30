@@ -23,7 +23,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String senha, String email, LocalDate dataNascimento) {
+    private Usuario(String senha, String email, LocalDate dataNascimento) {
         this.senha = senha;
         this.email = email;
         this.dataNascimento = dataNascimento;

@@ -21,7 +21,8 @@ public final class Livro extends Emprestimo{
     }
 
 
-    public Livro(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao, StatusEmprestimo statusEmprestimo, String autor, int numeroPaginas, String editora, String edicao, String volume, String idioma, String sinopse, String genero) {
+    private Livro(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao,
+             StatusEmprestimo statusEmprestimo, String autor, int numeroPaginas, String editora, String edicao, String volume, String idioma, String sinopse, String genero) {
         super(titulo, dataPublicacao, statusClassificacao, statusEmprestimo);
         this.autor = autor;
         this.numeroPaginas = numeroPaginas;

@@ -17,7 +17,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao) {
+    protected Item(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao) {
         this.titulo = titulo;
         this.dataPublicacao = dataPublicacao;
         this.statusClassificacao = statusClassificacao;

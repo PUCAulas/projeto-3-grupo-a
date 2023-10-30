@@ -14,7 +14,8 @@ public final class Revista extends Item{
         super();
     }
 
-    public Revista(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao, String editora, String edicao, List<String> artigos) {
+    private Revista(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao, String editora,
+               String edicao, List<String> artigos) {
         super(titulo, dataPublicacao, statusClassificacao);
         this.editora = editora;
         this.edicao = edicao;

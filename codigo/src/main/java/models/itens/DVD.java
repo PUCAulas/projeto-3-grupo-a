@@ -18,7 +18,8 @@ public final class DVD extends Emprestimo{
         super();
     }
 
-    public DVD(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao, StatusEmprestimo statusEmprestimo, String diretor, Duration duracao, String idioma, String sinopse, String genero) {
+    private DVD(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao,
+          StatusEmprestimo statusEmprestimo, String diretor, Duration duracao, String idioma, String sinopse, String genero) {
         super(titulo, dataPublicacao, statusClassificacao, statusEmprestimo);
         this.diretor = diretor;
         this.duracao = duracao;

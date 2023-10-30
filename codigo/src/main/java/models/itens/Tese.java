@@ -15,7 +15,8 @@ public final class Tese extends Item{
         super();
     }
 
-    public Tese(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao, String autor, String orientador, LocalDate dataDefesa, List<String> capitulos) {
+    private Tese(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao, String autor,
+           String orientador, LocalDate dataDefesa, List<String> capitulos) {
         super(titulo, dataPublicacao, statusClassificacao);
         this.autor = autor;
         this.orientador = orientador;
