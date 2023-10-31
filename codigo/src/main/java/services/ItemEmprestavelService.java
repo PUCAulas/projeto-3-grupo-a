@@ -4,19 +4,19 @@ import main.java.interfaces.GerenciarEmprestimo;
 import main.java.models.Biblioteca;
 import main.java.models.itens.Emprestavel;
 
-public class EmprestavelService implements GerenciarEmprestimo {
+public class ItemEmprestavelService implements GerenciarEmprestimo {
     private Biblioteca biblioteca;
     private Emprestavel emprestavel;
 
-    public EmprestavelService() {
+    public ItemEmprestavelService() {
     }
 
-    public EmprestavelService(Emprestavel emprestavel, Biblioteca biblioteca) {
+    public ItemEmprestavelService(Emprestavel emprestavel, Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
         this.emprestavel = emprestavel;
     }
 
-    public EmprestavelService(Biblioteca biblioteca) {
+    public ItemEmprestavelService(Biblioteca biblioteca) {
         this.emprestavel = null;
         this.biblioteca = biblioteca;
     }

@@ -4,7 +4,7 @@ import main.java.models.Biblioteca;
 import main.java.models.Usuario;
 import main.java.models.itens.Emprestavel;
 import main.java.models.itens.Item;
-import main.java.services.EmprestavelService;
+import main.java.services.ItemEmprestavelService;
 import main.java.services.ItemService;
 import main.java.services.UsuarioService;
 
@@ -90,7 +90,7 @@ public class GerenciarBiblioteca {
 
     public static void gerenciarItemEmprestavel(Biblioteca biblioteca) {
         Scanner sc = new Scanner(System.in);
-        EmprestavelService emprestavelService = new EmprestavelService(biblioteca);
+        ItemEmprestavelService itemEmprestavelService = new ItemEmprestavelService(biblioteca);
 
         while (true) {
             System.out.println("Escolha a operação desejada:");
@@ -104,17 +104,17 @@ public class GerenciarBiblioteca {
             switch (escolha) {
                 case 1:
                     Emprestavel emprestavel = new Emprestavel();
-                    EmprestavelService emprestavelService1 = new EmprestavelService(emprestavel, biblioteca);
-                    emprestavelService1.criar();
+                    ItemEmprestavelService itemEmprestavelService1 = new ItemEmprestavelService(emprestavel, biblioteca);
+                    itemEmprestavelService1.criar();
                     break;
                 case 2:
-                    emprestavelService.atualizar();
+                    itemEmprestavelService.atualizar();
                     break;
                 case 3:
-                    emprestavelService.deletar();
+                    itemEmprestavelService.deletar();
                     break;
                 case 4:
-                    emprestavelService.listar();
+                    itemEmprestavelService.listar();
                     break;
                 case 5:
                     System.out.println("Voltando ao menu principal...\n");
