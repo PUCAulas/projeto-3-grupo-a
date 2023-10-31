@@ -56,6 +56,10 @@ public class Biblioteca implements Relatorio {
     public void pesquisar(FiltroPesquisa tipo) throws Exception {
         List<String> valoresAtributo = new ArrayList<>();
 
+        if(this.getEstoque().getItens() == null) {
+            throw new Exception("Não existe nenhum item cadastrado no estoque!");
+        }
+
         for (Item item : this.getEstoque().getItens()) {
             String valor = obterValorParaTipo(item, tipo);
 

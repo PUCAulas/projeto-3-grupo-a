@@ -36,10 +36,11 @@ public class Main {
                     GerenciarBibliotecaUtil.gerenciarItemEmprestavel(biblioteca);
                     break;
                 case 4:
-                    try{
+                    try {
                         GerenciarBibliotecaUtil.pesquisa(biblioteca);
                     } catch (Exception e) {
-                        e.getMessage();
+                        System.out.println("Erro: " + e.getMessage());
+                        System.out.println();
                     }
                     break;
                 case 5:
