@@ -11,8 +11,10 @@ import main.java.services.UsuarioService;
 import java.util.Scanner;
 
 public class GerenciarBiblioteca {
+
+    private static Scanner sc = new Scanner(System.in);
+
     public static void gerenciarUsuario(Biblioteca biblioteca) {
-        Scanner sc = new Scanner(System.in);
         UsuarioService usuarioService = new UsuarioService(biblioteca);
 
         while (true) {
@@ -51,7 +53,6 @@ public class GerenciarBiblioteca {
 
 
     public static void gerenciarItemNaoEmprestavel(Biblioteca biblioteca) {
-        Scanner sc = new Scanner(System.in);
         ItemService itemService = new ItemService(biblioteca);
 
         while (true) {
@@ -89,7 +90,6 @@ public class GerenciarBiblioteca {
 
 
     public static void gerenciarItemEmprestavel(Biblioteca biblioteca) {
-        Scanner sc = new Scanner(System.in);
         ItemEmprestavelService itemEmprestavelService = new ItemEmprestavelService(biblioteca);
 
         while (true) {

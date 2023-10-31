@@ -10,9 +10,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Objetos como Usuario e item (incluindo emprestimo) devem ser instanciado aqui com o construtor padrão.
-        // Quem tem que setar os atributos é o método criar do serviço
-        // Estoque também tem que ser instanciado pelo construtor padrão.
 
         Estoque estoque = new Estoque();
         Biblioteca biblioteca = new Biblioteca(estoque);
