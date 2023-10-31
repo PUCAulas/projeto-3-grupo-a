@@ -30,7 +30,6 @@ public class Usuario {
         this.senha = senha;
         this.email = email;
         this.dataNascimento = dataNascimento;
-
     }
 
     public int getId() {
