@@ -1,10 +1,9 @@
 package main.java;
 
-import java.util.Scanner;
-
 import main.java.models.Biblioteca;
 import main.java.models.Estoque;
-import main.java.utils.GerenciarBiblioteca;
+import main.java.utils.GerenciarBibliotecaUtil;
+import main.java.utils.InputScannerUtil;
 
 public class Main {
 
@@ -14,27 +13,38 @@ public class Main {
         Estoque estoque = new Estoque();
         Biblioteca biblioteca = new Biblioteca(estoque);
 
-        Scanner sc = new Scanner(System.in);
 
         while (true) {
             System.out.println("Escolha a operação desejada:");
             System.out.println("1. Gerenciar usuários");
             System.out.println("2. Gerenciar itens não emprestáveis");
-            System.out.println("2. Gerenciar itens emprestáveis");
+            System.out.println("3. Gerenciar itens emprestáveis");
+            System.out.println("4. Pesquisar itens da biblioteca");
             System.out.println("5. Sair");
 
-            int escolha = sc.nextInt();
+            System.out.print("Opção: ");
+            int escolha = InputScannerUtil.getScanner().nextInt();
+
             switch (escolha) {
                 case 1:
-                    GerenciarBiblioteca.gerenciarUsuario(biblioteca);
+                    GerenciarBibliotecaUtil.gerenciarUsuario(biblioteca);
                     break;
                 case 2:
-                    GerenciarBiblioteca.gerenciarItemNaoEmprestavel(biblioteca);
+                    GerenciarBibliotecaUtil.gerenciarItemNaoEmprestavel(biblioteca);
+                    break;
                 case 3:
-                    GerenciarBiblioteca.gerenciarItemEmprestavel(biblioteca);
+                    GerenciarBibliotecaUtil.gerenciarItemEmprestavel(biblioteca);
+                    break;
                 case 4:
+                    try{
+                        GerenciarBibliotecaUtil.pesquisa(biblioteca);
+                    } catch (Exception e) {
+                        e.getMessage();
+                    }
+                    break;
+                case 5:
                     System.out.println("Saindo...");
-                    sc.close();
+                    InputScannerUtil.close();
                     return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");

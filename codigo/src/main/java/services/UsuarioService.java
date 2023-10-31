@@ -6,7 +6,8 @@ import java.util.Scanner;
 import main.java.interfaces.GerenciarBiblioteca;
 import main.java.models.Biblioteca;
 import main.java.models.Usuario;
-import main.java.utils.Data;
+import main.java.utils.DataUtil;
+import main.java.utils.InputScannerUtil;
 
 public class UsuarioService implements GerenciarBiblioteca {
 
@@ -61,7 +62,7 @@ public class UsuarioService implements GerenciarBiblioteca {
         novoUsuario.setSenha(sc.nextLine());
 
         System.out.print("Informe a data de nascimento (dd/MM/yyyy): ");
-        novoUsuario.setDataNascimento(LocalDate.parse(sc.nextLine(), Data.fmt));
+        novoUsuario.setDataNascimento(LocalDate.parse(sc.nextLine(), DataUtil.fmt));
 
         this.biblioteca.addUsuario(novoUsuario);
 
@@ -69,25 +70,24 @@ public class UsuarioService implements GerenciarBiblioteca {
     }
 
     public void atualizar() {
-        Scanner sc = new Scanner(System.in);
 
         System.out.print("Informe o ID do usuário: ");
-        int id = sc.nextInt();
-        sc.nextLine();
+        int id = InputScannerUtil.getScanner().nextInt();
+        InputScannerUtil.getScanner().nextLine();
 
         for (Usuario u : biblioteca.getUsuarios()) {
             if (u.getId() == id) {
                 System.out.print("Informe o novo nome: ");
-                u.setNome(sc.nextLine());
+                u.setNome(InputScannerUtil.getScanner().nextLine());
 
                 System.out.print("Informe o novo e-mail: ");
-                u.setEmail(sc.nextLine());
+                u.setEmail(InputScannerUtil.getScanner().nextLine());
 
                 System.out.print("Informe a nova senha: ");
-                u.setSenha(sc.nextLine());
+                u.setSenha(InputScannerUtil.getScanner().nextLine());
 
                 System.out.print("Informe a nova data de nascimento (dd/MM/yyyy): ");
-                u.setDataNascimento(LocalDate.parse(sc.nextLine(), Data.fmt));
+                u.setDataNascimento(LocalDate.parse(InputScannerUtil.getScanner().nextLine(), DataUtil.fmt));
 
                 System.out.println("Usuário atualizado!");
                 return;
@@ -97,10 +97,9 @@ public class UsuarioService implements GerenciarBiblioteca {
     }
 
     public void deletar() {
-        Scanner sc = new Scanner(System.in);
 
         System.out.print("Informe o ID do usuário: ");
-        int id = sc.nextInt();
+        int id = InputScannerUtil.getScanner().nextInt();
         
         Usuario usuarioDeletar = null;
         for (Usuario u : biblioteca.getUsuarios()) {
