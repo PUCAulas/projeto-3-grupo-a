@@ -83,7 +83,9 @@ public class Biblioteca implements Relatorio {
 
     public String choice(List<String> itens) {
         Scanner sc = new Scanner(System.in);
-        Collections.sort(itens);
+
+        // Ordene a lista usando um comparador que ignora maiúsculas e minúsculas.
+        Collections.sort(itens, String.CASE_INSENSITIVE_ORDER);
 
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < itens.size(); i++) {
@@ -96,9 +98,11 @@ public class Biblioteca implements Relatorio {
         System.out.println(result);
         int option = sc.nextInt();
         sc.close();
-        return itens.get(option);
 
+        return itens.get(option - 1);
     }
+
+
 
     private void anoPublicacao(String result) {
         for (Item item : this.getEstoque().getItens()) {

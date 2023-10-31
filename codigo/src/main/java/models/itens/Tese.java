@@ -1,11 +1,12 @@
 package main.java.models.itens;
 
 import main.java.enums.StatusClassificacao;
+import main.java.interfaces.AutorFiltro;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public final class Tese extends Item{
+public final class Tese extends Item implements AutorFiltro {
     private String autor;
     private String orientador;
     private LocalDate dataDefesa;

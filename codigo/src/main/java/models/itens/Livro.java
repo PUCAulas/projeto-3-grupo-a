@@ -2,10 +2,11 @@ package main.java.models.itens;
 
 import main.java.enums.StatusClassificacao;
 import main.java.enums.StatusEmprestimo;
+import main.java.interfaces.AutorFiltro;
 
 import java.time.LocalDate;
 
-public final class Livro extends Emprestavel {
+public final class Livro extends Emprestavel implements AutorFiltro {
     private String autor;
     private int numeroPaginas;
 
