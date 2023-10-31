@@ -45,7 +45,7 @@ public class Main {
                     break;
                 case 5:
                     System.out.println("Saindo...");
-                    InputScannerUtil.close();
+                   // InputScannerUtil.close();
                     return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");

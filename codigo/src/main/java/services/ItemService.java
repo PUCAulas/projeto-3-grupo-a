@@ -12,6 +12,7 @@ import main.java.models.itens.Item;
 import main.java.models.itens.Revista;
 import main.java.models.itens.Tese;
 import main.java.utils.DataUtil;
+import main.java.utils.InputScannerUtil;
 
 public class ItemService implements GerenciarBiblioteca {
     public Biblioteca biblioteca;
@@ -81,19 +82,20 @@ public class ItemService implements GerenciarBiblioteca {
         List<String> artigos = new ArrayList<>();
 
         System.out.println("Informe os artigos da revista (digite 'FIM' para sair): ");
-        while (true) {
-            String artigo = sc.nextLine();
-
-            if ("FIM".equalsIgnoreCase(artigo)) {
-                break;
-            }
-
-            artigos.add(artigo);
-        }
-
+        inserirArtigos(sc, artigos);
         revista.setArtigos(artigos);
 
         biblioteca.getEstoque().addItem(revista);
+    }
+
+    private void inserirArtigos(Scanner sc, List<String> artigos) {
+        while (true) {
+            String artigo = sc.nextLine();
+            if ("FIM".equalsIgnoreCase(artigo)) {
+                break;
+            }
+            artigos.add(artigo);
+        }
     }
 
     private void criarTese(Scanner sc) {
@@ -123,19 +125,20 @@ public class ItemService implements GerenciarBiblioteca {
         List<String> capitulos = new ArrayList<>();
 
         System.out.println("Informe os capítulos da tese (digite 'FIM' para sair): ");
-        while (true) {
-            String capitulo = sc.nextLine();
-
-            if ("FIM".equalsIgnoreCase(capitulo)) {
-                break;
-            }
-
-            capitulos.add(capitulo);
-        }
-
+        inserirCapitulos(sc, capitulos);
         tese.setCapitulos(capitulos);
 
         biblioteca.getEstoque().addItem(tese);
+    }
+
+    private void inserirCapitulos(Scanner sc, List<String> capitulos) {
+        while (true) {
+            String capitulo = sc.nextLine();
+            if ("FIM".equalsIgnoreCase(capitulo)) {
+                break;
+            }
+            capitulos.add(capitulo);
+        }
     }
 
     private StatusClassificacao escolherStatusClassificacao(Scanner sc) {
@@ -157,10 +160,169 @@ public class ItemService implements GerenciarBiblioteca {
 
     public void atualizar() {
 
+        System.out.println("Escolha o tipo de item a ser atualizado:");
+        System.out.println("1. Revista");
+        System.out.println("2. Tese");
+
+        int escolha = InputScannerUtil.getScanner().nextInt();
+        InputScannerUtil.getScanner().nextLine();
+        switch (escolha) {
+            case 1:
+                atualizarRevista();
+                break;
+            case 2:
+                atualizarTese();
+                break;
+            default:
+                System.out.println("Tipo de item inválido.");
+        }
+    }
+
+    private void atualizarRevista() {
+
+        System.out.print("Informe o ID do item a ser atualizado: ");
+        int id = InputScannerUtil.getScanner().nextInt();
+        InputScannerUtil.getScanner().nextLine();
+
+        for (Item item : biblioteca.getEstoque().getItens()) {
+            if (item.getId() == id && item instanceof Revista) {
+                System.out.println("Opção:");
+                System.out.println("1. Título");
+                System.out.println("2. Data de Publicação");
+                System.out.println("3. Classificação");
+                System.out.println("4. Edição");
+                System.out.println("5. Editora");
+                System.out.println("6. Artigos");
+
+                int escolha = InputScannerUtil.getScanner().nextInt();
+                Scanner sc = InputScannerUtil.getScanner();
+                InputScannerUtil.getScanner().nextLine();
+
+                switch (escolha) {
+                    case 1:
+                        System.out.println("Informe o novo título: ");
+                        ((Revista) item).setTitulo(sc.nextLine());
+                        break;
+                    case 2:
+                        System.out.println("Informe a nova data de publicação (dd/MM/yyyy): ");
+                        LocalDate novaData = LocalDate.parse(sc.nextLine(), DataUtil.fmt);
+                        ((Revista) item).setDataPublicacao(novaData);
+                        break;
+                    case 3:
+                        System.out.println("Informe a nova classificação: ");
+                        StatusClassificacao novaClassificacao = escolherStatusClassificacao(sc);
+                        if (novaClassificacao != null) {
+                            ((Revista) item).setStatusClassificacao(novaClassificacao);
+                        }
+                        break;
+                    case 4:
+                        System.out.println("Informe a nova edição: ");
+                        ((Revista) item).setEdicao(sc.nextLine());
+                        break;
+                    case 5:
+                        System.out.println("Informe a nova editora");
+                        ((Revista) item).setEditora(sc.nextLine());
+                        break;
+                    case 6:
+                        List<String> artigos = new ArrayList<>();
+                        System.out.println("Informe os artigos (FIM para sair): ");
+                        inserirArtigos(sc, artigos);
+                        ((Revista) item).setArtigos(artigos);
+                    default:
+                        System.out.println("Atributo inválido.");
+                }
+
+                System.out.println("Item atualizado!");
+                return;
+            }
+        }
+        System.out.println("Item não encontrado ou tipo de item incorreto!");
+    }
+
+    private void atualizarTese() {
+
+        System.out.print("Informe o ID do item a ser atualizado: ");
+        int id = InputScannerUtil.getScanner().nextInt();
+        InputScannerUtil.getScanner().nextLine();
+
+        for (Item item : biblioteca.getEstoque().getItens()) {
+            if (item.getId() == id && item instanceof Tese) {
+                System.out.println("Opção:");
+                System.out.println("1. Título");
+                System.out.println("2. Data de Publicação");
+                System.out.println("3. Classificação");
+                System.out.println("4. Autor");
+                System.out.println("5. Orientador");
+                System.out.println("6. Data da defesa");
+                System.out.println("7. Capitulos");
+
+                int escolha = InputScannerUtil.getScanner().nextInt();
+                Scanner sc = InputScannerUtil.getScanner();
+                InputScannerUtil.getScanner().nextLine();
+
+                switch (escolha) {
+                    case 1:
+                        System.out.println("Informe o novo título: ");
+                        ((Tese) item).setTitulo(sc.nextLine());
+                        break;
+                    case 2:
+                        System.out.println("Informe a nova data de publicação (dd/MM/yyyy): ");
+                        LocalDate novaData = LocalDate.parse(sc.nextLine(), DataUtil.fmt);
+                        ((Tese) item).setDataPublicacao(novaData);
+                        break;
+                    case 3:
+                        System.out.println("Informe a nova classificação: ");
+                        StatusClassificacao novaClassificacao = escolherStatusClassificacao(sc);
+                        if (novaClassificacao != null) {
+                            ((Tese) item).setStatusClassificacao(novaClassificacao);
+                        }
+                        break;
+                    case 4:
+                        System.out.println("Informe o novo autor: ");
+                        ((Tese) item).setAutor(sc.nextLine());
+                        break;
+                    case 5:
+                        System.out.println("Informe o novo orientador");
+                        ((Tese) item).setOrientador(sc.nextLine());
+                        break;
+                    case 6:
+                        System.out.println("Informe a nova data de defesa");
+                        LocalDate novaDataDefesa = LocalDate.parse(sc.nextLine(), DataUtil.fmt);
+                        ((Tese) item).setDataDefesa(novaDataDefesa);
+                    case 7:
+                        List<String> capitulos = new ArrayList<>();
+                        System.out.println("Informe os capítulos ('FIM' para sair): ");
+                        inserirCapitulos(sc, capitulos);
+                        ((Tese) item).setCapitulos(capitulos);
+
+                    default:
+                        System.out.println("Atributo inválido.");
+                }
+
+                System.out.println("Item atualizado!");
+                return;
+            }
+        }
+        System.out.println("Item não encontrado ou tipo de item incorreto");
     }
 
     public void deletar() {
+        System.out.print("Informe o ID do item: ");
+        int id = InputScannerUtil.getScanner().nextInt();
 
+        Item deletar = null;
+        for (Item item : biblioteca.getEstoque().getItens()) {
+            if (item.getId() == id) {
+                deletar = item;
+                break;
+            }
+        }
+        if (deletar != null) {
+            biblioteca.getEstoque().getItens().remove(deletar);
+            System.out.println("Item deletado com sucesso!");
+        } else {
+            System.out.println("Item não encontrado!");
+        }
     }
 
     public void listar() {
@@ -174,5 +336,4 @@ public class ItemService implements GerenciarBiblioteca {
             System.out.println("Nenhum item encontrado no estoque.");
         }
     }
-
 }

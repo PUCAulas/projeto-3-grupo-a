@@ -30,7 +30,7 @@ public class GerenciarBibliotecaUtil {
 
             if (escolha == 5) {
                 System.out.println("Voltando ao menu principal...\n");
-                InputScannerUtil.close();
+                //InputScannerUtil.close();
                 break;
             }
 
@@ -73,7 +73,7 @@ public class GerenciarBibliotecaUtil {
 
             if (escolha == 6) {
                 System.out.println("Voltando ao menu principal...\n");
-                InputScannerUtil.close();
+                //InputScannerUtil.close();
                 break;
             }
 
