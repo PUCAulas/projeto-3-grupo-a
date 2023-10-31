@@ -4,6 +4,7 @@ import main.java.enums.FiltroPesquisa;
 import main.java.interfaces.AutorFiltro;
 import main.java.interfaces.Relatorio;
 import main.java.models.itens.*;
+import main.java.utils.InputScannerUtil;
 
 import java.util.*;
 
@@ -25,7 +26,6 @@ public class Biblioteca implements Relatorio {
         return usuarios;
     }
 
-
     public Estoque getEstoque() {
         return estoque;
     }
@@ -33,7 +33,6 @@ public class Biblioteca implements Relatorio {
     public void setEstoque(Estoque estoque) {
         this.estoque = estoque;
     }
-
 
     public void addUsuario(Usuario usuario) {
         this.getUsuarios().add(usuario);
@@ -43,7 +42,6 @@ public class Biblioteca implements Relatorio {
         this.getUsuarios().remove(usuario);
     }
 
-
     public List<Emprestavel> imprimirRelatorioUsuario(Usuario usuario) {
         return null;
     }
@@ -52,11 +50,10 @@ public class Biblioteca implements Relatorio {
         return "";
     }
 
-
     public void pesquisar(FiltroPesquisa tipo) throws Exception {
         List<String> valoresAtributo = new ArrayList<>();
 
-        if(this.getEstoque().getItens() == null) {
+        if (this.getEstoque().getItens() == null) {
             throw new Exception("Não existe nenhum item cadastrado no estoque!");
         }
 
@@ -68,7 +65,7 @@ public class Biblioteca implements Relatorio {
             }
         }
 
-        if(valoresAtributo.isEmpty()) {
+        if (valoresAtributo.isEmpty()) {
             throw new Exception("Nenhum resultado encontrado!");
         }
 
@@ -82,8 +79,6 @@ public class Biblioteca implements Relatorio {
     }
 
     public String choice(List<String> itens) {
-        Scanner sc = new Scanner(System.in);
-
         // Ordene a lista usando um comparador que ignora maiúsculas e minúsculas.
         Collections.sort(itens, String.CASE_INSENSITIVE_ORDER);
 
@@ -96,30 +91,27 @@ public class Biblioteca implements Relatorio {
         }
         System.out.println("Escolha o número: ");
         System.out.println(result);
+        Scanner sc = InputScannerUtil.getScanner();
         int option = sc.nextInt();
-        sc.close();
 
         return itens.get(option - 1);
     }
 
-
-
     private void anoPublicacao(String result) {
         for (Item item : this.getEstoque().getItens()) {
-            if(Integer.toString(item.getDataPublicacao().getYear()).equals(result)){
+            if (Integer.toString(item.getDataPublicacao().getYear()).equals(result)) {
                 System.out.println(item);
                 System.out.println("\n");
             }
         }
     }
 
-
-    private Item encontrarItemCorrespondente(FiltroPesquisa tipo, String result){
+    private Item encontrarItemCorrespondente(FiltroPesquisa tipo, String result) {
 
         Optional<Item> item = this.getEstoque().getItens().stream().filter(x -> {
-                String valor = obterValorParaTipo(x, tipo);
-                return valor != null && valor.equals(result);
-                })
+            String valor = obterValorParaTipo(x, tipo);
+            return valor != null && valor.equals(result);
+        })
                 .findFirst();
         return item.orElse(null);
     }
