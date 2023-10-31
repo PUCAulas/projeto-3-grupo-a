@@ -32,7 +32,7 @@ public class Estoque {
 
     public void removeItem(Item item) {
 
-        this.getItens().add(item);
+        this.getItens().remove(item);
     }
 
 
