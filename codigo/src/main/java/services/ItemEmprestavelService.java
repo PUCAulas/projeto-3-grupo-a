@@ -4,14 +4,15 @@ import main.java.enums.StatusClassificacao;
 import main.java.enums.StatusEmprestimo;
 import main.java.interfaces.GerenciarEmprestimo;
 import main.java.models.Biblioteca;
-import main.java.models.itens.*;
+import main.java.models.itens.CD;
+import main.java.models.itens.DVD;
+import main.java.models.itens.Emprestavel;
+import main.java.models.itens.Item;
 import main.java.utils.DataUtil;
 import main.java.utils.InputScannerUtil;
 
-import javax.lang.model.type.UnionType;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -51,27 +52,93 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
 
     public void criar() {
 
+        System.out.println("Escolha o tipo de item a ser criado:");
+        System.out.println("1. CD");
+        System.out.println("2. DVD");
+
+        int escolha = InputScannerUtil.getScanner().nextInt();
+        InputScannerUtil.getScanner().nextLine();
+        switch (escolha) {
+            case 1:
+                criarCD();
+                break;
+            case 2:
+                criarDVD();
+                break;
+            default:
+                System.out.println("Tipo de item inválido.");
+        }
+    }
+
+    private void criarDVD() {
         Scanner scanner = new Scanner(System.in);
-        Emprestavel emprestavel = new Emprestavel();
+        DVD dvd = new DVD();
 
         System.out.println("Informe o titulo do emprestável: ");
-        emprestavel.setTitulo(scanner.nextLine());
+        dvd.setTitulo(scanner.nextLine());
 
         System.out.println("Informe a data de publicação (dd/MM/yyy): ");
-        emprestavel.setDataPublicacao(LocalDate.parse(scanner.nextLine(), DataUtil.fmt));
+        dvd.setDataPublicacao(LocalDate.parse(scanner.nextLine(), DataUtil.fmt));
 
         System.out.println("Informe o status de classificação: ");
         StatusClassificacao statusClassificacao = escolherStatusClassificacao(scanner);
         if (statusClassificacao != null) {
-            emprestavel.setStatusClassificacao(statusClassificacao);
+            dvd.setStatusClassificacao(statusClassificacao);
         }
 
         System.out.println("Informe o status do empréstimo: ");
         StatusEmprestimo statusEmprestimo = escolherStatusEmprestimo(scanner);
         if (statusEmprestimo != null) {
-            emprestavel.setStatusEmprestimo(statusEmprestimo);
+            dvd.setStatusEmprestimo(statusEmprestimo);
         }
 
+        System.out.println("Informe o diretor: ");
+        dvd.setDiretor(scanner.nextLine());
+
+        System.out.println("Informe a duração: ");
+        dvd.setDuracao(Duration.ofSeconds(Long.parseLong(scanner.nextLine())));
+
+        System.out.println("Informe o idioma: ");
+        dvd.setIdioma(scanner.nextLine());
+
+        System.out.println("Informe o sinopse: ");
+        dvd.setSinopse(scanner.nextLine());
+
+        System.out.println("Informe o gênero: ");
+        dvd.setGenero(scanner.nextLine());
+
+        biblioteca.getEstoque().addItem(dvd);
+    }
+
+    public void criarCD() {
+        Scanner scanner = new Scanner(System.in);
+        CD cd = new CD();
+
+        System.out.println("Informe o titulo do emprestável: ");
+        cd.setTitulo(scanner.nextLine());
+
+        System.out.println("Informe a data de publicação (dd/MM/yyy): ");
+        cd.setDataPublicacao(LocalDate.parse(scanner.nextLine(), DataUtil.fmt));
+
+        System.out.println("Informe o status de classificação: ");
+        StatusClassificacao statusClassificacao = escolherStatusClassificacao(scanner);
+        if (statusClassificacao != null) {
+            cd.setStatusClassificacao(statusClassificacao);
+        }
+
+        System.out.println("Informe o status do empréstimo: ");
+        StatusEmprestimo statusEmprestimo = escolherStatusEmprestimo(scanner);
+        if (statusEmprestimo != null) {
+            cd.setStatusEmprestimo(statusEmprestimo);
+        }
+
+        System.out.println("Informe o artista: ");
+        cd.setArtista(scanner.nextLine());
+
+        System.out.println("Informe a duração: ");
+        cd.setDuracao(Duration.ofSeconds(Long.parseLong(scanner.nextLine())));
+
+        biblioteca.getEstoque().addItem(cd);
     }
 
     public void atualizar() {
