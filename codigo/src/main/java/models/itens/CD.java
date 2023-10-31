@@ -7,7 +7,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 
-public final class CD extends Emprestimo{
+public final class CD extends Emprestavel {
     private String artista;
     private Duration duracao;
     private List<Faixa> faixas;

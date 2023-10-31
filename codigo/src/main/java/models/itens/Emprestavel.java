@@ -5,7 +5,7 @@ import main.java.enums.StatusEmprestimo;
 
 import java.time.LocalDate;
 
-public class Emprestimo extends Item{
+public class Emprestavel extends Item{
     private StatusEmprestimo statusEmprestimo;
     private int qtdEmprestimo;
     private int diaEmprestimo;
@@ -14,12 +14,12 @@ public class Emprestimo extends Item{
     private final int QTD_MAX_DIAS_EMPRESTIMO = 10;
 
 
-    public Emprestimo() {
+    public Emprestavel() {
         super();
     }
 
-    protected Emprestimo(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao,
-                 StatusEmprestimo statusEmprestimo) {
+    protected Emprestavel(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao,
+                          StatusEmprestimo statusEmprestimo) {
         super(titulo, dataPublicacao, statusClassificacao);
         this.statusEmprestimo = statusEmprestimo;
         this.qtdEmprestimo = 0;

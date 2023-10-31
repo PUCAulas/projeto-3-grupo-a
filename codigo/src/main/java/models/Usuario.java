@@ -1,9 +1,8 @@
 package main.java.models;
 
-import main.java.models.itens.Emprestimo;
+import main.java.models.itens.Emprestavel;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,12 +17,12 @@ public class Usuario {
     private String email;
     private LocalDate dataNascimento;
     private int qtdItensEmprestados;
-    private List<Emprestimo> emprestimos;
+    private List<Emprestavel> emprestavels;
     private final int QTD_MAX_ITENS_EMPRESTADOS = 3;
 
     public Usuario() {
         this.id = PROX_ID++;
-        emprestimos = new ArrayList<>();
+        emprestavels = new ArrayList<>();
     }
 
     private Usuario(String senha, String email, LocalDate dataNascimento) {
@@ -66,8 +65,8 @@ public class Usuario {
         return qtdItensEmprestados;
     }
 
-    public List<Emprestimo> getEmprestimos() {
-        return emprestimos;
+    public List<Emprestavel> getEmprestimos() {
+        return emprestavels;
     }
 
     public int getQTD_MAX_ITENS_EMPRESTADOS() {
@@ -82,18 +81,18 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public void addEmprestimo(Emprestimo emprestimo) {
-        this.getEmprestimos().add(emprestimo);
+    public void addEmprestimo(Emprestavel emprestavel) {
+        this.getEmprestimos().add(emprestavel);
     }
 
-    public void removerEmpresimo(Emprestimo emprestimo) {
-        this.getEmprestimos().remove(emprestimo);
+    public void removerEmpresimo(Emprestavel emprestavel) {
+        this.getEmprestimos().remove(emprestavel);
     }
 
     public String listarEmprestimo() {
         StringBuilder emprestimos = new StringBuilder();
-        for (Emprestimo emprestimo : this.getEmprestimos()) {
-            emprestimos.append(emprestimo);
+        for (Emprestavel emprestavel : this.getEmprestimos()) {
+            emprestimos.append(emprestavel);
             emprestimos.append("\n");
         }
         return emprestimos.toString();

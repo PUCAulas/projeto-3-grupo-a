@@ -4,7 +4,6 @@ import main.java.enums.FiltroPesquisa;
 import main.java.interfaces.AutorFiltro;
 import main.java.interfaces.Relatorio;
 import main.java.models.itens.*;
-import main.java.services.UsuarioService;
 
 import java.util.*;
 
@@ -45,7 +44,7 @@ public class Biblioteca implements Relatorio {
     }
 
 
-    public List<Emprestimo> imprimirRelatorioUsuario(Usuario usuario) {
+    public List<Emprestavel> imprimirRelatorioUsuario(Usuario usuario) {
         return null;
     }
 

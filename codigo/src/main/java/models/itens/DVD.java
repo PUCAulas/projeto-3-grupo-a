@@ -6,7 +6,7 @@ import main.java.enums.StatusEmprestimo;
 import java.time.Duration;
 import java.time.LocalDate;
 
-public final class DVD extends Emprestimo{
+public final class DVD extends Emprestavel {
     private String diretor;
     private Duration duracao;
     private String idioma;

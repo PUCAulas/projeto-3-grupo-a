@@ -16,7 +16,13 @@ public class UsuarioService implements GerenciarBiblioteca {
     public UsuarioService() {
     }
 
+    public UsuarioService(Usuario usuario,Biblioteca biblioteca) {
+        this.usuario = usuario;
+        this.biblioteca = biblioteca;
+    }
+
     public UsuarioService(Biblioteca biblioteca) {
+        this.usuario = null;
         this.biblioteca = biblioteca;
     }
 

@@ -11,9 +11,14 @@ public class ItemService implements GerenciarBiblioteca {
     public ItemService() {
     }
 
-    public ItemService(Biblioteca biblioteca, Item item) {
+    public ItemService(Item item, Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
         this.item = item;
+    }
+
+    public ItemService(Biblioteca biblioteca) {
+        this.item = null;
+        this.biblioteca = biblioteca;
     }
 
 

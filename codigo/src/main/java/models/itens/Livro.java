@@ -5,7 +5,7 @@ import main.java.enums.StatusEmprestimo;
 
 import java.time.LocalDate;
 
-public final class Livro extends Emprestimo{
+public final class Livro extends Emprestavel {
     private String autor;
     private int numeroPaginas;
 
