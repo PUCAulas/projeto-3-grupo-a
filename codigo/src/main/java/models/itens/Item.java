@@ -15,6 +15,7 @@ public class Item {
 
 
     public Item() {
+        this.id = PROX_ID++;
     }
 
     protected Item(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao) {
@@ -56,7 +57,9 @@ public class Item {
     @Override
     public String toString() {
         return "Dados do item: \n"
-             + "Título: "
+             + "\nId: "
+             + this.getId()
+             + "\nTítulo: "
              + this.getTitulo()
              + "\nData de publicação: "
              + this.getDataPublicacao()

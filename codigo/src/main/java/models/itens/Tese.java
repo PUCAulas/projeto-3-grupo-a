@@ -75,7 +75,7 @@ public final class Tese extends Item{
              + this.getOrientador()
              + "\nData da defesa de tese: "
              + this.getDataDefesa()
-             + "\nArtigos: \n"
+             + "\nACapitulos: \n"
              + this.listarArtigos();
 
     }

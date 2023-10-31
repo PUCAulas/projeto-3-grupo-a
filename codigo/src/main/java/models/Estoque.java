@@ -1,6 +1,8 @@
 package main.java.models;
 
 import main.java.models.itens.Item;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -8,6 +10,7 @@ public class Estoque {
     private List<Item> itens;
 
     public Estoque() {
+        this.itens = new ArrayList<>();
     }
 
     private Estoque(List<Item> itens) {
