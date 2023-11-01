@@ -90,9 +90,8 @@ public class Biblioteca implements Relatorio {
         }
         System.out.println(" ");
         System.out.println(result);
-        Scanner sc = InputScannerUtil.getScanner();
         System.out.print("Escolha o número: ");
-        int option = sc.nextInt();
+        int option = InputScannerUtil.scanner.nextInt();
 
         return itens.get(option - 1);
     }

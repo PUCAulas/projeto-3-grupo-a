@@ -54,8 +54,8 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         System.out.println("2. DVD");
         System.out.println("3. Livro");
 
-        int escolha = InputScannerUtil.getScanner().nextInt();
-        InputScannerUtil.getScanner().nextLine();
+        int escolha = InputScannerUtil.scanner.nextInt();
+        InputScannerUtil.scanner.nextLine();
         switch (escolha) {
             case 1:
                 criarCD();
@@ -206,8 +206,8 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         System.out.println("2. DVD");
         System.out.println("3. Livro");
 
-        int escolha = InputScannerUtil.getScanner().nextInt();
-        InputScannerUtil.getScanner().nextLine();
+        int escolha = InputScannerUtil.scanner.nextInt();
+        InputScannerUtil.scanner.nextLine();
         switch (escolha) {
             case 1:
                 atualizarCD();
@@ -226,8 +226,8 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
     private void atualizarDVD() {
 
         System.out.print("Informe o ID do item a ser atualizado: ");
-        int id = InputScannerUtil.getScanner().nextInt();
-        InputScannerUtil.getScanner().nextLine();
+        int id = InputScannerUtil.scanner.nextInt();
+        InputScannerUtil.scanner.nextLine();
 
         for (Item item : biblioteca.getEstoque().getItens()) {
             if (item.getId() == id && item instanceof DVD) {
@@ -242,9 +242,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
                 System.out.println("8. Sinopse");
                 System.out.println("9. Genero");
 
-                int escolha = InputScannerUtil.getScanner().nextInt();
-                Scanner sc = InputScannerUtil.getScanner();
-                InputScannerUtil.getScanner().nextLine();
+                int escolha = InputScannerUtil.scanner.nextInt();
+                Scanner sc = InputScannerUtil.scanner;
+                InputScannerUtil.scanner.nextLine();
 
                 switch (escolha) {
                     case 1:
@@ -300,8 +300,8 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
     private void atualizarCD() {
 
         System.out.print("Informe o ID do item a ser atualizado: ");
-        int id = InputScannerUtil.getScanner().nextInt();
-        InputScannerUtil.getScanner().nextLine();
+        int id = InputScannerUtil.scanner.nextInt();
+        InputScannerUtil.scanner.nextLine();
 
         for (Item item : biblioteca.getEstoque().getItens()) {
             if (item.getId() == id && item instanceof CD) {
@@ -313,9 +313,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
                 System.out.println("5. Artista");
                 System.out.println("6. Duração");
 
-                int escolha = InputScannerUtil.getScanner().nextInt();
-                Scanner sc = InputScannerUtil.getScanner();
-                InputScannerUtil.getScanner().nextLine();
+                int escolha = InputScannerUtil.scanner.nextInt();
+                Scanner sc = InputScannerUtil.scanner;
+                InputScannerUtil.scanner.nextLine();
 
                 switch (escolha) {
                     case 1:
@@ -363,8 +363,8 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
     private void atualizarLivro() {
 
         System.out.print("Informe o ID do livro a ser atualizado: ");
-        int id = InputScannerUtil.getScanner().nextInt();
-        InputScannerUtil.getScanner().nextLine();
+        int id = InputScannerUtil.scanner.nextInt();
+        InputScannerUtil.scanner.nextLine();
 
         for (Item item : biblioteca.getEstoque().getItens()) {
             if (item.getId() == id && item instanceof Livro) {
@@ -381,9 +381,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
                 System.out.println("10. Volume");
                 System.out.println("11. Número de páginas");
 
-                int escolha = InputScannerUtil.getScanner().nextInt();
-                Scanner sc = InputScannerUtil.getScanner();
-                InputScannerUtil.getScanner().nextLine();
+                int escolha = InputScannerUtil.scanner.nextInt();
+                Scanner sc = InputScannerUtil.scanner;
+                InputScannerUtil.scanner.nextLine();
 
                 switch (escolha) {
                     case 1:
@@ -445,7 +445,7 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
 
     public void deletar() {
         System.out.print("Informe o ID do item: ");
-        int id = InputScannerUtil.getScanner().nextInt();
+        int id = InputScannerUtil.scanner.nextInt();
 
         Item deletar = null;
         for (Item item : biblioteca.getEstoque().getItens()) {

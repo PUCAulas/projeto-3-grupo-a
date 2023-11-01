@@ -1,11 +1,13 @@
 package main.java;
 
 import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 import main.java.models.Biblioteca;
 import main.java.models.Estoque;
-import main.java.utils.GerenciarBibliotecaUtil;
+import main.java.services.UsuarioService;
 import main.java.utils.InputScannerUtil;
+import main.java.views.menus.UsuarioMenu;
 
 public class Main {
 
@@ -13,50 +15,32 @@ public class Main {
 
         Estoque estoque = new Estoque();
         Biblioteca biblioteca = new Biblioteca(estoque);
+        UsuarioService usuarioService = new UsuarioService(biblioteca);
 
-        while (true) {
-            System.out.println("Escolha a operação desejada:");
-            System.out.println("1. Gerenciar usuários");
-            System.out.println("2. Gerenciar itens não emprestáveis");
-            System.out.println("3. Gerenciar itens emprestáveis");
-            System.out.println("4. Pesquisar itens da biblioteca");
-            System.out.println("5. Sair");
+        Scanner sc = new Scanner(System.in);
 
+        while(true) {
+            System.out.println("Você é usuário ou administrador? (escolha o número abaixo)");
+            System.out.println("1 - Usuário");
+            System.out.println("2 - Administrador");
             try {
-                System.out.print("Opção: ");
-                int escolha = InputScannerUtil.getScanner().nextInt();
-
+                System.out.print("\nOpção: ");
+                int escolha = sc.nextInt();
                 switch (escolha) {
                     case 1:
-                        GerenciarBibliotecaUtil.gerenciarUsuario(biblioteca);
-                        break;
+                        UsuarioMenu.usuarioConta(usuarioService);
                     case 2:
-                        GerenciarBibliotecaUtil.gerenciarItemNaoEmprestavel(biblioteca);
-                        break;
-                    case 3:
-                        GerenciarBibliotecaUtil.gerenciarItemEmprestavel(biblioteca);
-                        break;
-                    case 4:
-                        try {
-                            GerenciarBibliotecaUtil.pesquisa(biblioteca);
-                        } catch (Exception e) {
-                            System.out.println("Erro: " + e.getMessage());
-                            System.out.println();
-                        }
-                        break;
-                    case 5:
-                        System.out.println("Saindo...");
-                        // InputScannerUtil.close();
-                        return;
+                        //AdmMenu.admSistema(biblioteca);
                     default:
                         System.out.println("Opção inválida. Tente novamente.");
+                        InputScannerUtil.close();
                 }
             } catch (NoSuchElementException e) {
                 System.out.println("Entrada inválida.");
-                InputScannerUtil.getScanner().nextLine();
+                InputScannerUtil.scanner.nextLine();
             }
-
         }
 
     }
+
 }

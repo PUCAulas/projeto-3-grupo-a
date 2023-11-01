@@ -164,8 +164,8 @@ public class ItemService implements GerenciarBiblioteca {
         System.out.println("1. Revista");
         System.out.println("2. Tese");
 
-        int escolha = InputScannerUtil.getScanner().nextInt();
-        InputScannerUtil.getScanner().nextLine();
+        int escolha = InputScannerUtil.scanner.nextInt();
+        InputScannerUtil.scanner.nextLine();
         switch (escolha) {
             case 1:
                 atualizarRevista();
@@ -181,8 +181,8 @@ public class ItemService implements GerenciarBiblioteca {
     private void atualizarRevista() {
 
         System.out.print("Informe o ID do item a ser atualizado: ");
-        int id = InputScannerUtil.getScanner().nextInt();
-        InputScannerUtil.getScanner().nextLine();
+        int id = InputScannerUtil.scanner.nextInt();
+        InputScannerUtil.scanner.nextLine();
 
         for (Item item : biblioteca.getEstoque().getItens()) {
             if (item.getId() == id && item instanceof Revista) {
@@ -194,9 +194,9 @@ public class ItemService implements GerenciarBiblioteca {
                 System.out.println("5. Editora");
                 System.out.println("6. Artigos");
 
-                int escolha = InputScannerUtil.getScanner().nextInt();
-                Scanner sc = InputScannerUtil.getScanner();
-                InputScannerUtil.getScanner().nextLine();
+                int escolha = InputScannerUtil.scanner.nextInt();
+                Scanner sc = InputScannerUtil.scanner;
+                InputScannerUtil.scanner.nextLine();
 
                 switch (escolha) {
                     case 1:
@@ -242,8 +242,8 @@ public class ItemService implements GerenciarBiblioteca {
     private void atualizarTese() {
 
         System.out.print("Informe o ID do item a ser atualizado: ");
-        int id = InputScannerUtil.getScanner().nextInt();
-        InputScannerUtil.getScanner().nextLine();
+        int id = InputScannerUtil.scanner.nextInt();
+        InputScannerUtil.scanner.nextLine();
 
         for (Item item : biblioteca.getEstoque().getItens()) {
             if (item.getId() == id && item instanceof Tese) {
@@ -256,9 +256,9 @@ public class ItemService implements GerenciarBiblioteca {
                 System.out.println("6. Data da defesa");
                 System.out.println("7. Capitulos");
 
-                int escolha = InputScannerUtil.getScanner().nextInt();
-                Scanner sc = InputScannerUtil.getScanner();
-                InputScannerUtil.getScanner().nextLine();
+                int escolha = InputScannerUtil.scanner.nextInt();
+                Scanner sc = InputScannerUtil.scanner;
+                InputScannerUtil.scanner.nextLine();
 
                 switch (escolha) {
                     case 1:
@@ -308,7 +308,7 @@ public class ItemService implements GerenciarBiblioteca {
 
     public void deletar() {
         System.out.print("Informe o ID do item: ");
-        int id = InputScannerUtil.getScanner().nextInt();
+        int id = InputScannerUtil.scanner.nextInt();
 
         Item deletar = null;
         for (Item item : biblioteca.getEstoque().getItens()) {

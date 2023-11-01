@@ -1,15 +1,11 @@
 package main.java.services;
 
 import java.time.LocalDate;
-import java.util.Scanner;
-
-import main.java.interfaces.GerenciarBiblioteca;
 import main.java.models.Biblioteca;
 import main.java.models.Usuario;
-import main.java.utils.DataUtil;
-import main.java.utils.InputScannerUtil;
 
-public class UsuarioService implements GerenciarBiblioteca {
+
+public class UsuarioService  {
 
     private Biblioteca biblioteca;
     private Usuario usuario;
@@ -26,6 +22,7 @@ public class UsuarioService implements GerenciarBiblioteca {
         this.usuario = null;
         this.biblioteca = biblioteca;
     }
+
 
     public Biblioteca getBiblioteca() {
 
@@ -47,74 +44,52 @@ public class UsuarioService implements GerenciarBiblioteca {
         this.usuario = usuario;
     }
 
-    public void criar() {
 
-        Scanner sc = new Scanner(System.in);
-        Usuario novoUsuario = new Usuario();
 
-        System.out.print("Informe o nome do usuário: ");
-        novoUsuario.setNome(sc.nextLine());
+    public void criar(String nome, String email, String senha, LocalDate dataNascimento) {
 
-        System.out.print("Informe o e-mail do usuário: ");
-        novoUsuario.setEmail(sc.nextLine());
+        this.usuario.setNome(nome);
+        this.usuario.setEmail(email);
+        this.usuario.setSenha(senha);
+        this.usuario.setDataNascimento(dataNascimento);
 
-        System.out.print("Informe a senha do usuário: ");
-        novoUsuario.setSenha(sc.nextLine());
+        this.biblioteca.addUsuario(this.usuario);
+        this.setUsuario(null);
 
-        System.out.print("Informe a data de nascimento (dd/MM/yyyy): ");
-        novoUsuario.setDataNascimento(LocalDate.parse(sc.nextLine(), DataUtil.fmt));
-
-        this.biblioteca.addUsuario(novoUsuario);
-
-        System.out.println("Usuário cadastrado!");
     }
 
-    public void atualizar() {
+    public void atualizar(String name, String email, String senha, LocalDate dataNascimento) {
 
-        System.out.print("Informe o ID do usuário: ");
-        int id = InputScannerUtil.getScanner().nextInt();
-        InputScannerUtil.getScanner().nextLine();
+        this.getBiblioteca().removeUsuario(this.getUsuario());
 
-        for (Usuario u : biblioteca.getUsuarios()) {
-            if (u.getId() == id) {
-                System.out.print("Informe o novo nome: ");
-                u.setNome(InputScannerUtil.getScanner().nextLine());
+        this.usuario.setNome(name);
+        this.usuario.setEmail(email);
+        this.usuario.setSenha(senha);
+        this.usuario.setDataNascimento(dataNascimento);
 
-                System.out.print("Informe o novo e-mail: ");
-                u.setEmail(InputScannerUtil.getScanner().nextLine());
-
-                System.out.print("Informe a nova senha: ");
-                u.setSenha(InputScannerUtil.getScanner().nextLine());
-
-                System.out.print("Informe a nova data de nascimento (dd/MM/yyyy): ");
-                u.setDataNascimento(LocalDate.parse(InputScannerUtil.getScanner().nextLine(), DataUtil.fmt));
-
-                System.out.println("Usuário atualizado!");
-                return;
-            }
-        }
-        System.out.println("Usuário não encontrado!");
+        this.getBiblioteca().addUsuario(usuario);
     }
 
-    public void deletar() {
 
-        System.out.print("Informe o ID do usuário: ");
-        int id = InputScannerUtil.getScanner().nextInt();
-        
-        Usuario usuarioDeletar = null;
-        for (Usuario u : biblioteca.getUsuarios()) {
-            if (u.getId() == id) {
-                usuarioDeletar = u;
-                break;
-            }
-        }
-        if(usuarioDeletar != null) {
-            biblioteca.getUsuarios().remove(usuarioDeletar);
-            System.out.println("Usuário deletado com sucesso!");
-        } else {
-            System.out.println("Usuário não encontrado!");
-        }
+    public void deletar(Usuario usuario) throws Exception {
+
+        this.getBiblioteca().getUsuarios().remove(usuario);
     }
+
+
+    public Usuario verificarSenhaEmail(String senha, String email) throws Exception {
+        Usuario u = null;
+        for(Usuario usuario : biblioteca.getUsuarios()) {
+            if(usuario.getSenha().equals(senha) && usuario.getEmail().equals(email))
+                u = usuario;
+        }
+
+        if(u == null)
+            throw new Exception("Usuário não existe!");
+
+        return u;
+    }
+
 
     public void listar() {
         for (Usuario u : biblioteca.getUsuarios()) {
