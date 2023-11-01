@@ -79,7 +79,6 @@ public class Biblioteca implements Relatorio {
     }
 
     public String choice(List<String> itens) {
-        // Ordene a lista usando um comparador que ignora maiúsculas e minúsculas.
         Collections.sort(itens, String.CASE_INSENSITIVE_ORDER);
 
         StringBuilder result = new StringBuilder();
@@ -107,13 +106,13 @@ public class Biblioteca implements Relatorio {
         }
     }
 
-    private Item encontrarItemCorrespondente(FiltroPesquisa tipo, String result) {
+    public Item encontrarItemCorrespondente(FiltroPesquisa tipo, String result) {
 
         Optional<Item> item = this.getEstoque().getItens().stream().filter(x -> {
             String valor = obterValorParaTipo(x, tipo);
             return valor != null && valor.equals(result);
-        })
-                .findFirst();
+        }).findFirst();
+
         return item.orElse(null);
     }
 
