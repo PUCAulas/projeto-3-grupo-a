@@ -204,6 +204,7 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         System.out.println("Escolha o tipo de item a ser atualizado:");
         System.out.println("1. CD");
         System.out.println("2. DVD");
+        System.out.println("3. Livro");
 
         int escolha = InputScannerUtil.getScanner().nextInt();
         InputScannerUtil.getScanner().nextLine();
@@ -213,6 +214,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
                 break;
             case 2:
                 atualizarDVD();
+                break;
+            case 3:
+                atualizarLivro();
                 break;
             default:
                 System.out.println("Tipo de item inválido.");
