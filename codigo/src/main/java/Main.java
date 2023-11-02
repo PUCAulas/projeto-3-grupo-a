@@ -30,8 +30,10 @@ public class Main {
                 switch (escolha) {
                     case 1:
                         UsuarioMenu.menuPrincipal(usuarioService);
+                        break;
                     case 2:
                         AdmMenu.menuPrincipal(usuarioService);
+                        break;
                     default:
                         System.out.println("Opção inválida. Tente novamente.");
                         InputScannerUtil.close();

@@ -14,7 +14,7 @@ public class AdmMenu {
     public static void menuPrincipal(UsuarioService usuarioService) {
 
         while (true) {
-            System.out.println("Escolha a operação desejada:");
+            System.out.println("\nEscolha a operação desejada:");
             System.out.println("1. Gerenciar usuários");
             System.out.println("2. Gerenciar itens não emprestáveis");
             System.out.println("3. Gerenciar itens emprestáveis");

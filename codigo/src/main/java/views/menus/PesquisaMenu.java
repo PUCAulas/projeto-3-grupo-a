@@ -9,7 +9,7 @@ public class PesquisaMenu {
     public static void pesquisa(Biblioteca biblioteca) throws Exception {
 
         while (true) {
-            System.out.println("Escolha um filtro de pesquisa:");
+            System.out.println("\nEscolha um filtro de pesquisa:");
             System.out.println("1. Por Título");
             System.out.println("2. Por Ano");
             System.out.println("3. Por Autor");
@@ -21,8 +21,7 @@ public class PesquisaMenu {
             InputScannerUtil.scanner.nextLine();
 
             if (escolha == 5) {
-                System.out.println("Voltando ao menu principal...\n");
-                InputScannerUtil.close();
+                System.out.println("Voltando...\n");
                 break;
             }
 

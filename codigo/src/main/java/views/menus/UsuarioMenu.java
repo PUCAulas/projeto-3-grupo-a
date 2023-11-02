@@ -10,7 +10,7 @@ public class UsuarioMenu {
 
 
         while (true) {
-            System.out.println("Escolha a operação desejada:");
+            System.out.println("\nEscolha a operação desejada:");
             System.out.println("1. Cadastrar usuário");
             System.out.println("2. Atualizar usuário");
             System.out.println("3. Deletar usuário");
