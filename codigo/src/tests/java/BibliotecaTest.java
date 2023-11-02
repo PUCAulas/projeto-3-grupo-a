@@ -64,10 +64,10 @@ public class BibliotecaTest {
     @Test
     public void choiceTest() {
         List<String> itens = new ArrayList<>();
-        itens.add("Lucas");
-        itens.add("Vitor");
         itens.add("Maria Eduarda");
-        itens.add("Marlene");
+        itens.add("Carlos");
+        itens.add("Zambreta");
+        itens.add("Bianca");
 
         InputStream sistemaEntradaOriginal = System.in;
 
@@ -77,26 +77,29 @@ public class BibliotecaTest {
 
         System.setIn(sistemaEntradaOriginal);
 
-        assertEquals("Maria Eduarda", resultado);
+        assertEquals("Carlos", resultado);
+    }
+
+    @Test
+    public void encontrarItemNullTest() {
+        FiltroPesquisa filtro = FiltroPesquisa.TITULO;
+        String pesquisa = "Item Inexistente";
+
+        Item resultado = biblioteca.encontrarItem(filtro, pesquisa);
+
+        assertNull(resultado);
     }
 
 
     @Test
-    public void encontrarItemCorrespondenteTest() {
-        // Teste para encontrar um item por TÍTULO (vamos supor que "Don Quixote" é a pesquisa)
+    public void encontrarItemTest() {
         FiltroPesquisa filtro = FiltroPesquisa.TITULO;
-        String pesquisa1 = "Don quixote";
+        String pesquisa = "Don quixote";
 
-        Item resultado1 = biblioteca.encontrarItemCorrespondente(filtro, pesquisa1);
+        Item resultado = biblioteca.encontrarItem(filtro, pesquisa);
 
 
-        assertEquals("Don quixote", resultado1.getTitulo());
-
-        String pesquisa2 = "Item Inexistente";
-
-        Item resultado2 = biblioteca.encontrarItemCorrespondente(filtro, pesquisa2);
-
-        assertNull(resultado2);
+        assertEquals("Don quixote", resultado.getTitulo());
     }
 
 

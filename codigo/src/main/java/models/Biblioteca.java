@@ -75,7 +75,7 @@ public class Biblioteca implements Relatorio{
         if (tipo == FiltroPesquisa.ANO) {
             this.anoPublicacao(option);
         } else {
-            System.out.println(encontrarItemCorrespondente(tipo, option));
+            System.out.println(encontrarItem(tipo, option));
         }
     }
 
@@ -111,7 +111,7 @@ public class Biblioteca implements Relatorio{
         }
     }
 
-    public Item encontrarItemCorrespondente(FiltroPesquisa tipo, String result) {
+    public Item encontrarItem(FiltroPesquisa tipo, String result) {
 
         Optional<Item> item = this.getEstoque().getItens().stream().filter(x -> {
             String valor = obterValorParaTipo(x, tipo);
