@@ -18,6 +18,7 @@ public class Main {
         Biblioteca biblioteca = new Biblioteca(estoque);
         UsuarioService usuarioService = new UsuarioService(biblioteca);
 
+
         Scanner sc = new Scanner(System.in);
 
         while(true) {

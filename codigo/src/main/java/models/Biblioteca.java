@@ -8,10 +8,11 @@ import main.java.utils.InputScannerUtil;
 
 import java.util.*;
 
-public class Biblioteca implements Relatorio {
+public class Biblioteca implements Relatorio{
     private List<Usuario> usuarios;
 
     private Estoque estoque;
+
 
     public Biblioteca() {
         this.usuarios = new ArrayList<>();
@@ -78,6 +79,11 @@ public class Biblioteca implements Relatorio {
         }
     }
 
+    /**
+     *
+     * @param itens
+     * @return
+     */
     public String choice(List<String> itens) {
         Collections.sort(itens, String.CASE_INSENSITIVE_ORDER);
 

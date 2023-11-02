@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import main.java.enums.StatusClassificacao;
-import main.java.interfaces.GerenciarBiblioteca;
 import main.java.models.Biblioteca;
 import main.java.models.itens.Item;
 import main.java.models.itens.Revista;
@@ -14,7 +13,7 @@ import main.java.models.itens.Tese;
 import main.java.utils.DataUtil;
 import main.java.utils.InputScannerUtil;
 
-public class ItemService implements GerenciarBiblioteca {
+public class ItemService{
     public Biblioteca biblioteca;
     public Item item;
 

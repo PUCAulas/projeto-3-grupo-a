@@ -1,8 +1,7 @@
 package main.java.models.itens;
 
-import main.java.enums.StatusClassificacao;
-import main.java.interfaces.AutorFiltro;
 
+import main.java.interfaces.AutorFiltro;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -16,14 +15,6 @@ public final class Tese extends Item implements AutorFiltro {
         super();
     }
 
-    private Tese(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao, String autor,
-           String orientador, LocalDate dataDefesa, List<String> capitulos) {
-        super(titulo, dataPublicacao, statusClassificacao);
-        this.autor = autor;
-        this.orientador = orientador;
-        this.dataDefesa = dataDefesa;
-        this.capitulos = capitulos;
-    }
 
     public String getAutor() {
         return autor;

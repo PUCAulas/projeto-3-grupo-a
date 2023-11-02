@@ -82,27 +82,21 @@ public class BibliotecaTest {
 
 
     @Test
-    public void encontrarItemCorrespondenteNenhumItemEncontradoTest() {
-
-        FiltroPesquisa filtro = FiltroPesquisa.TITULO;
-        String pesquisa = "Item Inexistente";
-
-        Item resultado = biblioteca.encontrarItemCorrespondente(filtro, pesquisa);
-
-        assertNull(resultado);
-    }
-
-
-
-    @Test
     public void encontrarItemCorrespondenteTest() {
         // Teste para encontrar um item por TÍTULO (vamos supor que "Don Quixote" é a pesquisa)
         FiltroPesquisa filtro = FiltroPesquisa.TITULO;
-        String pesquisa = "Don quixote";
+        String pesquisa1 = "Don quixote";
 
-        Item resultado = biblioteca.encontrarItemCorrespondente(filtro, pesquisa);
+        Item resultado1 = biblioteca.encontrarItemCorrespondente(filtro, pesquisa1);
 
-        assertEquals("Don quixote", resultado.getTitulo());
+
+        assertEquals("Don quixote", resultado1.getTitulo());
+
+        String pesquisa2 = "Item Inexistente";
+
+        Item resultado2 = biblioteca.encontrarItemCorrespondente(filtro, pesquisa2);
+
+        assertNull(resultado2);
     }
 
 

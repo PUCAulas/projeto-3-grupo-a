@@ -10,19 +10,12 @@ import java.util.List;
 public final class CD extends Emprestavel {
     private String artista;
     private Duration duracao;
-    private List<Faixa> faixas;
+    private List<String> faixas;
 
     public CD() {
         super();
     }
 
-    private CD(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao,
-         StatusEmprestimo statusEmprestimo, String artista, Duration duracao, List<Faixa> faixas) {
-        super(titulo, dataPublicacao, statusClassificacao, statusEmprestimo);
-        this.artista = artista;
-        this.duracao = duracao;
-        this.faixas = faixas;
-    }
 
     public String getArtista() {
         return artista;
@@ -40,18 +33,18 @@ public final class CD extends Emprestavel {
         this.duracao = duracao;
     }
 
-    public List<Faixa> getFaixas() {
+    public List<String> getFaixas() {
         return faixas;
     }
 
-    public void setFaixas(List<Faixa> faixas) {
+    public void setFaixas(List<String> faixas) {
         this.faixas = faixas;
     }
 
     public String listarFaixas() {
         StringBuilder faixas = new StringBuilder();
-        for (Faixa faixa : this.getFaixas()) {
-            faixas.append(faixa.toString());
+        for (String faixa : this.getFaixas()) {
+            faixas.append(faixa);
             faixas.append("\n");
         }
         return faixas.toString();

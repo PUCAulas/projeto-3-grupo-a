@@ -17,12 +17,12 @@ public class Usuario {
     private String email;
     private LocalDate dataNascimento;
     private int qtdItensEmprestados;
-    private List<Emprestavel> emprestavels;
+    private List<Emprestavel> emprestaveis;
     private final int QTD_MAX_ITENS_EMPRESTADOS = 3;
 
     public Usuario() {
         this.id = PROX_ID++;
-        emprestavels = new ArrayList<>();
+        emprestaveis = new ArrayList<>();
     }
 
     private Usuario(String senha, String email, LocalDate dataNascimento) {
@@ -65,7 +65,7 @@ public class Usuario {
     }
 
     public List<Emprestavel> getEmprestimos() {
-        return emprestavels;
+        return emprestaveis;
     }
 
     public int getQTD_MAX_ITENS_EMPRESTADOS() {

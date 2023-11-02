@@ -18,12 +18,6 @@ public class Item {
         this.id = PROX_ID++;
     }
 
-    protected Item(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao) {
-        this.titulo = titulo;
-        this.dataPublicacao = dataPublicacao;
-        this.statusClassificacao = statusClassificacao;
-        this.id = PROX_ID++;
-    }
 
     public int getId() {
         return id;

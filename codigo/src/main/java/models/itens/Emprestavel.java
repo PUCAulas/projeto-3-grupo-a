@@ -18,14 +18,6 @@ public class Emprestavel extends Item{
         super();
     }
 
-    protected Emprestavel(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao,
-                          StatusEmprestimo statusEmprestimo) {
-        super(titulo, dataPublicacao, statusClassificacao);
-        this.statusEmprestimo = statusEmprestimo;
-        this.qtdEmprestimo = 0;
-        this.dataEmprestimo = null;
-        this.diaEmprestimo = 0;
-    }
 
 
     public StatusEmprestimo getStatusEmprestimo() {

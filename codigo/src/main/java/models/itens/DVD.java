@@ -18,15 +18,6 @@ public final class DVD extends Emprestavel {
         super();
     }
 
-    private DVD(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao,
-          StatusEmprestimo statusEmprestimo, String diretor, Duration duracao, String idioma, String sinopse, String genero) {
-        super(titulo, dataPublicacao, statusClassificacao, statusEmprestimo);
-        this.diretor = diretor;
-        this.duracao = duracao;
-        this.idioma = idioma;
-        this.sinopse = sinopse;
-        this.genero = genero;
-    }
 
     public String getDiretor() {
         return diretor;

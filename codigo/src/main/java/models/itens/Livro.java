@@ -19,20 +19,7 @@ public final class Livro extends Emprestavel implements AutorFiltro {
     private String genero;
 
     public Livro() {
-    }
-
-
-    private Livro(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao,
-             StatusEmprestimo statusEmprestimo, String autor, int numeroPaginas, String editora, String edicao, String volume, String idioma, String sinopse, String genero) {
-        super(titulo, dataPublicacao, statusClassificacao, statusEmprestimo);
-        this.autor = autor;
-        this.numeroPaginas = numeroPaginas;
-        this.editora = editora;
-        this.edicao = edicao;
-        this.volume = volume;
-        this.idioma = idioma;
-        this.sinopse = sinopse;
-        this.genero = genero;
+        super();
     }
 
 
