@@ -8,7 +8,6 @@ import java.time.LocalDate;
 
 public class UsuarioInput {
 
-
     public static void obterDadosDeCadastro(UsuarioService usuarioService) {
 
         String name, email, senha;
@@ -26,20 +25,16 @@ public class UsuarioInput {
         System.out.print("Informe a data de nascimento (dd/MM/yyyy): ");
         dataNascimento = LocalDate.parse(InputScannerUtil.scanner.nextLine(), DataUtil.fmt);
 
-       usuarioService.setUsuario(new Usuario());
+       Usuario usuario = new Usuario();
+       usuarioService.setUsuario(usuario);
        usuarioService.criar(name, email, senha, dataNascimento);
        System.out.println("Usuário cadastrado com sucesso!");
     }
 
     public static void obterDadosDeAtualizacao(UsuarioService usuarioService) {
-        System.out.print("Informe sua senha: ");
-        String senha = InputScannerUtil.scanner.nextLine();
-        System.out.print("Informe seu email: ");
-        String email = InputScannerUtil.scanner.nextLine();
-
         try {
-            Usuario usuario = usuarioService.verificarSenhaEmail(senha, email);
-            usuarioService.setUsuario(usuario); //Setando para instância do usuário logado
+            Usuario usuario = obterUsuarioCadastrado(usuarioService);
+            usuarioService.setUsuario(usuario);
 
             System.out.println("\nOpção:");
             System.out.println("1. Nome");
@@ -59,13 +54,13 @@ public class UsuarioInput {
                     break;
                 case 2:
                     System.out.print("Informe o novo E-mail: ");
-                    email = InputScannerUtil.scanner.nextLine();
+                    String email = InputScannerUtil.scanner.nextLine();
                     usuarioService.atualizar(usuario.getNome(), email, usuario.getSenha(),
                             usuario.getDataNascimento());
                     break;
                 case 3:
                     System.out.print("Informe a nova senha: ");
-                    senha = InputScannerUtil.scanner.nextLine();
+                    String senha = InputScannerUtil.scanner.nextLine();
                     usuarioService.atualizar(usuario.getNome(), usuario.getEmail(),senha,usuario.getDataNascimento());
                     break;
                 case 4:
@@ -85,20 +80,23 @@ public class UsuarioInput {
 
 
     public static void obterDadosDeExclusao(UsuarioService usuarioService) {
-
-        System.out.print("Informe sua senha: ");
-        String senha = InputScannerUtil.scanner.nextLine();
-        System.out.println("Informe seu email: ");
-        String email = InputScannerUtil.scanner.nextLine();
-
         try {
-            Usuario usuario = usuarioService.verificarSenhaEmail(senha, email);
+            Usuario usuario = obterUsuarioCadastrado(usuarioService);
             usuarioService.deletar(usuario);
             System.out.println("Usuário deletado com sucesso!");
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
         }
+    }
 
+
+    public static Usuario obterUsuarioCadastrado(UsuarioService usuarioService) throws Exception {
+        System.out.print("Informe sua senha: ");
+        String senha = InputScannerUtil.scanner.nextLine();
+        System.out.print("Informe seu email: ");
+        String email = InputScannerUtil.scanner.nextLine();
+
+        return usuarioService.verificarSenhaEmail(senha, email);
     }
 
 

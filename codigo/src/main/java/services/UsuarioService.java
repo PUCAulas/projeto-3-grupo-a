@@ -71,7 +71,7 @@ public class UsuarioService  {
     }
 
 
-    public void deletar(Usuario usuario) throws Exception {
+    public void deletar(Usuario usuario) {
 
         this.getBiblioteca().getUsuarios().remove(usuario);
     }
@@ -97,4 +97,17 @@ public class UsuarioService  {
         }
     }
 
+    public Usuario pesquisarUsuarioPorId(int id) throws Exception {
+        Usuario u = null;
+
+        for(Usuario usuario : biblioteca.getUsuarios()) {
+            if(usuario.getId() == id)
+                u = usuario;
+        }
+
+        if(u == null)
+            throw new Exception("Usuário não existe!");
+
+        return u;
+    }
 }

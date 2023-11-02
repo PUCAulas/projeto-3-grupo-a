@@ -110,8 +110,6 @@ public class Usuario {
                 + this.getNome()
                 + "\nData de nascimento: "
                 + this.getDataNascimento()
-                + "\nE-mail: "
-                + this.getEmail()
                 + "\nQuantidade de itens emprestados: "
                 + this.getQtdItensEmprestados()
                 + "\nQuantidade máxima de itens para empréstimo: "

@@ -7,6 +7,7 @@ import main.java.models.Biblioteca;
 import main.java.models.Estoque;
 import main.java.services.UsuarioService;
 import main.java.utils.InputScannerUtil;
+import main.java.views.menus.AdmMenu;
 import main.java.views.menus.UsuarioMenu;
 
 public class Main {
@@ -28,9 +29,9 @@ public class Main {
                 int escolha = sc.nextInt();
                 switch (escolha) {
                     case 1:
-                        UsuarioMenu.usuarioConta(usuarioService);
+                        UsuarioMenu.menuPrincipal(usuarioService);
                     case 2:
-                        //AdmMenu.admSistema(biblioteca);
+                        AdmMenu.menuPrincipal(usuarioService);
                     default:
                         System.out.println("Opção inválida. Tente novamente.");
                         InputScannerUtil.close();
