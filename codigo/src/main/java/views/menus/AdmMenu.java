@@ -34,10 +34,10 @@ public class AdmMenu {
                         menuUsuario(usuarioService);
                         break;
                     case 2:
-                        //chamar método gerenciarItensNaoEmprestaveis
+                        //chamar método menuItensNaoEmprestaveis
                         break;
                     case 3:
-                        //chamar método gerenciarItensEmprestaveis
+                        //chamar método menuItensEmprestaveis
                         break;
                     case 4:
                         try {
