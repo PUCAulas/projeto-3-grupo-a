@@ -31,7 +31,7 @@ public class AdmMenu {
 
                 switch (escolha) {
                     case 1:
-                        gerenciarUsuario(usuarioService);
+                        menuUsuario(usuarioService);
                         break;
                     case 2:
                         //chamar método gerenciarItensNaoEmprestaveis
@@ -56,7 +56,7 @@ public class AdmMenu {
     }
 
 
-    public static void gerenciarUsuario(UsuarioService usuarioService) {
+    public static void menuUsuario(UsuarioService usuarioService) {
 
         while (true) {
             System.out.println("Escolha a operação desejada:");
