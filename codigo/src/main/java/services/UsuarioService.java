@@ -10,13 +10,6 @@ public class UsuarioService  {
     private Biblioteca biblioteca;
     private Usuario usuario;
 
-    public UsuarioService() {
-    }
-
-    public UsuarioService(Usuario usuario,Biblioteca biblioteca) {
-        this.usuario = usuario;
-        this.biblioteca = biblioteca;
-    }
 
     public UsuarioService(Biblioteca biblioteca) {
         this.usuario = null;
