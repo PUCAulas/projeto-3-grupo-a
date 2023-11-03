@@ -4,6 +4,8 @@ import main.java.models.Usuario;
 import main.java.services.UsuarioService;
 import main.java.utils.DataUtil;
 import main.java.utils.InputScannerUtil;
+import main.java.utils.ObjectFactoryUtil;
+
 import java.time.LocalDate;
 
 public class UsuarioInput {
@@ -25,7 +27,7 @@ public class UsuarioInput {
         System.out.print("Informe a data de nascimento (dd/MM/yyyy): ");
         dataNascimento = LocalDate.parse(InputScannerUtil.scanner.nextLine(), DataUtil.fmt);
 
-       Usuario usuario = new Usuario();
+       Usuario usuario = ObjectFactoryUtil.newUsuario();
        usuarioService.setUsuario(usuario);
        usuarioService.criar(name, email, senha, dataNascimento);
        System.out.println("Usuário cadastrado com sucesso!");

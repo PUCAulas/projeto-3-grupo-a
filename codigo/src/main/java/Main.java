@@ -1,12 +1,11 @@
 package main.java;
 
 import java.util.NoSuchElementException;
-import java.util.Scanner;
-
 import main.java.models.Biblioteca;
 import main.java.models.Estoque;
 import main.java.services.UsuarioService;
 import main.java.utils.InputScannerUtil;
+import main.java.utils.ObjectFactoryUtil;
 import main.java.views.menus.AdmMenu;
 import main.java.views.menus.UsuarioMenu;
 
@@ -14,12 +13,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Estoque estoque = new Estoque();
-        Biblioteca biblioteca = new Biblioteca(estoque);
-        UsuarioService usuarioService = new UsuarioService(biblioteca);
+        Biblioteca biblioteca = ObjectFactoryUtil.construirBiblioteca();
+        UsuarioService usuarioService = ObjectFactoryUtil.usuarioService(biblioteca);
 
-
-        Scanner sc = new Scanner(System.in);
+        //...
+        //todo: Outras chamadas de métodos do tipo void do ObjectFactorUtil para popular o programa
+        //...
 
         while(true) {
             System.out.println("Você é usuário ou administrador? (escolha o número abaixo)");
@@ -27,7 +26,7 @@ public class Main {
             System.out.println("2 - Administrador");
             try {
                 System.out.print("\nOpção: ");
-                int escolha = sc.nextInt();
+                int escolha = InputScannerUtil.scanner.nextInt();
                 switch (escolha) {
                     case 1:
                         UsuarioMenu.menuPrincipal(usuarioService);
