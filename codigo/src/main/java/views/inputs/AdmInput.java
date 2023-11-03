@@ -8,18 +8,20 @@ import java.util.Optional;
 
 public class AdmInput {
 
-    // todo: está faltando a verificação de senha e login do adm
-    // todo: adm é um usuário com permissões especiais.
-
-
     public static Optional<Usuario> dadosDePesquisaDoUsuario(UsuarioService usuarioService) {
-        System.out.println("Digite o id do usuário desejado: ");
-        int id = InputScannerUtil.scanner.nextInt();
-        InputScannerUtil.scanner.nextLine();
-
         try {
-            Usuario usuario = usuarioService.pesquisarUsuarioPorId(id);
-            return Optional.ofNullable(usuario);
+            checkAdm(usuarioService);
+            System.out.print("Digite o id do usuário desejado: ");
+            int id = InputScannerUtil.scanner.nextInt();
+            InputScannerUtil.scanner.nextLine();
+
+            try {
+                Usuario usuario = usuarioService.pesquisarUsuarioPorId(id);
+                return Optional.ofNullable(usuario);
+            } catch (Exception e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
+
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
         }
@@ -28,12 +30,34 @@ public class AdmInput {
     }
 
     public static void deletarUsuarioPorId(UsuarioService usuarioService) {
-        Optional<Usuario> usuarioOptional = dadosDePesquisaDoUsuario(usuarioService);
-        usuarioOptional.ifPresent(usuario -> usuarioService.deletar(usuario));
+        try {
+            checkAdm(usuarioService);
+            Optional<Usuario> usuarioOptional = dadosDePesquisaDoUsuario(usuarioService);
+            usuarioOptional.ifPresent(usuarioService::deletar);
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
     }
 
 
     public static void dadosDeTodosOsUsuarios(UsuarioService usuarioService) {
-        usuarioService.listar();
+        try{
+            checkAdm(usuarioService);
+            usuarioService.listar();
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
     }
+
+
+    public static void checkAdm(UsuarioService usuarioService) throws Exception {
+        System.out.print("Informe sua senha de administrador: ");
+        String senha = InputScannerUtil.scanner.nextLine();
+        System.out.print("Informe seu email de administrador: ");
+        String email = InputScannerUtil.scanner.nextLine();
+
+        usuarioService.verificarAdm(senha, email);
+    }
+
+
 }

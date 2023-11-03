@@ -1,5 +1,6 @@
 package main.java.models;
 
+import main.java.enums.Perfil;
 import main.java.models.itens.Emprestavel;
 
 import java.time.LocalDate;
@@ -19,6 +20,8 @@ public class Usuario {
     private int qtdItensEmprestados;
     private List<Emprestavel> emprestaveis;
     private final int QTD_MAX_ITENS_EMPRESTADOS = 3;
+
+    private Perfil perfil;
 
     public Usuario() {
         this.id = PROX_ID++;
@@ -80,6 +83,14 @@ public class Usuario {
         this.nome = nome;
     }
 
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
+
     public void addEmprestimo(Emprestavel emprestavel) {
         this.getEmprestimos().add(emprestavel);
     }
@@ -115,7 +126,7 @@ public class Usuario {
                 + "\nQuantidade máxima de itens para empréstimo: "
                 + this.getQTD_MAX_ITENS_EMPRESTADOS()
                 + "\nEmpréstimos feitos: \n"
-                + (verificarEmprestimo() ? listarEmprestimo() : "Nenhum empréstimo");
+                + (verificarEmprestimo() ? "Nenhum impréstimo feito!\n" : listarEmprestimo());
     }
 
 }

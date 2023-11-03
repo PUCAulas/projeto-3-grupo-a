@@ -1,5 +1,6 @@
 package main.java.views.inputs;
 
+import main.java.enums.Perfil;
 import main.java.models.Usuario;
 import main.java.services.UsuarioService;
 import main.java.utils.DataUtil;
@@ -15,7 +16,7 @@ public class UsuarioInput {
         String name, email, senha;
         LocalDate dataNascimento;
 
-        System.out.print("Informe o nome do usuário: ");
+        System.out.print("\nInforme o nome do usuário: ");
         name = InputScannerUtil.scanner.nextLine();
 
         System.out.print("Informe o e-mail do usuário: ");
@@ -29,8 +30,12 @@ public class UsuarioInput {
 
        Usuario usuario = ObjectFactoryUtil.newUsuario();
        usuarioService.setUsuario(usuario);
-       usuarioService.criar(name, email, senha, dataNascimento);
-       System.out.println("Usuário cadastrado com sucesso!");
+       try {
+           usuarioService.criar(name, email, senha, dataNascimento, Perfil.USUARIO);
+           System.out.println("\nUsuário cadastrado com sucesso!");
+       } catch (Exception e) {
+           System.out.println("Erro: " + e.getMessage());
+       }
     }
 
     public static void obterDadosDeAtualizacao(UsuarioService usuarioService) {
@@ -40,9 +45,8 @@ public class UsuarioInput {
 
             System.out.println("\nOpção:");
             System.out.println("1. Nome");
-            System.out.println("2. E-mail");
-            System.out.println("3. Senha");
-            System.out.println("4. Data de nascimento");
+            System.out.println("2. Senha");
+            System.out.println("3. Data de nascimento");
             System.out.print("Escolha: ");
 
             int escolha = InputScannerUtil.scanner.nextInt();
@@ -55,17 +59,11 @@ public class UsuarioInput {
                     usuarioService.atualizar(nome, usuario.getEmail(), usuario.getSenha(),usuario.getDataNascimento());
                     break;
                 case 2:
-                    System.out.print("Informe o novo E-mail: ");
-                    String email = InputScannerUtil.scanner.nextLine();
-                    usuarioService.atualizar(usuario.getNome(), email, usuario.getSenha(),
-                            usuario.getDataNascimento());
-                    break;
-                case 3:
                     System.out.print("Informe a nova senha: ");
                     String senha = InputScannerUtil.scanner.nextLine();
                     usuarioService.atualizar(usuario.getNome(), usuario.getEmail(),senha,usuario.getDataNascimento());
                     break;
-                case 4:
+                case 3:
                     System.out.print("Informe a nova data de nascimento (dd/MM/yyyy): ");
                     LocalDate dataNascimento = LocalDate.parse(InputScannerUtil.scanner.nextLine(), DataUtil.fmt);
                     usuarioService.atualizar(usuario.getNome(), usuario.getEmail(), usuario.getSenha(),dataNascimento);

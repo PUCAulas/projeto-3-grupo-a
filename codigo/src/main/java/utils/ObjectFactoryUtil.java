@@ -1,10 +1,15 @@
 package main.java.utils;
 
 
+import main.java.enums.Perfil;
 import main.java.models.Biblioteca;
 import main.java.models.Estoque;
 import main.java.models.Usuario;
 import main.java.services.UsuarioService;
+
+import java.time.LocalDate;
+
+import static main.java.utils.DataUtil.fmt;
 
 
 /**
@@ -28,5 +33,18 @@ public class ObjectFactoryUtil {
    public static Usuario newUsuario() {
        return new Usuario();
    }
+
+
+   public static void construirAdm(UsuarioService usuarioService) {
+       Usuario usuario = newUsuario();
+       usuarioService.setUsuario(usuario);
+       try {
+           usuarioService.criar("adm", "emailAdm", "senhaAdm", LocalDate.parse("21/10/1988", fmt), Perfil.ADM);
+       } catch (Exception e) {
+           System.out.println("Erro: " + e.getMessage());
+       }
+   }
+
+
 
 }

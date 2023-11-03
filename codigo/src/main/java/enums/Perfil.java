@@ -1,6 +1,6 @@
 package main.java.enums;
 
-public enum Pefil {
+public enum Perfil {
     ADM,
     USUARIO
 }

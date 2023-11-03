@@ -14,6 +14,7 @@ public class Main {
 
         Biblioteca biblioteca = ObjectFactoryUtil.construirBiblioteca();
         UsuarioService usuarioService = ObjectFactoryUtil.usuarioService(biblioteca);
+        ObjectFactoryUtil.construirAdm(usuarioService);
 
         //...
         //todo: Outras chamadas de métodos do tipo void do ObjectFactorUtil para popular o programa
