@@ -2,7 +2,6 @@ package main.java;
 
 import java.util.NoSuchElementException;
 import main.java.models.Biblioteca;
-import main.java.models.Estoque;
 import main.java.services.UsuarioService;
 import main.java.utils.InputScannerUtil;
 import main.java.utils.ObjectFactoryUtil;
