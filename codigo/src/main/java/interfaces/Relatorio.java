@@ -9,5 +9,5 @@ import java.util.List;
 public interface Relatorio {
     List<Emprestavel> imprimirRelatorioUsuario(Usuario usuario);
 
-    String imprimirRelatorioItem(Item item);
+    void imprimirRelatorioItem();
 }

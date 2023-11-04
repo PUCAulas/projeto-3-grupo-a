@@ -8,7 +8,7 @@ import main.java.utils.InputScannerUtil;
 
 import java.util.*;
 
-public class Biblioteca implements Relatorio{
+public class Biblioteca implements Relatorio {
     private List<Usuario> usuarios;
 
     private Estoque estoque;
@@ -47,8 +47,15 @@ public class Biblioteca implements Relatorio{
         return null;
     }
 
-    public String imprimirRelatorioItem(Item item) {
-        return "";
+    public void imprimirRelatorioItem() {
+        List<Item> itemsEmprestaveis = this.getEstoque().getItens()
+                .stream()
+                .filter(item -> item instanceof Emprestavel)
+                .sorted(Comparator.comparing(item -> item.getDataPublicacao().getYear()))
+                .toList();
+
+        System.out.println("Relatorio de itens:");
+        itemsEmprestaveis.forEach(item -> System.out.println(item.toString()));
     }
 
     public void pesquisar(FiltroPesquisa tipo) throws Exception {
@@ -80,7 +87,6 @@ public class Biblioteca implements Relatorio{
     }
 
     /**
-     *
      * @param itens
      * @return
      */
