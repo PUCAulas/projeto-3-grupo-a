@@ -26,22 +26,43 @@ import static main.java.utils.DataUtil.fmt;
  */
 public class ObjectFactoryUtil {
 
+    /**
+     * Inicia nova instancia de biblioteca
+     *
+     * @return nova biblioteca
+     */
     public static Biblioteca construirBiblioteca() {
         Estoque estoque = new Estoque();
         Biblioteca biblioteca = new Biblioteca(estoque);
         return biblioteca;
     }
 
+    /**
+     * Inicia nova instancia de usuarioService
+     *
+     * @param biblioteca biblioteca de referencia
+     * @return novo usuarioService
+     */
     public static UsuarioService usuarioService(Biblioteca biblioteca) {
         UsuarioService usuarioService = new UsuarioService(biblioteca);
         return usuarioService;
     }
 
+    /**
+     * Inicia nova instancia de usuario
+     *
+     * @return novo usuario
+     */
     public static Usuario newUsuario() {
         return new Usuario();
     }
 
 
+    /**
+     * Inicia nova instancia de administrador
+     *
+     * @param usuarioService usuarioService de referencia
+     */
     public static void construirAdm(UsuarioService usuarioService) {
         Usuario usuario = newUsuario();
         usuarioService.setUsuario(usuario);
@@ -52,6 +73,11 @@ public class ObjectFactoryUtil {
         }
     }
 
+    /**
+     * Cria base de dados mock para testes
+     *
+     * @param biblioteca biblioteca de referencia
+     */
     public static void generateDataBase(Biblioteca biblioteca) {
 
         Estoque estoque = biblioteca.getEstoque();
@@ -70,6 +96,11 @@ public class ObjectFactoryUtil {
         System.out.println();
     }
 
+    /**
+     * Gera base de dados de livros
+     *
+     * @return lista de livros
+     */
     private static List<Livro> generateLivros() {
 
         List<Livro> livros = new ArrayList<>();
@@ -99,11 +130,16 @@ public class ObjectFactoryUtil {
         return livros;
     }
 
+    /**
+     * Gera base de dados de CDs
+     *
+     * @return lista de CDs
+     */
     private static List<CD> generateCDs() {
 
         List<CD> cds = new ArrayList<>();
         Object[][] dvdInfo = {
-                {"Barons of the little step", LocalDate.of(2002, 5, 1), StatusClassificacao.LIVRE, StatusEmprestimo.DISPONIVEL, "Barons of the little step", Duration.ofMinutes(60) , new ArrayList<>(Arrays.asList("Faixa 01", "Faixa 02"))},
+                {"Barons of the little step", LocalDate.of(2002, 5, 1), StatusClassificacao.LIVRE, StatusEmprestimo.DISPONIVEL, "Barons of the little step", Duration.ofMinutes(60), new ArrayList<>(Arrays.asList("Faixa 01", "Faixa 02"))},
                 {"Lincoln parque", LocalDate.of(2000, 2, 2), StatusClassificacao.MAIOR_DE_16, StatusEmprestimo.DISPONIVEL, "Lincoln parque", Duration.ofMinutes(30), new ArrayList<>(Arrays.asList("Faixa 01", "Faixa 02"))},
                 {"Godjira", LocalDate.of(2000, 2, 2), StatusClassificacao.MAIOR_DE_18, StatusEmprestimo.DISPONIVEL, "Godjira", Duration.ofMinutes(45), new ArrayList<>(Arrays.asList("Faixa 01", "Faixa 02"))}
         };
@@ -123,6 +159,11 @@ public class ObjectFactoryUtil {
         return cds;
     }
 
+    /**
+     * Gera base de dados de DVDs
+     *
+     * @return lista de DVDs
+     */
     private static List<DVD> generateDVDs() {
 
         List<DVD> dvds = new ArrayList<>();
@@ -149,6 +190,11 @@ public class ObjectFactoryUtil {
         return dvds;
     }
 
+    /**
+     * Gera base de dados de Teses
+     *
+     * @return lista de Teses
+     */
     private static List<Tese> generateTeses() {
 
         List<Tese> teses = new ArrayList<>();
@@ -173,6 +219,11 @@ public class ObjectFactoryUtil {
         return teses;
     }
 
+    /**
+     * Gera base de dados de Revistas
+     *
+     * @return lista de Revistas
+     */
     private static List<Revista> generateRevistas() {
 
         List<Revista> revistas = new ArrayList<>();
