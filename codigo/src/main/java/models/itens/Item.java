@@ -1,6 +1,7 @@
 package main.java.models.itens;
 
 import main.java.enums.StatusClassificacao;
+import main.java.utils.DataUtil;
 
 import java.time.LocalDate;
 
@@ -32,9 +33,9 @@ public class Item {
                 + "\nTítulo: "
                 + this.getTitulo()
                 + "\nData de publicação: "
-                + this.getDataPublicacao()
+                + this.getDataPublicacao().format(DataUtil.fmt)
                 + "\nClassificação indicativa: "
-                + this.getStatusClassificacao();
+                + this.getStatusClassificacao().getClassificacao();
     }
 
     public int getId() {

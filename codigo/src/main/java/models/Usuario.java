@@ -2,6 +2,7 @@ package main.java.models;
 
 import main.java.enums.Perfil;
 import main.java.models.itens.Emprestavel;
+import main.java.utils.DataUtil;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -151,7 +152,7 @@ public class Usuario {
                 + "\nNome: "
                 + this.getNome()
                 + "\nData de nascimento: "
-                + this.getDataNascimento()
+                + this.getDataNascimento().format(DataUtil.fmt)
                 + "\nQuantidade de itens emprestados: "
                 + this.getQtdItensEmprestados()
                 + "\nQuantidade máxima de itens para empréstimo: "

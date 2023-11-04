@@ -57,6 +57,16 @@ public class ObjectFactoryUtil {
         return new Usuario();
     }
 
+    public static void cadastrarUsuario(UsuarioService usuarioService) {
+        try{
+            Usuario usuario = new Usuario();
+            usuarioService.setUsuario(usuario);
+            usuarioService.criar("Lucas Cabral Soares", "lucas@email.com.br", "123", LocalDate.now(),Perfil.USUARIO);
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+    }
+
 
     /**
      * Inicia nova instancia de administrador

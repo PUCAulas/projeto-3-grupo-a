@@ -1,6 +1,7 @@
 package main.java.models.itens;
 
 import main.java.enums.StatusEmprestimo;
+import main.java.utils.DataUtil;
 
 import java.time.LocalDate;
 
@@ -46,7 +47,7 @@ public class Emprestavel extends Item {
                     + "\nDias de empréstimo: "
                     + this.getDiaEmprestimo()
                     + "\nData do empréstimo: "
-                    + this.getDataEmprestimo()
+                    + this.getDataEmprestimo().format(DataUtil.fmt)
                     + "\nQuantidade de dias limite para o empréstimo: "
                     + this.getQTD_MAX_DIAS_EMPRESTIMO();
         }

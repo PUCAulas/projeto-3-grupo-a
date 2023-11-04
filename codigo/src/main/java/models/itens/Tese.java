@@ -2,6 +2,7 @@ package main.java.models.itens;
 
 
 import main.java.interfaces.AutorFiltro;
+import main.java.utils.DataUtil;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -46,7 +47,7 @@ public final class Tese extends Item implements AutorFiltro {
                 + "\nOrientador: "
                 + this.getOrientador()
                 + "\nData da defesa de tese: "
-                + this.getDataDefesa()
+                + this.getDataDefesa().format(DataUtil.fmt)
                 + "\nCapitulos: \n"
                 + this.listarArtigos();
 
