@@ -1,23 +1,41 @@
 package main.java.models.itens;
 
-import main.java.enums.StatusClassificacao;
-import main.java.enums.StatusEmprestimo;
-
 import java.time.Duration;
-import java.time.LocalDate;
 
 public final class DVD extends Emprestavel {
+
     private String diretor;
     private Duration duracao;
     private String idioma;
     private String sinopse;
     private String genero;
 
+    /**
+     * Construtor padrao do DVD
+     */
     public DVD() {
-
         super();
     }
 
+    /**
+     * Imprime informacos do DVD
+     *
+     * @return informacoes do DVD
+     */
+    @Override
+    public String toString() {
+        return super.toString()
+                + "\nDiretor: "
+                + this.getDiretor()
+                + "\nDuração: "
+                + this.getDuracao()
+                + "\nIdioma: "
+                + this.getIdioma()
+                + "\nGênero: "
+                + this.getGenero()
+                + "\nSinopse: \n"
+                + this.getSinopse();
+    }
 
     public String getDiretor() {
         return diretor;
@@ -57,20 +75,5 @@ public final class DVD extends Emprestavel {
 
     public void setGenero(String genero) {
         this.genero = genero;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString()
-             + "\nDiretor: "
-             + this.getDiretor()
-             + "\nDuração: "
-             + this.getDuracao()
-             + "\nIdioma: "
-             + this.getIdioma()
-             + "\nGênero: "
-             + this.getGenero()
-             + "\nSinopse: \n"
-             + this.getSinopse();
     }
 }
