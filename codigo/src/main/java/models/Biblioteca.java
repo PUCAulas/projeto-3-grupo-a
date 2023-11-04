@@ -9,15 +9,22 @@ import main.java.utils.InputScannerUtil;
 import java.util.*;
 
 public class Biblioteca implements Relatorio {
-    private List<Usuario> usuarios;
 
+    private List<Usuario> usuarios;
     private Estoque estoque;
 
-
+    /**
+     * Construtor padrao da biblioteca
+     */
     public Biblioteca() {
         this.usuarios = new ArrayList<>();
     }
 
+    /**
+     * Construtor padrao da biblioteca, com estoque
+     *
+     * @param estoque obj estoque
+     */
     public Biblioteca(Estoque estoque) {
         this();
         this.estoque = estoque;
@@ -43,10 +50,19 @@ public class Biblioteca implements Relatorio {
         this.getUsuarios().remove(usuario);
     }
 
+    /**
+     * Imprime o relatorio de um usuario
+     *
+     * @param usuario usuario de referencia
+     * @return relatorio do usuario
+     */
     public List<Emprestavel> imprimirRelatorioUsuario(Usuario usuario) {
         return null;
     }
 
+    /**
+     * Imprime relatorio dos itens
+     */
     public void imprimirRelatorioItem() {
         List<Item> itemsEmprestaveis = this.getEstoque().getItens()
                 .stream()
@@ -58,6 +74,12 @@ public class Biblioteca implements Relatorio {
         itemsEmprestaveis.forEach(item -> System.out.println(item.toString()));
     }
 
+    /**
+     * Realiza pesquisa no estoque de acordo com o filtro indicado
+     *
+     * @param tipo filtro da pesquisa
+     * @throws Exception lanca excecao caso nenhum item seja encontrado
+     */
     public void pesquisar(FiltroPesquisa tipo) throws Exception {
         List<String> valoresAtributo = new ArrayList<>();
 
@@ -87,8 +109,10 @@ public class Biblioteca implements Relatorio {
     }
 
     /**
-     * @param itens
-     * @return
+     * Lista opcoes no menu do console
+     *
+     * @param itens itens de escolha
+     * @return item selecionado
      */
     public String choice(List<String> itens) {
         Set<String> uniqueItems = new HashSet<>(itens);
@@ -111,6 +135,11 @@ public class Biblioteca implements Relatorio {
         return uniqueItemList.get(option - 1);
     }
 
+    /**
+     * Informa o ano de publicacao de um item
+     *
+     * @param result opcao definida no metodo 'choice'
+     */
     private void anoPublicacao(String result) {
         for (Item item : this.getEstoque().getItens()) {
             if (Integer.toString(item.getDataPublicacao().getYear()).equals(result)) {
@@ -120,6 +149,13 @@ public class Biblioteca implements Relatorio {
         }
     }
 
+    /**
+     * Encontra o item de acordo com o filtro de pesquisa
+     *
+     * @param tipo   tipo de filtro
+     * @param result opcao definida no metodo 'choice'
+     * @return item encontrado
+     */
     public Item encontrarItem(FiltroPesquisa tipo, String result) {
 
         Optional<Item> item = this.getEstoque().getItens().stream().filter(x -> {
@@ -130,6 +166,13 @@ public class Biblioteca implements Relatorio {
         return item.orElse(null);
     }
 
+    /**
+     * Obtem o valor do itema a ser indicado no menu de escolha
+     *
+     * @param item item de referencia
+     * @param tipo tipo de filtro
+     * @return valor de item de acordo com o tipo
+     */
     private String obterValorParaTipo(Item item, FiltroPesquisa tipo) {
         switch (tipo) {
             case TITULO:
