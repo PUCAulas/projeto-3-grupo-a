@@ -20,6 +20,8 @@ public class Main {
         //todo: Outras chamadas de métodos do tipo void do ObjectFactorUtil para popular o programa
         //...
 
+        ObjectFactoryUtil.generateDataBase(biblioteca);
+
         while(true) {
             System.out.println("Você é usuário ou administrador? (escolha o número abaixo)");
             System.out.println("1 - Usuário");
