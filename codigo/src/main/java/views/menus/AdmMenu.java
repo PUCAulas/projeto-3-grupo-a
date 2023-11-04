@@ -6,6 +6,7 @@ import main.java.utils.InputScannerUtil;
 import main.java.views.inputs.AdmInput;
 
 import java.util.Optional;
+import java.util.Scanner;
 
 public class AdmMenu {
 
@@ -89,6 +90,8 @@ public class AdmMenu {
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }
+            System.out.print("Pressione Enter para continuar...");
+            InputScannerUtil.scanner.nextLine(); // Aguarda o usuário pressionar Enter
         }
 
 

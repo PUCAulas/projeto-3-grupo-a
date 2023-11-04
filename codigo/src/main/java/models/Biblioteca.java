@@ -106,6 +106,8 @@ public class Biblioteca implements Relatorio {
         } else {
             System.out.println(encontrarItem(tipo, option));
         }
+        System.out.print("Pressione Enter para continuar...");
+        InputScannerUtil.scanner.nextLine();
     }
 
     /**
