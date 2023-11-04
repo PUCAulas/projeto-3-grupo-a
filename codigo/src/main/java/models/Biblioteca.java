@@ -91,13 +91,16 @@ public class Biblioteca implements Relatorio {
      * @return
      */
     public String choice(List<String> itens) {
-        Collections.sort(itens, String.CASE_INSENSITIVE_ORDER);
+        Set<String> uniqueItems = new HashSet<>(itens);
+        List<String> uniqueItemList = new ArrayList<>(uniqueItems);
+
+        Collections.sort(uniqueItemList, String.CASE_INSENSITIVE_ORDER);
 
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < itens.size(); i++) {
+        for (int i = 0; i < uniqueItemList.size(); i++) {
             result.append((i + 1))
                     .append(" - ")
-                    .append(itens.get(i))
+                    .append(uniqueItemList.get(i))
                     .append("\n");
         }
         System.out.println(" ");
@@ -105,7 +108,7 @@ public class Biblioteca implements Relatorio {
         System.out.print("Escolha o número: ");
         int option = InputScannerUtil.scanner.nextInt();
 
-        return itens.get(option - 1);
+        return uniqueItemList.get(option - 1);
     }
 
     private void anoPublicacao(String result) {
