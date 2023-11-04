@@ -8,26 +8,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
-    private int id;
-
     private static int PROX_ID = 0;
-
+    private final int QTD_MAX_ITENS_EMPRESTADOS = 3;
+    private int id;
     private String senha;
-
     private String nome;
     private String email;
     private LocalDate dataNascimento;
     private int qtdItensEmprestados;
     private List<Emprestavel> emprestaveis;
-    private final int QTD_MAX_ITENS_EMPRESTADOS = 3;
-
     private Perfil perfil;
 
+    /**
+     * Construtor padrao de usuario
+     */
     public Usuario() {
         this.id = PROX_ID++;
         emprestaveis = new ArrayList<>();
     }
 
+    /**
+     * Construtor padrao de usuario, com senha, email e data de nascimento
+     *
+     * @param senha          senha do usuario
+     * @param email          email do usuario
+     * @param dataNascimento data de nascimento do usuario
+     */
     private Usuario(String senha, String email, LocalDate dataNascimento) {
         this();
         this.senha = senha;
@@ -91,14 +97,29 @@ public class Usuario {
         this.perfil = perfil;
     }
 
+    /**
+     * Adiciona um novo emprestimo a lista de emprestaveis do usuario
+     *
+     * @param emprestavel item adicionado
+     */
     public void addEmprestimo(Emprestavel emprestavel) {
         this.getEmprestimos().add(emprestavel);
     }
 
+    /**
+     * Remove um emprestimo a lista de emprestaveis do usuario
+     *
+     * @param emprestavel item removido
+     */
     public void removerEmpresimo(Emprestavel emprestavel) {
         this.getEmprestimos().remove(emprestavel);
     }
 
+    /**
+     * Lista itens emprestados
+     *
+     * @return lista de itens emprestados
+     */
     public String listarEmprestimo() {
         StringBuilder emprestimos = new StringBuilder();
         for (Emprestavel emprestavel : this.getEmprestimos()) {
@@ -108,10 +129,20 @@ public class Usuario {
         return emprestimos.toString();
     }
 
+    /**
+     * Verifica quantidade de itens emprestados do usuario
+     *
+     * @return numero de itens emprestados
+     */
     public boolean verificarEmprestimo() {
         return this.getEmprestimos().isEmpty();
     }
 
+    /**
+     * Imprime informacos do usuario
+     *
+     * @return informacoes do usuario
+     */
     @Override
     public String toString() {
         return "Dados do usuário: "
