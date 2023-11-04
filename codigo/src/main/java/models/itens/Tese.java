@@ -2,19 +2,55 @@ package main.java.models.itens;
 
 
 import main.java.interfaces.AutorFiltro;
+
 import java.time.LocalDate;
 import java.util.List;
 
 public final class Tese extends Item implements AutorFiltro {
+
     private String autor;
     private String orientador;
     private LocalDate dataDefesa;
     private List<String> capitulos;
 
+    /**
+     * Construtor padrao da Tese
+     */
     public Tese() {
         super();
     }
 
+    /**
+     * Lista artigos da teste
+     * @return lista de artigos
+     */
+    public String listarArtigos() {
+        StringBuilder capitulos = new StringBuilder();
+        for (String capitulo : this.getCapitulos()) {
+            capitulos.append(capitulo);
+            capitulos.append("\n");
+        }
+        return capitulos.toString();
+    }
+
+    /**
+     * Imprime informacos da Tese
+     *
+     * @return informacoes da Tese
+     */
+    @Override
+    public String toString() {
+        return super.toString()
+                + "\nAutor: "
+                + this.getAutor()
+                + "\nOrientador: "
+                + this.getOrientador()
+                + "\nData da defesa de tese: "
+                + this.getDataDefesa()
+                + "\nCapitulos: \n"
+                + this.listarArtigos();
+
+    }
 
     public String getAutor() {
         return autor;
@@ -46,29 +82,5 @@ public final class Tese extends Item implements AutorFiltro {
 
     public void setCapitulos(List<String> capitulos) {
         this.capitulos = capitulos;
-    }
-
-
-    public String listarArtigos() {
-        StringBuilder capitulos = new StringBuilder();
-        for (String capitulo : this.getCapitulos()) {
-            capitulos.append(capitulo);
-            capitulos.append("\n");
-        }
-        return capitulos.toString();
-    }
-
-    @Override
-    public String toString() {
-        return super.toString()
-             + "\nAutor: "
-             + this.getAutor()
-             + "\nOrientador: "
-             + this.getOrientador()
-             + "\nData da defesa de tese: "
-             + this.getDataDefesa()
-             + "\nCapitulos: \n"
-             + this.listarArtigos();
-
     }
 }

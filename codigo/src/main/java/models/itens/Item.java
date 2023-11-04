@@ -1,23 +1,41 @@
 package main.java.models.itens;
 
 import main.java.enums.StatusClassificacao;
+
 import java.time.LocalDate;
 
 public class Item {
 
-    protected int id;
-
     private static int PROX_ID = 0;
-
+    protected int id;
     private String titulo;
     private LocalDate dataPublicacao;
     private StatusClassificacao statusClassificacao;
 
-
+    /**
+     * Construtor padrao do Item
+     */
     public Item() {
         this.id = PROX_ID++;
     }
 
+    /**
+     * Imprime informacos do Item
+     *
+     * @return informacoes do Item
+     */
+    @Override
+    public String toString() {
+        return "Dados do item: \n"
+                + "\nId: "
+                + this.getId()
+                + "\nTítulo: "
+                + this.getTitulo()
+                + "\nData de publicação: "
+                + this.getDataPublicacao()
+                + "\nClassificação indicativa: "
+                + this.getStatusClassificacao();
+    }
 
     public int getId() {
         return id;
@@ -46,20 +64,4 @@ public class Item {
     public void setStatusClassificacao(StatusClassificacao statusClassificacao) {
         this.statusClassificacao = statusClassificacao;
     }
-
-
-    @Override
-    public String toString() {
-        return "Dados do item: \n"
-             + "\nId: "
-             + this.getId()
-             + "\nTítulo: "
-             + this.getTitulo()
-             + "\nData de publicação: "
-             + this.getDataPublicacao()
-             + "\nClassificação indicativa: "
-             + this.getStatusClassificacao();
-    }
-
-
 }

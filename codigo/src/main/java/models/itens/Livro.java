@@ -1,27 +1,48 @@
 package main.java.models.itens;
 
-import main.java.enums.StatusClassificacao;
-import main.java.enums.StatusEmprestimo;
 import main.java.interfaces.AutorFiltro;
 
-import java.time.LocalDate;
-
 public final class Livro extends Emprestavel implements AutorFiltro {
+
     private String autor;
     private int numeroPaginas;
-
     private String editora;
     private String edicao;
     private String volume;
     private String idioma;
     private String sinopse;
-
     private String genero;
 
+    /**
+     * Construtor padrao de Livro
+     */
     public Livro() {
         super();
     }
 
+    /**
+     * Imprime informacos do Livro
+     *
+     * @return informacoes do Livro
+     */
+    @Override
+    public String toString() {
+        return super.toString()
+                + "\nAutor: "
+                + this.getAutor()
+                + "\nNúmero de páginas: "
+                + this.getNumeroPaginas()
+                + "\nEdição: "
+                + this.getEdicao()
+                + "\nEditora: "
+                + this.getEditora()
+                + "\nIdioma: "
+                + this.getIdioma()
+                + "\nGênero: "
+                + this.getGenero()
+                + "\nVolume: "
+                + this.getVolume();
+    }
 
     public String getAutor() {
         return autor;
@@ -86,25 +107,4 @@ public final class Livro extends Emprestavel implements AutorFiltro {
     public void setGenero(String genero) {
         this.genero = genero;
     }
-
-    @Override
-    public String toString() {
-        return super.toString()
-             + "\nAutor: "
-             + this.getAutor()
-             + "\nNúmero de páginas: "
-             + this.getNumeroPaginas()
-             + "\nEdição: "
-             + this.getEdicao()
-             + "\nEditora: "
-             + this.getEditora()
-             + "\nIdioma: "
-             + this.getIdioma()
-             + "\nGênero: "
-             + this.getGenero()
-             + "\nVolume: "
-             + this.getVolume();
-    }
-
-
 }
