@@ -7,6 +7,8 @@ import main.java.services.ItemService;
 import main.java.services.UsuarioService;
 import main.java.utils.InputScannerUtil;
 import main.java.views.inputs.AdmInput;
+import main.java.views.inputs.AtualizarItemInput;
+import main.java.views.inputs.CriarItemInput;
 import main.java.views.inputs.ItemInput;
 
 import java.util.Optional;
@@ -57,7 +59,7 @@ public class AdmMenu {
                     usuarioOptional.ifPresent(biblioteca::imprimirRelatorioUsuario);
                     break;
                 case 6:
-                    try{
+                    try {
                         AdmInput.checkAdm(usuarioService);
                         biblioteca.imprimirRelatorioItem();
                     } catch (Exception e) {
@@ -140,7 +142,8 @@ public class AdmMenu {
                     atualizarItemNaoEmprestavel(itemService, biblioteca);
                     break;
                 case 3:
-                    ItemInput.excluirItem(itemService, biblioteca);;
+                    ItemInput.excluirItem(itemService, biblioteca);
+                    ;
                     break;
                 case 4:
                     itemService.listar();
@@ -160,10 +163,10 @@ public class AdmMenu {
         InputScannerUtil.scanner.nextLine();
         switch (escolha) {
             case 1:
-                ItemInput.obterDadosDeRevista(itemService);
+                CriarItemInput.obterDadosDeRevista(itemService);
                 break;
             case 2:
-                ItemInput.obterDadosDeTese(itemService);
+                CriarItemInput.obterDadosDeTese(itemService);
                 break;
             default:
                 System.out.println("Tipo de item inválido.");
@@ -179,15 +182,17 @@ public class AdmMenu {
         InputScannerUtil.scanner.nextLine();
         switch (escolha) {
             case 1:
-                ItemInput.atualizarDadosDeRevista(itemService, biblioteca);
+                AtualizarItemInput.atualizarDadosDeRevista(itemService, biblioteca);
                 break;
             case 2:
-                ItemInput.atualizarDadosDeTese(itemService, biblioteca);
+                AtualizarItemInput.atualizarDadosDeTese(itemService, biblioteca);
                 break;
             default:
                 System.out.println("Tipo de item inválido.");
         }
     }
+
+    // coloque aqui o método de menu de itens não emprestáveis
 
     public static void opcoesRevista() {
 
@@ -211,7 +216,5 @@ public class AdmMenu {
         System.out.println("6. Data da defesa");
         System.out.println("7. Capitulos");
     }
-
-    // coloque aqui o método de menu de itens não emprestáveis
 
 }
