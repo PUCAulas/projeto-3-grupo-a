@@ -1,9 +1,5 @@
 package main.java.views.inputs;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 import main.java.enums.StatusClassificacao;
 import main.java.models.itens.Revista;
 import main.java.models.itens.Tese;
@@ -12,7 +8,17 @@ import main.java.utils.DataUtil;
 import main.java.utils.InputScannerUtil;
 import main.java.utils.ObjectFactoryUtil;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 public class CriarItemInput {
+
+    /**
+     * Menu de criacao de revista
+     *
+     * @param itemService servico de item
+     */
     public static void obterDadosDeRevista(ItemService itemService) {
 
         System.out.println("Informe o título da Revista: ");
@@ -44,6 +50,11 @@ public class CriarItemInput {
         }
     }
 
+    /**
+     * Menu de criacao de tese
+     *
+     * @param itemService servico de item
+     */
     public static void obterDadosDeTese(ItemService itemService) {
 
         System.out.println("Informe o título da tese: ");

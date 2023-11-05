@@ -6,6 +6,12 @@ import main.java.utils.InputScannerUtil;
 
 public class PesquisaMenu {
 
+    /**
+     * Menu de pesquisa de dados
+     *
+     * @param biblioteca biblioteca de referencia
+     * @throws Exception lanca excecao caso o item nao seja encontrado
+     */
     public static void pesquisa(Biblioteca biblioteca) throws Exception {
 
         while (true) {
@@ -61,6 +67,4 @@ public class PesquisaMenu {
     }
 
 
-
-
-    }
+}

@@ -3,10 +3,17 @@ package main.java.views.inputs;
 import main.java.models.Usuario;
 import main.java.services.UsuarioService;
 import main.java.utils.InputScannerUtil;
+
 import java.util.Optional;
 
 public class AdmInput {
 
+    /**
+     * Menu de pesquisa de usuario
+     *
+     * @param usuarioService servico de usuario
+     * @return usuario encontrado
+     */
     public static Optional<Usuario> dadosDePesquisaDoUsuario(UsuarioService usuarioService) {
         try {
             checkAdm(usuarioService);
@@ -28,6 +35,11 @@ public class AdmInput {
         return Optional.empty();
     }
 
+    /**
+     * Deleta um usuario
+     *
+     * @param usuarioService servico de usuario
+     */
     public static void deletarUsuarioPorId(UsuarioService usuarioService) {
         try {
             checkAdm(usuarioService);
@@ -38,6 +50,11 @@ public class AdmInput {
         }
     }
 
+    /**
+     * Lista os dados dos usuarios cadastrados
+     *
+     * @param usuarioService servico de usuario
+     */
     public static void dadosDeTodosOsUsuarios(UsuarioService usuarioService) {
         try {
             checkAdm(usuarioService);
@@ -47,6 +64,12 @@ public class AdmInput {
         }
     }
 
+    /**
+     * Verifica se usuario e admin
+     *
+     * @param usuarioService servico de usuario
+     * @throws Exception lanca excecao caso o usuario nao esteja cadastrado
+     */
     public static void checkAdm(UsuarioService usuarioService) throws Exception {
         System.out.print("Informe sua senha de administrador: ");
         String senha = InputScannerUtil.scanner.nextLine();

@@ -15,6 +15,14 @@ import java.util.Optional;
 
 public class AdmMenu {
 
+
+    /**
+     * Menu principal do sistema
+     *
+     * @param usuarioService servico do usuario
+     * @param itemService    servico do item
+     * @param biblioteca     biblioteca de referencia
+     */
     public static void menuPrincipal(UsuarioService usuarioService, ItemService itemService, Biblioteca biblioteca) {
 
         while (true) {
@@ -75,6 +83,11 @@ public class AdmMenu {
 
     }
 
+    /**
+     * Menu do usuario
+     *
+     * @param usuarioService servico do usuario
+     */
     public static void menuUsuario(UsuarioService usuarioService) {
 
         while (true) {
@@ -113,6 +126,12 @@ public class AdmMenu {
 
     }
 
+    /**
+     * Menu de itens nao emprestaveis
+     *
+     * @param itemService servico do usuario
+     * @param biblioteca  biblioteca de referencia
+     */
     public static void menuItensNaoEmprestaveis(ItemService itemService, Biblioteca biblioteca) {
         while (true) {
             System.out.println("Escolha a operação desejada:");
@@ -154,6 +173,11 @@ public class AdmMenu {
         }
     }
 
+    /**
+     * Cria um novo item nao emprestavel
+     *
+     * @param itemService servico do usuario
+     */
     public static void criarItemNaoEmprestavel(ItemService itemService) {
         System.out.println("Escolha o tipo de item a ser criado:");
         System.out.println("1. Revista");
@@ -173,6 +197,12 @@ public class AdmMenu {
         }
     }
 
+    /**
+     * Atualiza um item nao emprestavel
+     *
+     * @param itemService servico do usuario
+     * @param biblioteca biblioteca service
+     */
     public static void atualizarItemNaoEmprestavel(ItemService itemService, Biblioteca biblioteca) {
         System.out.println("Escolha o tipo de item a ser atualizado:");
         System.out.println("1. Revista");
@@ -191,8 +221,6 @@ public class AdmMenu {
                 System.out.println("Tipo de item inválido.");
         }
     }
-
-    // coloque aqui o método de menu de itens não emprestáveis
 
     public static void opcoesRevista() {
 

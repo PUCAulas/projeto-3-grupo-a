@@ -1,9 +1,5 @@
 package main.java.views.inputs;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 import main.java.enums.StatusClassificacao;
 import main.java.models.Biblioteca;
 import main.java.models.itens.Item;
@@ -14,7 +10,18 @@ import main.java.utils.DataUtil;
 import main.java.utils.InputScannerUtil;
 import main.java.views.menus.AdmMenu;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 public class AtualizarItemInput {
+
+    /**
+     * Atualiza dados de uma revista
+     *
+     * @param itemService servico de item
+     * @param biblioteca  biblioteca de referencia
+     */
     public static void atualizarDadosDeRevista(ItemService itemService, Biblioteca biblioteca) {
         System.out.print("Informe o ID do item a ser atualizado: ");
         int id = InputScannerUtil.scanner.nextInt();
@@ -82,6 +89,12 @@ public class AtualizarItemInput {
         System.out.println("Item não encontrado ou tipo de item incorreto!");
     }
 
+    /**
+     * Atualiza os dados de uma tese
+     *
+     * @param itemService servico de item
+     * @param biblioteca  biblioteca de referencia
+     */
     public static void atualizarDadosDeTese(ItemService itemService, Biblioteca biblioteca) {
         System.out.print("Informe o ID do item a ser atualizado: ");
         int id = InputScannerUtil.scanner.nextInt();

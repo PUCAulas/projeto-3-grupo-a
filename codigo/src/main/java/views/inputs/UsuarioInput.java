@@ -11,6 +11,11 @@ import java.time.LocalDate;
 
 public class UsuarioInput {
 
+    /**
+     * Menu de cadastro de usuario
+     *
+     * @param usuarioService servico de usuario
+     */
     public static void obterDadosDeCadastro(UsuarioService usuarioService) {
 
         String name, email, senha;
@@ -28,16 +33,21 @@ public class UsuarioInput {
         System.out.print("Informe a data de nascimento (dd/MM/yyyy): ");
         dataNascimento = LocalDate.parse(InputScannerUtil.scanner.nextLine(), DataUtil.fmt);
 
-       Usuario usuario = ObjectFactoryUtil.newUsuario();
-       usuarioService.setUsuario(usuario);
-       try {
-           usuarioService.criar(name, email, senha, dataNascimento, Perfil.USUARIO);
-           System.out.println("\nUsuário cadastrado com sucesso!");
-       } catch (Exception e) {
-           System.out.println("Erro: " + e.getMessage());
-       }
+        Usuario usuario = ObjectFactoryUtil.newUsuario();
+        usuarioService.setUsuario(usuario);
+        try {
+            usuarioService.criar(name, email, senha, dataNascimento, Perfil.USUARIO);
+            System.out.println("\nUsuário cadastrado com sucesso!");
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
     }
 
+    /**
+     * Menu de atualizacao de usuario
+     *
+     * @param usuarioService servico de usuario
+     */
     public static void obterDadosDeAtualizacao(UsuarioService usuarioService) {
         try {
             Usuario usuario = obterUsuarioCadastrado(usuarioService);
@@ -56,17 +66,17 @@ public class UsuarioInput {
                 case 1:
                     System.out.print("Informe o novo nome: ");
                     String nome = InputScannerUtil.scanner.nextLine();
-                    usuarioService.atualizar(nome, usuario.getEmail(), usuario.getSenha(),usuario.getDataNascimento());
+                    usuarioService.atualizar(nome, usuario.getEmail(), usuario.getSenha(), usuario.getDataNascimento());
                     break;
                 case 2:
                     System.out.print("Informe a nova senha: ");
                     String senha = InputScannerUtil.scanner.nextLine();
-                    usuarioService.atualizar(usuario.getNome(), usuario.getEmail(),senha,usuario.getDataNascimento());
+                    usuarioService.atualizar(usuario.getNome(), usuario.getEmail(), senha, usuario.getDataNascimento());
                     break;
                 case 3:
                     System.out.print("Informe a nova data de nascimento (dd/MM/yyyy): ");
                     LocalDate dataNascimento = LocalDate.parse(InputScannerUtil.scanner.nextLine(), DataUtil.fmt);
-                    usuarioService.atualizar(usuario.getNome(), usuario.getEmail(), usuario.getSenha(),dataNascimento);
+                    usuarioService.atualizar(usuario.getNome(), usuario.getEmail(), usuario.getSenha(), dataNascimento);
                 default:
                     System.out.println("Atributo inválido.");
             }
@@ -78,7 +88,11 @@ public class UsuarioInput {
         }
     }
 
-
+    /**
+     * Menu de exclusao de usuario
+     *
+     * @param usuarioService servico de usuario
+     */
     public static void obterDadosDeExclusao(UsuarioService usuarioService) {
         try {
             Usuario usuario = obterUsuarioCadastrado(usuarioService);
@@ -89,7 +103,11 @@ public class UsuarioInput {
         }
     }
 
-
+    /**
+     * Menu de login de usuario
+     *
+     * @param usuarioService servico de usuario
+     */
     public static Usuario obterUsuarioCadastrado(UsuarioService usuarioService) throws Exception {
         System.out.print("Informe sua senha: ");
         String senha = InputScannerUtil.scanner.nextLine();
@@ -98,8 +116,6 @@ public class UsuarioInput {
 
         return usuarioService.verificarSenhaEmail(senha, email);
     }
-
-
 
 
 }

@@ -1,15 +1,21 @@
 package main.java.views.inputs;
 
-import java.util.List;
-
 import main.java.enums.StatusClassificacao;
 import main.java.models.Biblioteca;
 import main.java.models.itens.Item;
 import main.java.services.ItemService;
 import main.java.utils.InputScannerUtil;
 
+import java.util.List;
+
 public class ItemInput {
 
+    /**
+     * Menu de exclusao de item
+     *
+     * @param itemService servico de item
+     * @param biblioteca  biblioteca de referencia
+     */
     public static void excluirItem(ItemService itemService, Biblioteca biblioteca) {
 
         System.out.print("Informe o ID do item: ");
@@ -31,6 +37,11 @@ public class ItemInput {
         }
     }
 
+    /**
+     * Obtem statusClassificacao
+     *
+     * @return status de classificacao
+     */
     public static StatusClassificacao escolherStatusClassificacao() {
 
         for (StatusClassificacao status : StatusClassificacao.values()) {
@@ -48,6 +59,11 @@ public class ItemInput {
         }
     }
 
+    /**
+     * Insere um novo conteudo ao menu
+     *
+     * @param conteudo conteudo de referencia
+     */
     public static void inserirConteudo(List<String> conteudo) {
         while (true) {
             String linha = InputScannerUtil.scanner.nextLine();

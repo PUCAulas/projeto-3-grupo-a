@@ -6,6 +6,10 @@ import main.java.views.inputs.UsuarioInput;
 
 public class UsuarioMenu {
 
+    /**
+     * Menu principal do usuario
+     * @param usuarioService servico do usuario
+     */
     public static void menuPrincipal(UsuarioService usuarioService) {
 
 
