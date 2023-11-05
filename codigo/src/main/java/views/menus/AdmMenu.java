@@ -21,12 +21,15 @@ public class AdmMenu {
             System.out.println("2. Gerenciar itens não emprestáveis");
             System.out.println("3. Gerenciar itens emprestáveis");
             System.out.println("4. Pesquisar itens da biblioteca");
-            System.out.println("5. Voltar ao menu principal");
+            System.out.println("5. Imprimir relatório de usuário");
+            System.out.println("6. Imprimir relatório de itens");
+            System.out.println("7. Voltar ao menu principal");
 
             System.out.print("Opção: ");
             int escolha = InputScannerUtil.scanner.nextInt();
+            InputScannerUtil.scanner.nextLine();
 
-            if (escolha == 5) {
+            if (escolha == 7) {
                 System.out.println("Voltando ao menu principal...\n");
                 break;
             }
@@ -49,10 +52,23 @@ public class AdmMenu {
                         System.out.println();
                     }
                     break;
+                case 5:
+                    Optional<Usuario> usuarioOptional = AdmInput.dadosDePesquisaDoUsuario(usuarioService);
+                    usuarioOptional.ifPresent(biblioteca::imprimirRelatorioUsuario);
+                    break;
+                case 6:
+                    try{
+                        AdmInput.checkAdm(usuarioService);
+                        biblioteca.imprimirRelatorioItem();
+                    } catch (Exception e) {
+                        System.out.println("Erro: " + e.getMessage());
+                    }
+                    break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }
-
+            System.out.print("Pressione Enter para continuar...");
+            InputScannerUtil.scanner.nextLine();
         }
 
     }

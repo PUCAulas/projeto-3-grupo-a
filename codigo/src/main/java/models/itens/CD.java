@@ -37,11 +37,15 @@ public final class CD extends Emprestavel {
      */
     @Override
     public String toString() {
+        long segundos = this.getDuracao().getSeconds();
+        int duracaoEmInt = (int) segundos;
+
         return super.toString()
                 + "\nArtista: "
                 + this.getArtista()
-                + "\nDuração: "
-                + this.getDuracao()
+                + "\nDuração (em segundos): "
+                + duracaoEmInt
+                + " s"
                 + "\nTodas as faixas: \n"
                 + listarFaixas();
     }

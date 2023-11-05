@@ -27,8 +27,7 @@ public class Emprestavel extends Item {
      */
     @Override
     public String toString() {
-        return "Dados do item: \n"
-                + super.toString()
+        return super.toString()
                 + "\n"
                 + "Status do empréstimo: "
                 + this.getStatusEmprestimo()

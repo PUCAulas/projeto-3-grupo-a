@@ -27,7 +27,7 @@ public class Item {
      */
     @Override
     public String toString() {
-        return "Dados do item: \n"
+        return "\nDados do item:"
                 + "\nId: "
                 + this.getId()
                 + "\nTítulo: "

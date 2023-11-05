@@ -24,11 +24,14 @@ public final class DVD extends Emprestavel {
      */
     @Override
     public String toString() {
+        long segundos = this.getDuracao().getSeconds();
+        int duracaoEmInt = (int) segundos;
         return super.toString()
                 + "\nDiretor: "
                 + this.getDiretor()
-                + "\nDuração: "
-                + this.getDuracao()
+                + "\nDuração (em segundos): "
+                + duracaoEmInt
+                + " s"
                 + "\nIdioma: "
                 + this.getIdioma()
                 + "\nGênero: "
