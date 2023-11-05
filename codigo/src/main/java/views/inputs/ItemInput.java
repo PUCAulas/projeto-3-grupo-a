@@ -1,48 +1,14 @@
 package main.java.views.inputs;
 
 import main.java.enums.StatusClassificacao;
-import main.java.models.Biblioteca;
-import main.java.models.itens.Item;
-import main.java.services.ItemService;
 import main.java.utils.InputScannerUtil;
 
 import java.util.List;
 
 public class ItemInput {
 
-    /**
-     * Menu de exclusao de item
-     *
-     * @param itemService servico de item
-     * @param biblioteca  biblioteca de referencia
-     */
-    public static void excluirItem(ItemService itemService, Biblioteca biblioteca) {
 
-        System.out.print("Informe o ID do item: ");
-        int id = InputScannerUtil.scanner.nextInt();
-
-        Item itemDeletado = null;
-        for (Item item : biblioteca.getEstoque().getItens()) {
-            if (item.getId() == id) {
-                itemDeletado = item;
-                itemService.deletar(itemDeletado);
-                break;
-            }
-        }
-
-        if (itemDeletado != null) {
-            System.out.println("Item deletado com sucesso!");
-        } else {
-            System.out.println("Item não encontrado!");
-        }
-    }
-
-    /**
-     * Obtem statusClassificacao
-     *
-     * @return status de classificacao
-     */
-    public static StatusClassificacao escolherStatusClassificacao() {
+    protected static StatusClassificacao escolherStatusClassificacao() {
 
         for (StatusClassificacao status : StatusClassificacao.values()) {
             System.out.println(status.ordinal() + 1 + ". " + status.name());
@@ -57,14 +23,10 @@ public class ItemInput {
             System.out.println("Opção inválida.");
             return null;
         }
+
     }
 
-    /**
-     * Insere um novo conteudo ao menu
-     *
-     * @param conteudo conteudo de referencia
-     */
-    public static void inserirConteudo(List<String> conteudo) {
+    protected static void inserirConteudo(List<String> conteudo) {
         while (true) {
             String linha = InputScannerUtil.scanner.nextLine();
             if ("FIM".equalsIgnoreCase(linha)) {
@@ -73,4 +35,5 @@ public class ItemInput {
             conteudo.add(linha);
         }
     }
+
 }

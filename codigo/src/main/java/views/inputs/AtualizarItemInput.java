@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AtualizarItemInput {
+public class AtualizarItemInput extends ItemInput{
 
     /**
      * Atualiza dados de uma revista
@@ -52,7 +52,7 @@ public class AtualizarItemInput {
                         break;
                     case 3:
                         System.out.println("Informe a nova classificação: ");
-                        StatusClassificacao novaClassificacao = ItemInput.escolherStatusClassificacao();
+                        StatusClassificacao novaClassificacao = escolherStatusClassificacao();
                         itemService.atualizarRevista(((Revista) item).getTitulo(), ((Revista) item).getDataPublicacao(),
                                 novaClassificacao, ((Revista) item).getEdicao(), ((Revista) item).getEditora(),
                                 ((Revista) item).getArtigos());

@@ -53,4 +53,9 @@ public class UsuarioMenu {
             }
         }
     }
+
+//    public static void menuEmprestimo(UsuarioService usuarioService) {
+//
+//    }
 }
+

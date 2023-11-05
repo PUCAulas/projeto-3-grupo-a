@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CriarItemInput {
+public class CriarItemInput extends ItemInput{
 
     /**
      * Menu de criacao de revista
@@ -28,7 +28,7 @@ public class CriarItemInput {
         LocalDate dataPublicacao = LocalDate.parse(InputScannerUtil.scanner.nextLine(), DataUtil.fmt);
 
         System.out.println("Informe o status de classificação da Revista:");
-        StatusClassificacao statusClassificacao = ItemInput.escolherStatusClassificacao();
+        StatusClassificacao statusClassificacao = escolherStatusClassificacao();
 
         System.out.println("Informe a editora da Revista: ");
         String editora = InputScannerUtil.scanner.nextLine();
@@ -38,8 +38,7 @@ public class CriarItemInput {
 
         System.out.println("Informe os artigos da revista (digite 'FIM' para sair): ");
         List<String> artigos = new ArrayList<>();
-        ItemInput.inserirConteudo(artigos);
-
+        inserirConteudo(artigos);
         Revista revista = ObjectFactoryUtil.newRevista();
         itemService.setItem(revista);
         try {
@@ -64,7 +63,7 @@ public class CriarItemInput {
         LocalDate dataPublicacao = LocalDate.parse(InputScannerUtil.scanner.nextLine(), DataUtil.fmt);
 
         System.out.println("Informe o status de classificação da tese:");
-        StatusClassificacao statusClassificacao = ItemInput.escolherStatusClassificacao();
+        StatusClassificacao statusClassificacao = escolherStatusClassificacao();
 
         System.out.println("Informe o autor da tese: ");
         String autor = InputScannerUtil.scanner.nextLine();
@@ -77,7 +76,7 @@ public class CriarItemInput {
 
         System.out.println("Informe os capítulos da tese (digite 'FIM' para sair): ");
         List<String> capitulos = new ArrayList<>();
-        ItemInput.inserirConteudo(capitulos);
+        inserirConteudo(capitulos);
 
         Tese tese = ObjectFactoryUtil.newTese();
         itemService.setItem(tese);

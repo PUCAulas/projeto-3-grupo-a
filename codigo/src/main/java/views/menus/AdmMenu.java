@@ -6,10 +6,7 @@ import main.java.models.itens.Item;
 import main.java.services.ItemService;
 import main.java.services.UsuarioService;
 import main.java.utils.InputScannerUtil;
-import main.java.views.inputs.AdmInput;
-import main.java.views.inputs.AtualizarItemInput;
-import main.java.views.inputs.CriarItemInput;
-import main.java.views.inputs.ItemInput;
+import main.java.views.inputs.*;
 
 import java.util.Optional;
 
@@ -161,7 +158,7 @@ public class AdmMenu {
                     atualizarItemNaoEmprestavel(itemService, biblioteca);
                     break;
                 case 3:
-                    ItemInput.excluirItem(itemService, biblioteca);
+                    ExcluirItemInput.excluirItem(itemService, biblioteca);
                     ;
                     break;
                 case 4:
