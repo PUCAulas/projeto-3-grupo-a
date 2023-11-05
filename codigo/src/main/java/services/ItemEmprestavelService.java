@@ -14,39 +14,35 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ItemEmprestavelService implements GerenciarEmprestimo {
+
     private Biblioteca biblioteca;
     private Emprestavel emprestavel;
 
+    /**
+     * Construtor padrao de ItemEmprestavelService
+     */
     public ItemEmprestavelService() {
     }
 
+    /**
+     * Construtor padrao de ItemEmprestavelService, com emprestavel e biblioteca
+     */
     public ItemEmprestavelService(Emprestavel emprestavel, Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
         this.emprestavel = emprestavel;
     }
 
+    /**
+     * Construtor padrao de ItemEmprestavelService, com biblioteca
+     */
     public ItemEmprestavelService(Biblioteca biblioteca) {
         this.emprestavel = null;
         this.biblioteca = biblioteca;
     }
 
-    public Biblioteca getBiblioteca() {
-        return biblioteca;
-    }
-
-    public void setBiblioteca(Biblioteca biblioteca) {
-        this.biblioteca = biblioteca;
-    }
-
-    public Emprestavel getEmprestimo() {
-        return emprestavel;
-    }
-
-    public void setEmprestimo(Emprestavel emprestavel) {
-        this.emprestavel = emprestavel;
-    }
-
-
+    /**
+     * Cria um novo item do tipo emprestavel (CD, DVD ou Livro)
+     */
     public void criar() {
 
         System.out.println("Escolha o tipo de item a ser criado:");
@@ -70,6 +66,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         }
     }
 
+    /**
+     * Cria um novo DVD
+     */
     private void criarDVD() {
         Scanner scanner = new Scanner(System.in);
         DVD dvd = new DVD();
@@ -110,6 +109,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         biblioteca.getEstoque().addItem(dvd);
     }
 
+    /**
+     * Cria um novo CD
+     */
     public void criarCD() {
         Scanner scanner = new Scanner(System.in);
         CD cd = new CD();
@@ -141,7 +143,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         biblioteca.getEstoque().addItem(cd);
     }
 
-
+    /**
+     * Cria um novo livro
+     */
     public void criarLivro() {
         Scanner scanner = new Scanner(System.in);
         Livro livro = new Livro();
@@ -193,12 +197,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         biblioteca.getEstoque().addItem(livro);
     }
 
-
-
-
-
-
-
+    /**
+     * Atualiza um emprestavel (CD, DVD ou Livro)
+     */
     public void atualizar() {
 
         System.out.println("Escolha o tipo de item a ser atualizado:");
@@ -223,6 +224,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         }
     }
 
+    /**
+     * Atualiza um DVD
+     */
     private void atualizarDVD() {
 
         System.out.print("Informe o ID do item a ser atualizado: ");
@@ -297,6 +301,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         System.out.println("Item não encontrado ou tipo de item incorreto!");
     }
 
+    /**
+     * Atualiza um CD
+     */
     private void atualizarCD() {
 
         System.out.print("Informe o ID do item a ser atualizado: ");
@@ -359,7 +366,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         System.out.println("Item não encontrado ou tipo de item incorreto!");
     }
 
-
+    /**
+     * Atualiza um Livro
+     */
     private void atualizarLivro() {
 
         System.out.print("Informe o ID do livro a ser atualizado: ");
@@ -442,7 +451,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         System.out.println("Item não encontrado ou tipo de item incorreto!");
     }
 
-
+    /**
+     * Deleta um item emprestavel
+     */
     public void deletar() {
         System.out.print("Informe o ID do item: ");
         int id = InputScannerUtil.scanner.nextInt();
@@ -462,6 +473,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         }
     }
 
+    /**
+     * Lista estoque da biblioteca
+     */
     public void listar() {
         List<Item> itens = biblioteca.getEstoque().getItens();
 
@@ -486,6 +500,12 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
 
     }
 
+    /**
+     * Seleciona statusClassificacao
+     *
+     * @param sc scanner padrao
+     * @return status da classificacao
+     */
     private StatusClassificacao escolherStatusClassificacao(Scanner sc) {
 
         for (StatusClassificacao status : StatusClassificacao.values()) {
@@ -503,6 +523,12 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         }
     }
 
+    /**
+     * Seleciona statusEmprestimo
+     *
+     * @param sc scanner padrao
+     * @return status da emprestimo
+     */
     private StatusEmprestimo escolherStatusEmprestimo(Scanner sc) {
 
         for (StatusEmprestimo status : StatusEmprestimo.values()) {
@@ -518,6 +544,22 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
             System.out.println("Opção inválida.");
             return null;
         }
+    }
+
+    public Biblioteca getBiblioteca() {
+        return biblioteca;
+    }
+
+    public void setBiblioteca(Biblioteca biblioteca) {
+        this.biblioteca = biblioteca;
+    }
+
+    public Emprestavel getEmprestimo() {
+        return emprestavel;
+    }
+
+    public void setEmprestimo(Emprestavel emprestavel) {
+        this.emprestavel = emprestavel;
     }
 
 
