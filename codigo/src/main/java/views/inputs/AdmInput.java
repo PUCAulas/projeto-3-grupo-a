@@ -3,7 +3,6 @@ package main.java.views.inputs;
 import main.java.models.Usuario;
 import main.java.services.UsuarioService;
 import main.java.utils.InputScannerUtil;
-
 import java.util.Optional;
 
 public class AdmInput {
@@ -39,16 +38,14 @@ public class AdmInput {
         }
     }
 
-
     public static void dadosDeTodosOsUsuarios(UsuarioService usuarioService) {
-        try{
+        try {
             checkAdm(usuarioService);
             usuarioService.listar();
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
         }
     }
-
 
     public static void checkAdm(UsuarioService usuarioService) throws Exception {
         System.out.print("Informe sua senha de administrador: ");
@@ -58,6 +55,5 @@ public class AdmInput {
 
         usuarioService.verificarAdm(senha, email);
     }
-
 
 }

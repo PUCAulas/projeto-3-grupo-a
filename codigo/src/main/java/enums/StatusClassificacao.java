@@ -5,7 +5,7 @@ public enum StatusClassificacao {
     MAIOR_DE_16("Maior de 16 anos"),
     LIVRE("Livre");
 
-    private String classificacao
+    private String classificacao;
 
     StatusClassificacao(String classificacao) {
         this.classificacao = classificacao;

@@ -8,6 +8,7 @@ import main.java.models.Biblioteca;
 import main.java.models.Estoque;
 import main.java.models.Usuario;
 import main.java.models.itens.*;
+import main.java.services.ItemService;
 import main.java.services.UsuarioService;
 
 import java.time.Duration;
@@ -48,6 +49,11 @@ public class ObjectFactoryUtil {
         return usuarioService;
     }
 
+        public static ItemService itemService(Biblioteca biblioteca) {
+        ItemService itemService = new ItemService(biblioteca);
+        return itemService;
+    }
+
     /**
      * Inicia nova instancia de usuario
      *
@@ -55,6 +61,14 @@ public class ObjectFactoryUtil {
      */
     public static Usuario newUsuario() {
         return new Usuario();
+    }
+
+    public static Revista newRevista() {
+        return new Revista();
+    }
+
+    public static Tese newTese() {
+        return new Tese();
     }
 
     public static void cadastrarUsuario(UsuarioService usuarioService) {
