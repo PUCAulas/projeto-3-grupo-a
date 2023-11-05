@@ -34,7 +34,7 @@ public class ItemInput {
         String edicao = InputScannerUtil.scanner.nextLine();
 
         System.out.println("Informe os artigos da revista (digite 'FIM' para sair): ");
-         List<String> artigos = new ArrayList<>();
+        List<String> artigos = new ArrayList<>();
         inserirConteudo(artigos);
 
         Revista revista = ObjectFactoryUtil.newRevista();
@@ -229,6 +229,27 @@ public class ItemInput {
             }
         }
         System.out.println("Item não encontrado ou tipo de item incorreto!");
+    }
+
+    public static void excluirItem(ItemService itemService, Biblioteca biblioteca) {
+
+        System.out.print("Informe o ID do item: ");
+        int id = InputScannerUtil.scanner.nextInt();
+
+        Item itemDeletado = null;
+        for (Item item : biblioteca.getEstoque().getItens()) {
+            if (item.getId() == id) {
+                itemDeletado = item;
+                itemService.deletar(itemDeletado);
+                break;
+            }
+        }
+
+        if (itemDeletado != null) {
+            System.out.println("Item deletado com sucesso!");
+        } else {
+            System.out.println("Item não encontrado!");
+        }
     }
 
     public static StatusClassificacao escolherStatusClassificacao() {

@@ -140,7 +140,7 @@ public class AdmMenu {
                     atualizarItemNaoEmprestavel(itemService, biblioteca);
                     break;
                 case 3:
-                    itemService.deletar();
+                    ItemInput.excluirItem(itemService, biblioteca);;
                     break;
                 case 4:
                     itemService.listar();

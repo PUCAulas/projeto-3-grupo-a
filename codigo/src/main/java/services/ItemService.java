@@ -94,23 +94,9 @@ public class ItemService {
         ((Tese) item).setCapitulos(capitulos);
     }
 
-    public void deletar() {
-        System.out.print("Informe o ID do item: ");
-        int id = InputScannerUtil.scanner.nextInt();
+    public void deletar(Item item) {
 
-        Item itemDeletado = null;
-        for (Item item : biblioteca.getEstoque().getItens()) {
-            if (item.getId() == id) {
-                itemDeletado = item;
-                break;
-            }
-        }
-        if (itemDeletado != null) {
-            biblioteca.getEstoque().getItens().remove(itemDeletado);
-            System.out.println("Item deletado com sucesso!");
-        } else {
-            System.out.println("Item não encontrado!");
-        }
+        biblioteca.getEstoque().getItens().remove(item);
     }
 
     public void listar() {
