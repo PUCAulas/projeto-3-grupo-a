@@ -2,6 +2,7 @@ package main.java;
 
 import java.util.NoSuchElementException;
 import main.java.models.Biblioteca;
+import main.java.services.ItemEmprestavelService;
 import main.java.services.ItemService;
 import main.java.services.UsuarioService;
 import main.java.utils.InputScannerUtil;
@@ -16,6 +17,7 @@ public class Main {
         Biblioteca biblioteca = ObjectFactoryUtil.construirBiblioteca();
         UsuarioService usuarioService = ObjectFactoryUtil.usuarioService(biblioteca);
         ItemService itemService = ObjectFactoryUtil.itemService(biblioteca);
+        ItemEmprestavelService itemEmprestavelService = ObjectFactoryUtil.itemEmprestavelService(biblioteca);
         ObjectFactoryUtil.construirAdm(usuarioService);
         ObjectFactoryUtil.cadastrarUsuario(usuarioService);
         ObjectFactoryUtil.generateDataBase(biblioteca);
@@ -32,7 +34,7 @@ public class Main {
                         UsuarioMenu.menuPrincipal(usuarioService);
                         break;
                     case 2:
-                        AdmMenu.menuPrincipal(usuarioService, itemService, biblioteca);
+                        AdmMenu.menuPrincipal(usuarioService, itemService, itemEmprestavelService, biblioteca);
                         break;
                     default:
                         System.out.println("Opção inválida. Tente novamente.");

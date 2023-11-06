@@ -2,7 +2,9 @@ package main.java.views.menus;
 
 import main.java.models.Biblioteca;
 import main.java.models.Usuario;
+import main.java.models.itens.Emprestavel;
 import main.java.models.itens.Item;
+import main.java.services.ItemEmprestavelService;
 import main.java.services.ItemService;
 import main.java.services.UsuarioService;
 import main.java.utils.InputScannerUtil;
@@ -20,7 +22,7 @@ public class AdmMenu {
      * @param itemService    servico do item
      * @param biblioteca     biblioteca de referencia
      */
-    public static void menuPrincipal(UsuarioService usuarioService, ItemService itemService, Biblioteca biblioteca) {
+    public static void menuPrincipal(UsuarioService usuarioService, ItemService itemService, ItemEmprestavelService itemEmprestavelService ,Biblioteca biblioteca) {
 
         while (true) {
             System.out.println("\nEscolha a operação desejada:");
@@ -49,7 +51,7 @@ public class AdmMenu {
                     menuItensNaoEmprestaveis(itemService, biblioteca);
                     break;
                 case 3:
-                    // chamar método menuItensEmprestaveis
+                    menuItensEmprestaveis(itemEmprestavelService, biblioteca);
                     break;
                 case 4:
                     try {
@@ -126,7 +128,7 @@ public class AdmMenu {
     /**
      * Menu de itens nao emprestaveis
      *
-     * @param itemService servico do usuario
+     * @param itemService servico do item nao emprestavel
      * @param biblioteca  biblioteca de referencia
      */
     public static void menuItensNaoEmprestaveis(ItemService itemService, Biblioteca biblioteca) {
@@ -173,7 +175,7 @@ public class AdmMenu {
     /**
      * Cria um novo item nao emprestavel
      *
-     * @param itemService servico do usuario
+     * @param itemService servico do item nao emprestavel
      */
     public static void criarItemNaoEmprestavel(ItemService itemService) {
         System.out.println("Escolha o tipo de item a ser criado:");
@@ -197,7 +199,7 @@ public class AdmMenu {
     /**
      * Atualiza um item nao emprestavel
      *
-     * @param itemService servico do usuario
+     * @param itemService servico do item nao emprestavel
      * @param biblioteca biblioteca service
      */
     public static void atualizarItemNaoEmprestavel(ItemService itemService, Biblioteca biblioteca) {
@@ -214,6 +216,81 @@ public class AdmMenu {
             case 2:
                 ItemNaoEmprestavelInput.atualizarDadosDeTese(itemService, biblioteca);
                 break;
+            default:
+                System.out.println("Tipo de item inválido.");
+        }
+    }
+
+    /**
+     * Menu de itens emprestaveis
+     *
+     * @param itemEmprestavelService servico do item emprestavel
+     * @param biblioteca  biblioteca de referencia
+     */
+    public static void menuItensEmprestaveis(ItemEmprestavelService itemEmprestavelService, Biblioteca biblioteca) {
+        while (true) {
+            System.out.println("Escolha a operação desejada:");
+            System.out.println("1. Cadastrar item emprestável");
+            System.out.println("2. Atualizar item emprestável");
+            System.out.println("3. Deletar item emprestável");
+            System.out.println("4. Listar item emprestável");
+            System.out.println("5. Voltar");
+            System.out.print("Opção: ");
+
+            int escolha = InputScannerUtil.scanner.nextInt();
+            InputScannerUtil.scanner.nextLine();
+
+            if (escolha == 5) {
+                System.out.println("Voltando ao menu principal...\n");
+                // InputScannerUtil.close();
+                break;
+            }
+
+            switch (escolha) {
+                case 1:
+                    Emprestavel emprestavel = new Emprestavel();
+                    ItemEmprestavelService itemEmprestavelService2 = new ItemEmprestavelService(emprestavel, biblioteca);
+                    criarItemEmprestavel(itemEmprestavelService2);
+                    break;
+                case 2:
+                   // atualizarItemEmprestavel(itemEmprestavelService, biblioteca);
+                    break;
+                case 3:
+                    // ItemEmprestavelInput.excluirItem(itemEmprestavelService, biblioteca);
+                    ;
+                    break;
+                case 4:
+                    itemEmprestavelService.listar();
+                    break;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+    }
+
+    /**
+     * Cria um novo item emprestavel
+     *
+     * @param itemEmprestavelService servico do item emprestavel
+     */
+    public static void criarItemEmprestavel(ItemEmprestavelService itemEmprestavelService) {
+        System.out.println("Escolha o tipo de item a ser criado:");
+        System.out.println("1. DVD");
+        System.out.println("2. CD");
+        System.out.println("3. Livro");
+
+        int escolha = InputScannerUtil.scanner.nextInt();
+        InputScannerUtil.scanner.nextLine();
+        switch (escolha) {
+            case 1:
+                ItemEmprestavelInput.obterDadosDeDVD(itemEmprestavelService);
+                break;
+            case 2:
+               // ItemEmprestavelInput.obterDadosDeCD(itemEmprestavelService);
+                break;
+            case 3:
+               // ItemEmprestavelInput.obterDadosDeLivro(itemEmprestavelService);
+               break;
             default:
                 System.out.println("Tipo de item inválido.");
         }
