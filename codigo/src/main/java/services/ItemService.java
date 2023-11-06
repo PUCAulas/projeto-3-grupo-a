@@ -2,6 +2,7 @@ package main.java.services;
 
 import main.java.enums.StatusClassificacao;
 import main.java.models.Biblioteca;
+import main.java.models.itens.Emprestavel;
 import main.java.models.itens.Item;
 import main.java.models.itens.Revista;
 import main.java.models.itens.Tese;
@@ -148,7 +149,9 @@ public class ItemService {
 
         if (itens != null) {
             for (Item i : itens) {
+                if(!(i instanceof Emprestavel)) {
                 System.out.println(i);
+                }
             }
         } else {
             System.out.println("Nenhum item encontrado no estoque.");
