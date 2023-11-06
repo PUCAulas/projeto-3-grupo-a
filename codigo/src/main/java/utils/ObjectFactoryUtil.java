@@ -107,6 +107,24 @@ public class ObjectFactoryUtil {
         return new DVD();
     }
 
+    /**
+     * Inicia nova instancia de CD
+     *
+     * @return novo CD
+     */
+    public static CD newCD() {
+        return new CD();
+    }
+
+    /**
+     * Inicia nova instancia de livro
+     *
+     * @return novo livro
+     */
+    public static Livro newLivro() {
+        return new Livro();
+    }
+
     public static void cadastrarUsuario(UsuarioService usuarioService) {
         try {
             Usuario usuario = new Usuario();
