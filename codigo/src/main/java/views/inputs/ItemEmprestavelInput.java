@@ -10,6 +10,7 @@ import main.java.enums.StatusClassificacao;
 import main.java.enums.StatusEmprestimo;
 import main.java.models.itens.CD;
 import main.java.models.itens.DVD;
+import main.java.models.itens.Livro;
 import main.java.services.ItemEmprestavelService;
 import main.java.services.ItemService;
 import main.java.utils.DataUtil;
@@ -101,6 +102,63 @@ public class ItemEmprestavelInput extends ItemInput {
             itemEmprestavelService.criarCD(titulo, dataPublicacao, statusClassificacao, statusEmprestimo, artista,
                     duracao, faixas);
             System.out.println("\nCD cadastrado com sucesso!");
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Menu de criacao de livro
+     *
+     * @param itemEmprestavelService servico de item emprestavel
+     */
+    public static void obterDadosDeLivro(ItemEmprestavelService itemEmprestavelService) {
+        Scanner scanner = InputScannerUtil.scanner;
+
+        System.out.println("Informe o título do Livro: ");
+        String titulo = scanner.nextLine();
+
+        System.out.println("Informe a data de publicação (dd/MM/yyyy): ");
+        LocalDate dataPublicacao = LocalDate.parse(scanner.nextLine(), DataUtil.fmt);
+
+        System.out.println("Informe o status de classificação do Livro:");
+        StatusClassificacao statusClassificacao = escolherStatusClassificacao();
+
+        System.out.println("Informe o status de empréstimo do Livro:");
+        StatusEmprestimo statusEmprestimo = escolherStatusEmprestimo();
+
+        System.out.println("Informe o autor do Livro: ");
+        String autor = scanner.nextLine();
+
+        System.out.println("Informe o número de páginas: ");
+        int numeroPaginas = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("Informe a editora do Livro: ");
+        String editora = scanner.nextLine();
+
+        System.out.println("Informe a edição do Livro: ");
+        String edicao = scanner.nextLine();
+
+        System.out.println("Informe o volume do Livro: ");
+        String volume = scanner.nextLine();
+
+        System.out.println("Informe o idioma: ");
+        String idioma = scanner.nextLine();
+
+        System.out.println("Informe o gênero do Livro: ");
+        String genero = scanner.nextLine();
+
+        System.out.println("Informe a sinopse do Livro: ");
+        String sinopse = scanner.nextLine();
+
+        Livro livro = ObjectFactoryUtil.newLivro();
+        itemEmprestavelService.setEmprestavel(livro);
+
+        try {
+            itemEmprestavelService.criarLivro(titulo, dataPublicacao, statusClassificacao, statusEmprestimo, autor,
+                    numeroPaginas,
+                    editora, edicao, volume, idioma, genero, sinopse);
+            System.out.println("\nLivro cadastrado com sucesso!");
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
         }
