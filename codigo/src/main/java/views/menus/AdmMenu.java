@@ -258,7 +258,7 @@ public class AdmMenu {
                     atualizarItemEmprestavel(itemEmprestavelService, biblioteca);
                     break;
                 case 3:
-                    // ItemEmprestavelInput.excluirItem(itemEmprestavelService, biblioteca);
+                    ItemEmprestavelInput.excluirItem(itemEmprestavelService, biblioteca);
                     ;
                     break;
                 case 4:
@@ -288,10 +288,10 @@ public class AdmMenu {
                 ItemEmprestavelInput.obterDadosDeDVD(itemEmprestavelService);
                 break;
             case 2:
-                // ItemEmprestavelInput.obterDadosDeCD(itemEmprestavelService);
+                ItemEmprestavelInput.obterDadosDeCD(itemEmprestavelService);
                 break;
             case 3:
-                // ItemEmprestavelInput.obterDadosDeLivro(itemEmprestavelService);
+                ItemEmprestavelInput.obterDadosDeLivro(itemEmprestavelService);
                 break;
             default:
                 System.out.println("Tipo de item inválido.");
@@ -314,13 +314,13 @@ public class AdmMenu {
         InputScannerUtil.scanner.nextLine();
         switch (escolha) {
             case 1:
-                //ItemEmprestavelInput.atualizarDadosDeDVD(itemEmprestavelService, biblioteca);
+                ItemEmprestavelInput.atualizarDadosDeDVD(itemEmprestavelService, biblioteca);
                 break;
             case 2:
-                //ItemEmprestavelInput.atualizarDadosDeCD(itemEmprestavelService, biblioteca);
+                ItemEmprestavelInput.atualizarDadosDeCD(itemEmprestavelService, biblioteca);
                 break;
             case 3:
-                //ItemEmprestavelInput.atualizarDadosDeLivro(itemEmprestavelService, biblioteca);
+                ItemEmprestavelInput.atualizarDadosDeLivro(itemEmprestavelService, biblioteca);
                 break;
             default:
                 System.out.println("Tipo de item inválido.");

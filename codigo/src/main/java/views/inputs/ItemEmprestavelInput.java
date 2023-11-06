@@ -8,14 +8,18 @@ import java.util.Scanner;
 
 import main.java.enums.StatusClassificacao;
 import main.java.enums.StatusEmprestimo;
+import main.java.models.Biblioteca;
 import main.java.models.itens.CD;
 import main.java.models.itens.DVD;
+import main.java.models.itens.Emprestavel;
+import main.java.models.itens.Item;
 import main.java.models.itens.Livro;
 import main.java.services.ItemEmprestavelService;
 import main.java.services.ItemService;
 import main.java.utils.DataUtil;
 import main.java.utils.InputScannerUtil;
 import main.java.utils.ObjectFactoryUtil;
+import main.java.views.menus.AdmMenu;
 
 public class ItemEmprestavelInput extends ItemInput {
 
@@ -163,4 +167,255 @@ public class ItemEmprestavelInput extends ItemInput {
             System.out.println("Erro: " + e.getMessage());
         }
     }
-}
+
+    /**
+     * Atualiza os dados de um DVD
+     *
+     * @param itemEmprestavelService servico de item emprestavel
+     * @param biblioteca  biblioteca de referencia
+     */
+    public static void atualizarDadosDeDVD(ItemEmprestavelService itemEmprestavelService, Biblioteca biblioteca) {
+        System.out.print("Informe o ID do item a ser atualizado: ");
+        int id = InputScannerUtil.scanner.nextInt();
+        InputScannerUtil.scanner.nextLine();
+
+        for (Item item : biblioteca.getEstoque().getItens()) {
+            if (item.getId() == id && item instanceof DVD) {
+                AdmMenu.opcoesDVD();
+                itemEmprestavelService.setEmprestavel(((Emprestavel) item));
+
+                int escolha = InputScannerUtil.scanner.nextInt();
+                InputScannerUtil.scanner.nextLine();
+
+                switch (escolha) {
+                    case 1:
+                        System.out.println("Informe o novo título: ");
+                        String titulo = InputScannerUtil.scanner.nextLine();
+                        itemEmprestavelService.atualizarDVD(titulo, ((DVD) item).getDataPublicacao(), ((DVD) item).getStatusClassificacao(), ((DVD) item).getStatusEmprestimo(), ((DVD) item).getDiretor(), ((DVD) item).getDuracao(),((DVD) item).getIdioma(), ((DVD) item).getSinopse(), ((DVD) item).getGenero());
+                        break;
+                    case 2:
+                        System.out.println("Informe a nova data de publicação (dd/MM/yyyy): ");
+                        LocalDate novaData = LocalDate.parse(InputScannerUtil.scanner.nextLine(), DataUtil.fmt);
+                        itemEmprestavelService.atualizarDVD(((DVD) item).getTitulo(), novaData, ((DVD) item).getStatusClassificacao(), ((DVD) item).getStatusEmprestimo(), ((DVD) item).getDiretor(), ((DVD) item).getDuracao(), ((DVD) item).getIdioma(), ((DVD) item).getSinopse(), ((DVD) item).getGenero());
+                        break;
+                    case 3:
+                        System.out.println("Informe a nova classificação: ");
+                        StatusClassificacao novaClassificacao = escolherStatusClassificacao();
+                        itemEmprestavelService.atualizarDVD(((DVD) item).getTitulo(), ((DVD) item).getDataPublicacao(), novaClassificacao, ((DVD) item).getStatusEmprestimo(), ((DVD) item).getDiretor(), ((DVD) item).getDuracao(), ((DVD) item).getIdioma(), ((DVD) item).getSinopse(), ((DVD) item).getGenero());
+                        break;
+                    case 4:
+                        System.out.println("Informe o status do empréstimo: ");
+                        StatusEmprestimo statusEmprestimo = escolherStatusEmprestimo();
+                        itemEmprestavelService.atualizarDVD(((DVD) item).getTitulo(), ((DVD) item).getDataPublicacao(), ((DVD) item).getStatusClassificacao(), statusEmprestimo, ((DVD) item).getDiretor(), ((DVD) item).getDuracao(), ((DVD) item).getIdioma(), ((DVD) item).getSinopse(), ((DVD) item).getGenero());
+                        break;
+                    case 5:
+                        System.out.println("Informe o novo diretor");
+                        String novoDiretor = InputScannerUtil.scanner.nextLine();
+                        itemEmprestavelService.atualizarDVD(((DVD) item).getTitulo(), ((DVD) item).getDataPublicacao(), ((DVD) item).getStatusClassificacao(), ((DVD) item).getStatusEmprestimo(), novoDiretor, ((DVD) item).getDuracao(), ((DVD) item).getIdioma(), ((DVD) item).getSinopse(), ((DVD) item).getGenero());
+                        break;
+                    case 6:
+                        System.out.println("Informe a duração: ");
+                        Duration novaDuracao = Duration.ofSeconds(Long.parseLong(InputScannerUtil.scanner.nextLine()));
+                        itemEmprestavelService.atualizarDVD(((DVD) item).getTitulo(), ((DVD) item).getDataPublicacao(), ((DVD) item).getStatusClassificacao(), ((DVD) item).getStatusEmprestimo(), ((DVD) item).getDiretor(), novaDuracao, ((DVD) item).getIdioma(), ((DVD) item).getSinopse(), ((DVD) item).getGenero());
+                        break;
+                    case 7:
+                        System.out.println("Informe o idioma: ");
+                        String novoIdioma = InputScannerUtil.scanner.nextLine();
+                        itemEmprestavelService.atualizarDVD(((DVD) item).getTitulo(), ((DVD) item).getDataPublicacao(), ((DVD) item).getStatusClassificacao(), ((DVD) item).getStatusEmprestimo(), ((DVD) item).getDiretor(), ((DVD) item).getDuracao(), novoIdioma, ((DVD) item).getSinopse(), ((DVD) item).getGenero());
+                        break;
+                    case 8:
+                        System.out.println("Informe a sinopse ");
+                        String novaSinopse = InputScannerUtil.scanner.nextLine();
+                        itemEmprestavelService.atualizarDVD(((DVD) item).getTitulo(), ((DVD) item).getDataPublicacao(), ((DVD) item).getStatusClassificacao(), ((DVD) item).getStatusEmprestimo(), ((DVD) item).getDiretor(), ((DVD) item).getDuracao(), ((DVD) item).getIdioma(), novaSinopse, ((DVD) item).getGenero());
+                        break;
+                    case 9:
+                        System.out.println("Informe o gênero ");
+                        String novoGenero = InputScannerUtil.scanner.nextLine();
+                        itemEmprestavelService.atualizarDVD(((DVD) item).getTitulo(), ((DVD) item).getDataPublicacao(), ((DVD) item).getStatusClassificacao(), ((DVD) item).getStatusEmprestimo(), ((DVD) item).getDiretor(), ((DVD) item).getDuracao(), ((DVD) item).getIdioma(), ((DVD) item).getSinopse(), novoGenero);
+                        break;
+                    default:
+                        System.out.println("Atributo inválido.");
+                }
+
+                System.out.println("Item atualizado!");
+                return;
+            }
+        }
+        System.out.println("Item não encontrado ou tipo de item incorreto!");
+    }
+
+     /**
+     * Atualiza os dados de um CD
+     *
+     * @param itemEmprestavelService servico de item emprestavel
+     * @param biblioteca  biblioteca de referencia
+     */
+    public static void atualizarDadosDeCD(ItemEmprestavelService itemEmprestavelService, Biblioteca biblioteca) {
+        System.out.print("Informe o ID do item a ser atualizado: ");
+        int id = InputScannerUtil.scanner.nextInt();
+        InputScannerUtil.scanner.nextLine();
+    
+        for (Item item : biblioteca.getEstoque().getItens()) {
+            if (item.getId() == id && item instanceof CD) {
+                AdmMenu.opcoesCD();
+                itemEmprestavelService.setEmprestavel(((Emprestavel) item));
+    
+                int escolha = InputScannerUtil.scanner.nextInt();
+                InputScannerUtil.scanner.nextLine();
+    
+                switch (escolha) {
+                    case 1:
+                        System.out.println("Informe o novo título: ");
+                        String titulo = InputScannerUtil.scanner.nextLine();
+                        itemEmprestavelService.atualizarCD(titulo, ((CD) item).getDataPublicacao(), ((CD) item).getStatusClassificacao(), ((CD) item).getStatusEmprestimo(), ((CD) item).getArtista(), ((CD) item).getDuracao(), ((CD) item).getFaixas());
+                        break;
+                    case 2:
+                        System.out.println("Informe a nova data de publicação (dd/MM/yyyy): ");
+                        LocalDate novaData = LocalDate.parse(InputScannerUtil.scanner.nextLine(), DataUtil.fmt);
+                        itemEmprestavelService.atualizarCD(((CD) item).getTitulo(), novaData, ((CD) item).getStatusClassificacao(), ((CD) item).getStatusEmprestimo(), ((CD) item).getArtista(), ((CD) item).getDuracao(), ((CD) item).getFaixas());
+                        break;
+                    case 3:
+                        System.out.println("Informe a nova classificação: ");
+                        StatusClassificacao novaClassificacao = escolherStatusClassificacao();
+                        itemEmprestavelService.atualizarCD(((CD) item).getTitulo(), ((CD) item).getDataPublicacao(), novaClassificacao, ((CD) item).getStatusEmprestimo(), ((CD) item).getArtista(), ((CD) item).getDuracao(), ((CD) item).getFaixas());
+                        break;
+                    case 4:
+                        System.out.println("Informe o status do empréstimo: ");
+                        StatusEmprestimo statusEmprestimo = escolherStatusEmprestimo();
+                        itemEmprestavelService.atualizarCD(((CD) item).getTitulo(), ((CD) item).getDataPublicacao(), ((CD) item).getStatusClassificacao(), statusEmprestimo, ((CD) item).getArtista(), ((CD) item).getDuracao(), ((CD) item).getFaixas());
+                        break;
+                    case 5:
+                        System.out.println("Informe o novo artista");
+                        String novoArtista = InputScannerUtil.scanner.nextLine();
+                        itemEmprestavelService.atualizarCD(((CD) item).getTitulo(), ((CD) item).getDataPublicacao(), ((CD) item).getStatusClassificacao(), ((CD) item).getStatusEmprestimo(), novoArtista, ((CD) item).getDuracao(), ((CD) item).getFaixas());
+                        break;
+                    case 6:
+                        System.out.println("Informe a duração em segundos: ");
+                        Duration novaDuracao = Duration.ofSeconds(Long.parseLong(InputScannerUtil.scanner.nextLine()));
+                        itemEmprestavelService.atualizarCD(((CD) item).getTitulo(), ((CD) item).getDataPublicacao(), ((CD) item).getStatusClassificacao(), ((CD) item).getStatusEmprestimo(), ((CD) item).getArtista(), novaDuracao, ((CD) item).getFaixas());
+                        break;
+                    case 7:
+                        List<String> faixas = new ArrayList<>();
+                        System.out.println("Informe as faixas do CD (FIM para sair): ");
+                        ItemInput.inserirConteudo(faixas);
+                        itemEmprestavelService.atualizarCD(((CD) item).getTitulo(), ((CD) item).getDataPublicacao(), ((CD) item).getStatusClassificacao(), ((CD) item).getStatusEmprestimo(), ((CD) item).getArtista(), ((CD) item).getDuracao(), faixas);
+                        break;
+                    default:
+                        System.out.println("Atributo inválido.");
+                }
+    
+                System.out.println("Item atualizado!");
+                return;
+            }
+        }
+        System.out.println("Item não encontrado ou tipo de item incorreto!");
+    }
+
+    /**
+     * Atualiza os dados de um livro
+     *
+     * @param itemEmprestavelService servico de item emprestavel
+     * @param biblioteca  biblioteca de referencia
+     */
+    public static void atualizarDadosDeLivro(ItemEmprestavelService itemEmprestavelService, Biblioteca biblioteca) {
+        System.out.print("Informe o ID do livro a ser atualizado: ");
+        int id = InputScannerUtil.scanner.nextInt();
+        InputScannerUtil.scanner.nextLine();
+    
+        for (Item item : biblioteca.getEstoque().getItens()) {
+            if (item.getId() == id && item instanceof Livro) {
+                AdmMenu.opcoesLivro();
+                itemEmprestavelService.setEmprestavel(((Emprestavel) item));
+    
+                int escolha = InputScannerUtil.scanner.nextInt();
+                InputScannerUtil.scanner.nextLine();
+    
+                switch (escolha) {
+                    case 1:
+                        System.out.println("Informe o novo título: ");
+                        String titulo = InputScannerUtil.scanner.nextLine();
+                        itemEmprestavelService.atualizarLivro(titulo, ((Livro) item).getDataPublicacao(), ((Livro) item).getStatusClassificacao(), ((Livro) item).getStatusEmprestimo(), ((Livro) item).getAutor(), ((Livro) item).getEdicao(), ((Livro) item).getIdioma(), ((Livro) item).getSinopse(), ((Livro) item).getGenero(), ((Livro) item).getVolume(), ((Livro) item).getNumeroPaginas());
+                        break;
+                    case 2:
+                        System.out.println("Informe a nova data de publicação (dd/MM/yyyy): ");
+                        LocalDate novaData = LocalDate.parse(InputScannerUtil.scanner.nextLine(), DataUtil.fmt);
+                        itemEmprestavelService.atualizarLivro(((Livro) item).getTitulo(), novaData, ((Livro) item).getStatusClassificacao(), ((Livro) item).getStatusEmprestimo(), ((Livro) item).getAutor(), ((Livro) item).getEdicao(), ((Livro) item).getIdioma(), ((Livro) item).getSinopse(), ((Livro) item).getGenero(), ((Livro) item).getVolume(), ((Livro) item).getNumeroPaginas());
+                        break;
+                    case 3:
+                        System.out.println("Informe a nova classificação: ");
+                        StatusClassificacao novaClassificacao = escolherStatusClassificacao();
+                        itemEmprestavelService.atualizarLivro(((Livro) item).getTitulo(), ((Livro) item).getDataPublicacao(), novaClassificacao, ((Livro) item).getStatusEmprestimo(), ((Livro) item).getAutor(), ((Livro) item).getEdicao(), ((Livro) item).getIdioma(), ((Livro) item).getSinopse(), ((Livro) item).getGenero(), ((Livro) item).getVolume(), ((Livro) item).getNumeroPaginas());
+                        break;
+                    case 4:
+                        System.out.println("Informe o status do empréstimo: ");
+                        StatusEmprestimo statusEmprestimo = escolherStatusEmprestimo();
+                        itemEmprestavelService.atualizarLivro(((Livro) item).getTitulo(), ((Livro) item).getDataPublicacao(), ((Livro) item).getStatusClassificacao(), statusEmprestimo, ((Livro) item).getAutor(), ((Livro) item).getEdicao(), ((Livro) item).getIdioma(), ((Livro) item).getSinopse(), ((Livro) item).getGenero(), ((Livro) item).getVolume(), ((Livro) item).getNumeroPaginas());
+                        break;
+                    case 5:
+                        System.out.println("Informe o novo autor: ");
+                        String novoAutor = InputScannerUtil.scanner.nextLine();
+                        itemEmprestavelService.atualizarLivro(((Livro) item).getTitulo(), ((Livro) item).getDataPublicacao(), ((Livro) item).getStatusClassificacao(), ((Livro) item).getStatusEmprestimo(), novoAutor, ((Livro) item).getEdicao(), ((Livro) item).getIdioma(), ((Livro) item).getSinopse(), ((Livro) item).getGenero(), ((Livro) item).getVolume(), ((Livro) item).getNumeroPaginas());
+                        break;
+                    case 6:
+                        System.out.println("Informe a edição: ");
+                        String novaEdicao = InputScannerUtil.scanner.nextLine();
+                        itemEmprestavelService.atualizarLivro(((Livro) item).getTitulo(), ((Livro) item).getDataPublicacao(), ((Livro) item).getStatusClassificacao(), ((Livro) item).getStatusEmprestimo(), ((Livro) item).getAutor(), novaEdicao, ((Livro) item).getIdioma(), ((Livro) item).getSinopse(), ((Livro) item).getGenero(), ((Livro) item).getVolume(), ((Livro) item).getNumeroPaginas());
+                        break;
+                    case 7:
+                        System.out.println("Informe o idioma: ");
+                        String novoIdioma = InputScannerUtil.scanner.nextLine();
+                        itemEmprestavelService.atualizarLivro(((Livro) item).getTitulo(), ((Livro) item).getDataPublicacao(), ((Livro) item).getStatusClassificacao(), ((Livro) item).getStatusEmprestimo(), ((Livro) item).getAutor(), ((Livro) item).getEdicao(), novoIdioma, ((Livro) item).getSinopse(), ((Livro) item).getGenero(), ((Livro) item).getVolume(), ((Livro) item).getNumeroPaginas());
+                        break;
+                    case 8:
+                        System.out.println("Informe a sinopse: ");
+                        String novaSinopse = InputScannerUtil.scanner.nextLine();
+                        itemEmprestavelService.atualizarLivro(((Livro) item).getTitulo(), ((Livro) item).getDataPublicacao(), ((Livro) item).getStatusClassificacao(), ((Livro) item).getStatusEmprestimo(), ((Livro) item).getAutor(), ((Livro) item).getEdicao(), ((Livro) item).getIdioma(), novaSinopse, ((Livro) item).getGenero(), ((Livro) item).getVolume(), ((Livro) item).getNumeroPaginas());
+                        break;
+                    case 9:
+                        System.out.println("Informe o gênero: ");
+                        String novoGenero = InputScannerUtil.scanner.nextLine();
+                        itemEmprestavelService.atualizarLivro(((Livro) item).getTitulo(), ((Livro) item).getDataPublicacao(), ((Livro) item).getStatusClassificacao(), ((Livro) item).getStatusEmprestimo(), ((Livro) item).getAutor(), ((Livro) item).getEdicao(), ((Livro) item).getIdioma(), ((Livro) item).getSinopse(), novoGenero, ((Livro) item).getVolume(), ((Livro) item).getNumeroPaginas());
+                        break; 
+                        case 10:
+                        System.out.println("Informe o volume: ");
+                        String novoVolume = InputScannerUtil.scanner.nextLine();
+                        itemEmprestavelService.atualizarLivro(((Livro) item).getTitulo(), ((Livro) item).getDataPublicacao(), ((Livro) item).getStatusClassificacao(), ((Livro) item).getStatusEmprestimo(), ((Livro) item).getAutor(), ((Livro) item).getEdicao(), ((Livro) item).getIdioma(), ((Livro) item).getSinopse(), ((Livro) item).getGenero(), novoVolume, ((Livro) item).getNumeroPaginas());
+                        break;
+                    case 11:
+                        System.out.println("Informe o número de páginas: ");
+                        int numPaginas = InputScannerUtil.scanner.nextInt();
+                        InputScannerUtil.scanner.nextLine();
+                        itemEmprestavelService.atualizarLivro(((Livro) item).getTitulo(), ((Livro) item).getDataPublicacao(), ((Livro) item).getStatusClassificacao(), ((Livro) item).getStatusEmprestimo(), ((Livro) item).getAutor(), ((Livro) item).getEdicao(), ((Livro) item).getIdioma(), ((Livro) item).getSinopse(), ((Livro) item).getGenero(), ((Livro) item).getVolume(), numPaginas);
+                        break;
+                    default:
+                        System.out.println("Atributo inválido.");
+                }
+    
+                System.out.println("Item atualizado!");
+                return;
+            }
+        }
+        System.out.println("Livro não encontrado ou tipo de item incorreto!");
+    }
+    
+    public static void excluirItem(ItemEmprestavelService itemEmprestavelService, Biblioteca biblioteca) {
+
+        System.out.print("Informe o ID do item: ");
+        int id = InputScannerUtil.scanner.nextInt();
+
+        Item itemDeletado = null;
+        for (Item item : biblioteca.getEstoque().getItens()) {
+            if (item.getId() == id && item instanceof Emprestavel) {
+                itemDeletado = item;
+                itemEmprestavelService.deletar(itemDeletado);
+                break;
+            }
+        }
+
+        if (itemDeletado != null) {
+            System.out.println("Item deletado com sucesso!");
+        } else {
+            System.out.println("Item não encontrado!");
+        }
+    }
+} 
