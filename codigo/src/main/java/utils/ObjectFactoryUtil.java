@@ -1,6 +1,5 @@
 package main.java.utils;
 
-
 import main.java.enums.Perfil;
 import main.java.enums.StatusClassificacao;
 import main.java.enums.StatusEmprestimo;
@@ -8,6 +7,7 @@ import main.java.models.Biblioteca;
 import main.java.models.Estoque;
 import main.java.models.Usuario;
 import main.java.models.itens.*;
+import main.java.services.ItemEmprestavelService;
 import main.java.services.ItemService;
 import main.java.services.UsuarioService;
 
@@ -19,10 +19,10 @@ import java.util.List;
 
 import static main.java.utils.DataUtil.fmt;
 
-
 /**
  * todo: Coloque aqui, toda a instância para o start do programa
- * Essa classe também tem objetivo de evitar que qualquer mudança de atributo que afete os construtores seja mudado
+ * Essa classe também tem objetivo de evitar que qualquer mudança de atributo
+ * que afete os construtores seja mudado
  * na classe principal (Main)
  */
 public class ObjectFactoryUtil {
@@ -49,9 +49,26 @@ public class ObjectFactoryUtil {
         return usuarioService;
     }
 
-        public static ItemService itemService(Biblioteca biblioteca) {
+    /**
+     * Inicia nova instancia de itemService
+     *
+     * @param biblioteca biblioteca de referencia
+     * @return novo itemService
+     */
+    public static ItemService itemService(Biblioteca biblioteca) {
         ItemService itemService = new ItemService(biblioteca);
         return itemService;
+    }
+
+    /**
+     * Inicia nova instancia de itemEmprestavelService
+     *
+     * @param biblioteca biblioteca de referencia
+     * @return novo itemEmprestavelService
+     */
+    public static ItemEmprestavelService itemEmprestavelService(Biblioteca biblioteca) {
+        ItemEmprestavelService itemEmprestavelService = new ItemEmprestavelService(biblioteca);
+        return itemEmprestavelService;
     }
 
     /**
@@ -63,24 +80,42 @@ public class ObjectFactoryUtil {
         return new Usuario();
     }
 
+    /**
+     * Inicia nova instancia de revista
+     *
+     * @return nova revista
+     */
     public static Revista newRevista() {
         return new Revista();
     }
 
+    /**
+     * Inicia nova instancia de tese
+     *
+     * @return nova tese
+     */
     public static Tese newTese() {
         return new Tese();
     }
 
+    /**
+     * Inicia nova instancia de DVD
+     *
+     * @return novo DVD
+     */
+    public static DVD newDVD() {
+        return new DVD();
+    }
+
     public static void cadastrarUsuario(UsuarioService usuarioService) {
-        try{
+        try {
             Usuario usuario = new Usuario();
             usuarioService.setUsuario(usuario);
-            usuarioService.criar("Lucas Cabral Soares", "lucas@email.com.br", "123", LocalDate.now(),Perfil.USUARIO);
+            usuarioService.criar("Lucas Cabral Soares", "lucas@email.com.br", "123", LocalDate.now(), Perfil.USUARIO);
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
         }
     }
-
 
     /**
      * Inicia nova instancia de administrador
@@ -129,9 +164,15 @@ public class ObjectFactoryUtil {
 
         List<Livro> livros = new ArrayList<>();
         Object[][] livrosInfo = {
-                {"Nossas incriveis serpentes", LocalDate.of(2002, 5, 1), StatusClassificacao.LIVRE, StatusEmprestimo.DISPONIVEL, "Joaozinho", 100, "Editora Brasil", "n.01", "vol.01", "PT-BR", "Ciencia", "Livro sobre serpentes"},
-                {"Aracnideos do cerrado", LocalDate.of(2004, 2, 2), StatusClassificacao.MAIOR_DE_16, StatusEmprestimo.DISPONIVEL, "Paulito", 200, "Editora Colombia", "n.11", "vol.01", "PT-BR", "Ciencia", "Livro sobre aracnideos"},
-                {"Little principe", LocalDate.of(2002, 2, 2), StatusClassificacao.MAIOR_DE_18, StatusEmprestimo.DISPONIVEL, "Jorge", 300, "Editora EUA", "n.15", "vol.01", "PT-BR", "Ciencia", "Livro sobre principes"}
+                { "Nossas incriveis serpentes", LocalDate.of(2002, 5, 1), StatusClassificacao.LIVRE,
+                        StatusEmprestimo.DISPONIVEL, "Joaozinho", 100, "Editora Brasil", "n.01", "vol.01", "PT-BR",
+                        "Ciencia", "Livro sobre serpentes" },
+                { "Aracnideos do cerrado", LocalDate.of(2004, 2, 2), StatusClassificacao.MAIOR_DE_16,
+                        StatusEmprestimo.DISPONIVEL, "Paulito", 200, "Editora Colombia", "n.11", "vol.01", "PT-BR",
+                        "Ciencia", "Livro sobre aracnideos" },
+                { "Little principe", LocalDate.of(2002, 2, 2), StatusClassificacao.MAIOR_DE_18,
+                        StatusEmprestimo.DISPONIVEL, "Jorge", 300, "Editora EUA", "n.15", "vol.01", "PT-BR", "Ciencia",
+                        "Livro sobre principes" }
         };
 
         Arrays.stream(livrosInfo).toList().forEach(livro -> {
@@ -163,9 +204,14 @@ public class ObjectFactoryUtil {
 
         List<CD> cds = new ArrayList<>();
         Object[][] dvdInfo = {
-                {"Barons of the little step", LocalDate.of(2002, 5, 1), StatusClassificacao.LIVRE, StatusEmprestimo.DISPONIVEL, "Barons of the little step", Duration.ofMinutes(60), new ArrayList<>(Arrays.asList("Faixa 01", "Faixa 02"))},
-                {"Lincoln parque", LocalDate.of(1983, 2, 2), StatusClassificacao.MAIOR_DE_16, StatusEmprestimo.DISPONIVEL, "Lincoln parque", Duration.ofMinutes(30), new ArrayList<>(Arrays.asList("Faixa 01", "Faixa 02"))},
-                {"Godjira", LocalDate.of(1997, 2, 2), StatusClassificacao.MAIOR_DE_18, StatusEmprestimo.DISPONIVEL, "Godjira", Duration.ofMinutes(45), new ArrayList<>(Arrays.asList("Faixa 01", "Faixa 02"))}
+                { "Barons of the little step", LocalDate.of(2002, 5, 1), StatusClassificacao.LIVRE,
+                        StatusEmprestimo.DISPONIVEL, "Barons of the little step", Duration.ofMinutes(60),
+                        new ArrayList<>(Arrays.asList("Faixa 01", "Faixa 02")) },
+                { "Lincoln parque", LocalDate.of(1983, 2, 2), StatusClassificacao.MAIOR_DE_16,
+                        StatusEmprestimo.DISPONIVEL, "Lincoln parque", Duration.ofMinutes(30),
+                        new ArrayList<>(Arrays.asList("Faixa 01", "Faixa 02")) },
+                { "Godjira", LocalDate.of(1997, 2, 2), StatusClassificacao.MAIOR_DE_18, StatusEmprestimo.DISPONIVEL,
+                        "Godjira", Duration.ofMinutes(45), new ArrayList<>(Arrays.asList("Faixa 01", "Faixa 02")) }
         };
 
         Arrays.stream(dvdInfo).toList().forEach(cd -> {
@@ -192,9 +238,12 @@ public class ObjectFactoryUtil {
 
         List<DVD> dvds = new ArrayList<>();
         Object[][] dvdInfo = {
-                {"A freira", LocalDate.of(1998, 5, 1), StatusClassificacao.LIVRE, StatusEmprestimo.DISPONIVEL, "Pinoquio", Duration.ofMinutes(60), "PT-BR", "Filme de terror", "Terror"},
-                {"Ace ventura", LocalDate.of(1997, 2, 2), StatusClassificacao.MAIOR_DE_16, StatusEmprestimo.DISPONIVEL, "Gepeto", Duration.ofMinutes(30), "PT-BR", "Filme de comedia", "Comedia"},
-                {"007", LocalDate.of(2008, 2, 2), StatusClassificacao.MAIOR_DE_18, StatusEmprestimo.DISPONIVEL, "Baleia", Duration.ofMinutes(45), "PT-BR", "Filme de acao e aventura", "Acao e aventura"}
+                { "A freira", LocalDate.of(1998, 5, 1), StatusClassificacao.LIVRE, StatusEmprestimo.DISPONIVEL,
+                        "Pinoquio", Duration.ofMinutes(60), "PT-BR", "Filme de terror", "Terror" },
+                { "Ace ventura", LocalDate.of(1997, 2, 2), StatusClassificacao.MAIOR_DE_16, StatusEmprestimo.DISPONIVEL,
+                        "Gepeto", Duration.ofMinutes(30), "PT-BR", "Filme de comedia", "Comedia" },
+                { "007", LocalDate.of(2008, 2, 2), StatusClassificacao.MAIOR_DE_18, StatusEmprestimo.DISPONIVEL,
+                        "Baleia", Duration.ofMinutes(45), "PT-BR", "Filme de acao e aventura", "Acao e aventura" }
         };
 
         Arrays.stream(dvdInfo).toList().forEach(dvd -> {
@@ -223,9 +272,15 @@ public class ObjectFactoryUtil {
 
         List<Tese> teses = new ArrayList<>();
         Object[][] teseInfo = {
-                {"Tese de mestrado", LocalDate.of(2022, 5, 1), StatusClassificacao.LIVRE, "Juanito Jones", "Pantoro", LocalDate.of(2002, 10, 1), new ArrayList<>(Arrays.asList("Introducao", "Metodologia", "Conclusao"))},
-                {"Tese de doutorado", LocalDate.of(2010, 2, 2), StatusClassificacao.MAIOR_DE_16, "Franco columbu", "Treinador misterioso", LocalDate.of(2000, 7, 2), new ArrayList<>(Arrays.asList("Introducao", "Resultados", "Constatacoes"))},
-                {"Tese de pos-doutorado", LocalDate.of(2013, 2, 2), StatusClassificacao.MAIOR_DE_18, "Mickey mouse", "Walter", LocalDate.of(2000, 11, 3), new ArrayList<>(Arrays.asList("Introducao", "Resultados", "Constatacoes"))}
+                { "Tese de mestrado", LocalDate.of(2022, 5, 1), StatusClassificacao.LIVRE, "Juanito Jones", "Pantoro",
+                        LocalDate.of(2002, 10, 1),
+                        new ArrayList<>(Arrays.asList("Introducao", "Metodologia", "Conclusao")) },
+                { "Tese de doutorado", LocalDate.of(2010, 2, 2), StatusClassificacao.MAIOR_DE_16, "Franco columbu",
+                        "Treinador misterioso", LocalDate.of(2000, 7, 2),
+                        new ArrayList<>(Arrays.asList("Introducao", "Resultados", "Constatacoes")) },
+                { "Tese de pos-doutorado", LocalDate.of(2013, 2, 2), StatusClassificacao.MAIOR_DE_18, "Mickey mouse",
+                        "Walter", LocalDate.of(2000, 11, 3),
+                        new ArrayList<>(Arrays.asList("Introducao", "Resultados", "Constatacoes")) }
         };
 
         Arrays.stream(teseInfo).toList().forEach(tese -> {
@@ -252,9 +307,12 @@ public class ObjectFactoryUtil {
 
         List<Revista> revistas = new ArrayList<>();
         Object[][] revistaInfo = {
-                {"Turma da monica", LocalDate.of(1988, 5, 1), StatusClassificacao.LIVRE, "Editora Abril", "n.01", new ArrayList<>(Arrays.asList("Monica vs Cebolinha", "Cascao contra ataca!", "Chico bento"))},
-                {"Jornal", LocalDate.of(2023, 2, 2), StatusClassificacao.MAIOR_DE_16, "Editora Brasil", "n.99", new ArrayList<>(Arrays.asList("Tiroteio no rio", "Transito em sao paulo", "Queijo em minas"))},
-                {"Revista 18+", LocalDate.of(2007, 3, 3), StatusClassificacao.MAIOR_DE_18, "Editora Colombia", "n.666", new ArrayList<>(Arrays.asList("Gays", "Mulheres", "Homens", "Outros"))}
+                { "Turma da monica", LocalDate.of(1988, 5, 1), StatusClassificacao.LIVRE, "Editora Abril", "n.01",
+                        new ArrayList<>(Arrays.asList("Monica vs Cebolinha", "Cascao contra ataca!", "Chico bento")) },
+                { "Jornal", LocalDate.of(2023, 2, 2), StatusClassificacao.MAIOR_DE_16, "Editora Brasil", "n.99",
+                        new ArrayList<>(Arrays.asList("Tiroteio no rio", "Transito em sao paulo", "Queijo em minas")) },
+                { "Revista 18+", LocalDate.of(2007, 3, 3), StatusClassificacao.MAIOR_DE_18, "Editora Colombia", "n.666",
+                        new ArrayList<>(Arrays.asList("Gays", "Mulheres", "Homens", "Outros")) }
         };
 
         Arrays.stream(revistaInfo).toList().forEach(revista -> {
