@@ -158,7 +158,7 @@ public class AdmMenu {
                     atualizarItemNaoEmprestavel(itemService, biblioteca);
                     break;
                 case 3:
-                    ExcluirItemInput.excluirItem(itemService, biblioteca);
+                    ItemNaoEmprestavelInput.excluirItem(itemService, biblioteca);
                     ;
                     break;
                 case 4:
@@ -184,10 +184,10 @@ public class AdmMenu {
         InputScannerUtil.scanner.nextLine();
         switch (escolha) {
             case 1:
-                CriarItemInput.obterDadosDeRevista(itemService);
+                ItemNaoEmprestavelInput.obterDadosDeRevista(itemService);
                 break;
             case 2:
-                CriarItemInput.obterDadosDeTese(itemService);
+                ItemNaoEmprestavelInput.obterDadosDeTese(itemService);
                 break;
             default:
                 System.out.println("Tipo de item inválido.");
@@ -209,10 +209,10 @@ public class AdmMenu {
         InputScannerUtil.scanner.nextLine();
         switch (escolha) {
             case 1:
-                AtualizarItemInput.atualizarDadosDeRevista(itemService, biblioteca);
+                ItemNaoEmprestavelInput.atualizarDadosDeRevista(itemService, biblioteca);
                 break;
             case 2:
-                AtualizarItemInput.atualizarDadosDeTese(itemService, biblioteca);
+                ItemNaoEmprestavelInput.atualizarDadosDeTese(itemService, biblioteca);
                 break;
             default:
                 System.out.println("Tipo de item inválido.");

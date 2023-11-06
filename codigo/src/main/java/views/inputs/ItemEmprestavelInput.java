@@ -1,4 +1,4 @@
 package main.java.views.inputs;
 
-public class ItemEmprestavelInput {
+public class ItemEmprestavelInput extends ItemInput {
 }
