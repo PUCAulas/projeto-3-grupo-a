@@ -14,15 +14,16 @@ import java.util.Optional;
 
 public class AdmMenu {
 
-
     /**
      * Menu principal do sistema
      *
      * @param usuarioService servico do usuario
-     * @param itemService    servico do item
+     * @param itemService    servico de item nao emprestavel
+     * @param itemEmprestavelService servico de item emprestavel
      * @param biblioteca     biblioteca de referencia
      */
-    public static void menuPrincipal(UsuarioService usuarioService, ItemService itemService, ItemEmprestavelService itemEmprestavelService ,Biblioteca biblioteca) {
+    public static void menuPrincipal(UsuarioService usuarioService, ItemService itemService,
+            ItemEmprestavelService itemEmprestavelService, Biblioteca biblioteca) {
 
         while (true) {
             System.out.println("\nEscolha a operação desejada:");
@@ -200,7 +201,7 @@ public class AdmMenu {
      * Atualiza um item nao emprestavel
      *
      * @param itemService servico do item nao emprestavel
-     * @param biblioteca biblioteca service
+     * @param biblioteca  biblioteca service
      */
     public static void atualizarItemNaoEmprestavel(ItemService itemService, Biblioteca biblioteca) {
         System.out.println("Escolha o tipo de item a ser atualizado:");
@@ -225,7 +226,7 @@ public class AdmMenu {
      * Menu de itens emprestaveis
      *
      * @param itemEmprestavelService servico do item emprestavel
-     * @param biblioteca  biblioteca de referencia
+     * @param biblioteca             biblioteca de referencia
      */
     public static void menuItensEmprestaveis(ItemEmprestavelService itemEmprestavelService, Biblioteca biblioteca) {
         while (true) {
@@ -249,11 +250,12 @@ public class AdmMenu {
             switch (escolha) {
                 case 1:
                     Emprestavel emprestavel = new Emprestavel();
-                    ItemEmprestavelService itemEmprestavelService2 = new ItemEmprestavelService(emprestavel, biblioteca);
+                    ItemEmprestavelService itemEmprestavelService2 = new ItemEmprestavelService(emprestavel,
+                            biblioteca);
                     criarItemEmprestavel(itemEmprestavelService2);
                     break;
                 case 2:
-                   // atualizarItemEmprestavel(itemEmprestavelService, biblioteca);
+                    atualizarItemEmprestavel(itemEmprestavelService, biblioteca);
                     break;
                 case 3:
                     // ItemEmprestavelInput.excluirItem(itemEmprestavelService, biblioteca);
@@ -286,11 +288,40 @@ public class AdmMenu {
                 ItemEmprestavelInput.obterDadosDeDVD(itemEmprestavelService);
                 break;
             case 2:
-               // ItemEmprestavelInput.obterDadosDeCD(itemEmprestavelService);
+                // ItemEmprestavelInput.obterDadosDeCD(itemEmprestavelService);
                 break;
             case 3:
-               // ItemEmprestavelInput.obterDadosDeLivro(itemEmprestavelService);
-               break;
+                // ItemEmprestavelInput.obterDadosDeLivro(itemEmprestavelService);
+                break;
+            default:
+                System.out.println("Tipo de item inválido.");
+        }
+    }
+
+    /**
+     * Atualiza um item emprestavel
+     *
+     * @param itemEmprestavelService servico do item emprestavel
+     * @param biblioteca             biblioteca service
+     */
+    public static void atualizarItemEmprestavel(ItemEmprestavelService itemEmprestavelService, Biblioteca biblioteca) {
+        System.out.println("Escolha o tipo de item a ser atualizado:");
+        System.out.println("1. DVD");
+        System.out.println("2. CD");
+        System.out.println("3. Livro");
+
+        int escolha = InputScannerUtil.scanner.nextInt();
+        InputScannerUtil.scanner.nextLine();
+        switch (escolha) {
+            case 1:
+                //ItemEmprestavelInput.atualizarDadosDeDVD(itemEmprestavelService, biblioteca);
+                break;
+            case 2:
+                //ItemEmprestavelInput.atualizarDadosDeCD(itemEmprestavelService, biblioteca);
+                break;
+            case 3:
+                //ItemEmprestavelInput.atualizarDadosDeLivro(itemEmprestavelService, biblioteca);
+                break;
             default:
                 System.out.println("Tipo de item inválido.");
         }
@@ -319,4 +350,42 @@ public class AdmMenu {
         System.out.println("7. Capitulos");
     }
 
+    public static void opcoesDVD() {
+        System.out.println("Opção:");
+        System.out.println("1. Título");
+        System.out.println("2. Data de Publicação");
+        System.out.println("3. Classificação");
+        System.out.println("4. Status empréstimo");
+        System.out.println("5. Diretor");
+        System.out.println("6. Duração");
+        System.out.println("7. Idioma");
+        System.out.println("8. Sinopse");
+        System.out.println("9. Genero");
+    }
+
+    public static void opcoesCD() {
+        System.out.println("Opção:");
+        System.out.println("1. Título");
+        System.out.println("2. Data de Publicação");
+        System.out.println("3. Classificação");
+        System.out.println("4. Status empréstimo");
+        System.out.println("5. Artista");
+        System.out.println("6. Duração");
+        System.out.println("7. Faixas");
+    }
+
+    public static void opcoesLivro() {
+        System.out.println("Opção:");
+        System.out.println("1. Título");
+        System.out.println("2. Data de Publicação");
+        System.out.println("3. Classificação");
+        System.out.println("4. Status empréstimo");
+        System.out.println("5. Autor");
+        System.out.println("6. Edição");
+        System.out.println("7. Idioma");
+        System.out.println("8. Sinopse");
+        System.out.println("9. Gênero");
+        System.out.println("10. Volume");
+        System.out.println("11. Número de páginas");
+    }
 }
