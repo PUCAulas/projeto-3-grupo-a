@@ -112,6 +112,10 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         biblioteca.getEstoque().addItem(dvd);
     }
 
+    public void setEmprestavel(Emprestavel emprestavel) {
+        this.emprestavel = emprestavel;
+    }
+
     /**
      * Cria um novo CD
      */

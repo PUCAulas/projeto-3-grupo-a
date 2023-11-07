@@ -61,13 +61,15 @@ public class ItemEmprestavelInput extends ItemInput {
         itemEmprestavelService.setEmprestavel(dvd);
 
         try {
-            itemEmprestavelService.criarDVD(titulo, dataPublicacao, statusClassificacao, statusEmprestimo, diretor,
-                    duracao, idioma, sinopse, genero);
+            itemEmprestavelService.criarDVD();
             System.out.println("\nDVD cadastrado com sucesso!");
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
         }
     }
+
+
+
 
     /**
      * Menu de criacao de CD
@@ -103,8 +105,7 @@ public class ItemEmprestavelInput extends ItemInput {
         itemEmprestavelService.setEmprestavel(cd);
 
         try {
-            itemEmprestavelService.criarCD(titulo, dataPublicacao, statusClassificacao, statusEmprestimo, artista,
-                    duracao, faixas);
+            itemEmprestavelService.criarCD();
             System.out.println("\nCD cadastrado com sucesso!");
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
@@ -254,15 +255,15 @@ public class ItemEmprestavelInput extends ItemInput {
         System.out.print("Informe o ID do item a ser atualizado: ");
         int id = InputScannerUtil.scanner.nextInt();
         InputScannerUtil.scanner.nextLine();
-    
+
         for (Item item : biblioteca.getEstoque().getItens()) {
             if (item.getId() == id && item instanceof CD) {
                 AdmMenu.opcoesCD();
                 itemEmprestavelService.setEmprestavel(((Emprestavel) item));
-    
+
                 int escolha = InputScannerUtil.scanner.nextInt();
                 InputScannerUtil.scanner.nextLine();
-    
+
                 switch (escolha) {
                     case 1:
                         System.out.println("Informe o novo título: ");
@@ -303,7 +304,7 @@ public class ItemEmprestavelInput extends ItemInput {
                     default:
                         System.out.println("Atributo inválido.");
                 }
-    
+
                 System.out.println("Item atualizado!");
                 return;
             }
@@ -321,15 +322,15 @@ public class ItemEmprestavelInput extends ItemInput {
         System.out.print("Informe o ID do livro a ser atualizado: ");
         int id = InputScannerUtil.scanner.nextInt();
         InputScannerUtil.scanner.nextLine();
-    
+
         for (Item item : biblioteca.getEstoque().getItens()) {
             if (item.getId() == id && item instanceof Livro) {
                 AdmMenu.opcoesLivro();
                 itemEmprestavelService.setEmprestavel(((Emprestavel) item));
-    
+
                 int escolha = InputScannerUtil.scanner.nextInt();
                 InputScannerUtil.scanner.nextLine();
-    
+
                 switch (escolha) {
                     case 1:
                         System.out.println("Informe o novo título: ");
@@ -375,7 +376,7 @@ public class ItemEmprestavelInput extends ItemInput {
                         System.out.println("Informe o gênero: ");
                         String novoGenero = InputScannerUtil.scanner.nextLine();
                         itemEmprestavelService.atualizarLivro(((Livro) item).getTitulo(), ((Livro) item).getDataPublicacao(), ((Livro) item).getStatusClassificacao(), ((Livro) item).getStatusEmprestimo(), ((Livro) item).getAutor(), ((Livro) item).getEdicao(), ((Livro) item).getIdioma(), ((Livro) item).getSinopse(), novoGenero, ((Livro) item).getVolume(), ((Livro) item).getNumeroPaginas());
-                        break; 
+                        break;
                         case 10:
                         System.out.println("Informe o volume: ");
                         String novoVolume = InputScannerUtil.scanner.nextLine();
@@ -390,14 +391,14 @@ public class ItemEmprestavelInput extends ItemInput {
                     default:
                         System.out.println("Atributo inválido.");
                 }
-    
+
                 System.out.println("Item atualizado!");
                 return;
             }
         }
         System.out.println("Livro não encontrado ou tipo de item incorreto!");
     }
-    
+
     public static void excluirItem(ItemEmprestavelService itemEmprestavelService, Biblioteca biblioteca) {
 
         System.out.print("Informe o ID do item: ");
@@ -418,4 +419,4 @@ public class ItemEmprestavelInput extends ItemInput {
             System.out.println("Item não encontrado!");
         }
     }
-} 
+}

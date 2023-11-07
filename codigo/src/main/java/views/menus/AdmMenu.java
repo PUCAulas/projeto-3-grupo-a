@@ -250,8 +250,7 @@ public class AdmMenu {
             switch (escolha) {
                 case 1:
                     Emprestavel emprestavel = new Emprestavel();
-                    ItemEmprestavelService itemEmprestavelService2 = new ItemEmprestavelService(emprestavel,
-                            biblioteca);
+                    ItemEmprestavelService itemEmprestavelService2 = new ItemEmprestavelService(biblioteca);
                     criarItemEmprestavel(itemEmprestavelService2);
                     break;
                 case 2:
@@ -262,7 +261,11 @@ public class AdmMenu {
                     ;
                     break;
                 case 4:
-                    itemEmprestavelService.listar();
+                    try {
+                        itemEmprestavelService.listar(biblioteca);
+                    } catch (Exception e) {
+                        System.out.println("Erro: " + e.getMessage());
+                    }
                     break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
