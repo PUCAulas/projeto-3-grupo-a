@@ -235,13 +235,14 @@ public class AdmMenu {
             System.out.println("2. Atualizar item emprestável");
             System.out.println("3. Deletar item emprestável");
             System.out.println("4. Listar item emprestável");
-            System.out.println("5. Voltar");
+            System.out.println("5. Listar todos os itens emprestáveis");
+            System.out.println("6. Voltar");
             System.out.print("Opção: ");
 
             int escolha = InputScannerUtil.scanner.nextInt();
             InputScannerUtil.scanner.nextLine();
 
-            if (escolha == 5) {
+            if (escolha == 6) {
                 System.out.println("Voltando ao menu principal...\n");
                 // InputScannerUtil.close();
                 break;
@@ -258,7 +259,6 @@ public class AdmMenu {
                     break;
                 case 3:
                     ItemEmprestavelInput.excluirItem(itemEmprestavelService, biblioteca);
-                    ;
                     break;
                 case 4:
                     try {
@@ -266,6 +266,10 @@ public class AdmMenu {
                     } catch (Exception e) {
                         System.out.println("Erro: " + e.getMessage());
                     }
+                    break;
+
+                case 5:
+                    itemEmprestavelService.listarTodos();
                     break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
