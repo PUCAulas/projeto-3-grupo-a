@@ -9,8 +9,8 @@ public class Emprestavel extends Item {
 
     private final int QTD_MAX_DIAS_EMPRESTIMO = 10;
     private StatusEmprestimo statusEmprestimo;
-    private int qtdEmprestimo;
-    private int diaEmprestimo;
+    private int qtdEmprestimo; // Quantos do item a pessoa pegou emprestado <<< talvez desnescessário
+    private int diaEmprestimo; // Duração atual do empréstimo
     private LocalDate dataEmprestimo;
 
     /**

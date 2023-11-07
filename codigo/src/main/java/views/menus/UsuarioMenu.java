@@ -1,5 +1,8 @@
 package main.java.views.menus;
 
+import java.util.List;
+
+import main.java.models.itens.Emprestavel;
 import main.java.services.UsuarioService;
 import main.java.utils.InputScannerUtil;
 import main.java.views.inputs.UsuarioInput;
@@ -8,24 +11,26 @@ public class UsuarioMenu {
 
     /**
      * Menu principal do usuario
+     * 
      * @param usuarioService servico do usuario
      */
     public static void menuPrincipal(UsuarioService usuarioService) {
 
-
         while (true) {
             System.out.println("\nEscolha a operação desejada:");
             System.out.println("1. Cadastrar usuário");
-            System.out.println("2. Atualizar usuário");
+            System.out.println("2. Atualizar usuário"); // login
             System.out.println("3. Deletar usuário");
             System.out.println("4. pesquisar itens da biblioteca");
-            System.out.println("5. Voltar");
+            System.out.println("5. Pegar emprestado");
+            System.out.println("6. Devolver");
+            System.out.println("7. Voltar");
             System.out.print("Opção: ");
 
             int escolha = InputScannerUtil.scanner.nextInt();
             InputScannerUtil.scanner.nextLine();
 
-            if (escolha == 5) {
+            if (escolha == 7) {
                 System.out.println("Voltando ao menu principal...\n");
                 break;
             }
@@ -48,14 +53,33 @@ public class UsuarioMenu {
                         System.out.println();
                     }
                     break;
+                case 5:
+                    try {
+                        List<Emprestavel> emprestaveis = UsuarioInput.EmprestadosDisponiveis(usuarioService);
+                        imprimirListaEmprestaveis(emprestaveis);
+                        UsuarioInput.escolherItemParaEmprestimo(usuarioService);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case 6:
+                    try {
+                        UsuarioInput.mostrarItensEmprestados(usuarioService);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }
         }
     }
 
-//    public static void menuEmprestimo(UsuarioService usuarioService) {
-//
-//    }
-}
+    public static void imprimirListaEmprestaveis(List<Emprestavel> emprestaveis) {
+        for (Emprestavel emprestavel : emprestaveis) {
+            System.out.println(emprestavel);
+        }
+    }
 
+}

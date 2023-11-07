@@ -20,6 +20,12 @@ public class Usuario {
     private List<Emprestavel> emprestaveis;
     private Perfil perfil;
 
+
+    public List<Emprestavel> getItensEmprestados() {
+        return emprestaveis;
+    }
+    
+
     /**
      * Construtor padrao de usuario
      */

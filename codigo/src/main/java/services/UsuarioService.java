@@ -11,6 +11,7 @@ public class UsuarioService {
 
     private Biblioteca biblioteca;
     private Usuario usuario;
+    
 
     /**
      * Construtor padrao de UsuarioService, com Biblioteca
@@ -164,6 +165,8 @@ public class UsuarioService {
 
         return u;
     }
+
+    
 
     public Biblioteca getBiblioteca() {
 

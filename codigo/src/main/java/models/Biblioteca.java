@@ -169,7 +169,7 @@ public class Biblioteca implements Relatorio {
     }
 
     /**
-     * Obtem o valor do itema a ser indicado no menu de escolha
+     * Obtem o valor do item a ser indicado no menu de escolha
      *
      * @param item item de referencia
      * @param tipo tipo de filtro

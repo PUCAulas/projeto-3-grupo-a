@@ -1,13 +1,20 @@
 package main.java.views.inputs;
 
 import main.java.enums.Perfil;
+import main.java.models.Biblioteca;
 import main.java.models.Usuario;
+import main.java.models.itens.Emprestavel;
+import main.java.models.itens.Item;
+import main.java.services.ItemEmprestavelService;
 import main.java.services.UsuarioService;
 import main.java.utils.DataUtil;
 import main.java.utils.InputScannerUtil;
 import main.java.utils.ObjectFactoryUtil;
+import main.java.views.menus.PesquisaMenu;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioInput {
 
@@ -88,6 +95,69 @@ public class UsuarioInput {
         }
     }
 
+    public static List<Emprestavel> EmprestadosDisponiveis(UsuarioService usuarioService) throws Exception {
+        List<Emprestavel> emprestaveis = new ArrayList<>();
+
+        try {
+            // Usuario usuario = obterUsuarioCadastrado(usuarioService);
+            // usuarioService.setUsuario(usuario);
+            ItemEmprestavelService itemEmprestavelService = new ItemEmprestavelService(usuarioService.getBiblioteca());
+            emprestaveis = itemEmprestavelService.listar(usuarioService.getBiblioteca());
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            System.out.println();
+        }
+
+        if (emprestaveis.isEmpty())
+            throw new Exception("Não existe empréstimos disponíveis");
+
+        return emprestaveis;
+    }
+
+    public static void escolherItemParaEmprestimo(UsuarioService usuarioService) {
+
+        try {
+            Usuario usuario = obterUsuarioCadastrado(usuarioService);
+            ItemEmprestavelService itemEmprestavelService = new ItemEmprestavelService(usuarioService.getBiblioteca());
+
+            System.out.println("Escolha o id do item que você pegar emprestado: ");
+            int choice = InputScannerUtil.scanner.nextInt();
+            InputScannerUtil.scanner.nextLine();
+
+            itemEmprestavelService.emprestar(choice, usuario);
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+    }
+
+    public static void mostrarItensEmprestados(UsuarioService usuarioService) {
+        try {
+            Usuario usuario = obterUsuarioCadastrado(usuarioService);
+            ItemEmprestavelService itemEmprestavelService = new ItemEmprestavelService(usuarioService.getBiblioteca());
+
+            System.out.println("Itens emprestados por você:");
+
+            for (Item item : usuario.getItensEmprestados()) {
+                Emprestavel emprestavel = (Emprestavel) item;
+                System.out.println(
+                        "ID: " + emprestavel.getId() + " | Status do empréstimo: " + emprestavel.getStatusEmprestimo());
+
+            }
+
+            System.out.print("Digite o ID do item que deseja devolver (ou 0 para sair): ");
+            int emprestavelId = InputScannerUtil.scanner.nextInt();
+
+            if (emprestavelId == 0) {
+                return;
+            }
+
+            // Call the "devolver" method of the service to return the item
+            itemEmprestavelService.devolver(emprestavelId, usuario);
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+    }
+
     /**
      * Menu de exclusao de usuario
      *
@@ -108,7 +178,7 @@ public class UsuarioInput {
      *
      * @param usuarioService servico de usuario
      */
-    public static Usuario obterUsuarioCadastrado(UsuarioService usuarioService) throws Exception {
+    public static Usuario obterUsuarioCadastrado(UsuarioService usuarioService) throws Exception { // login
         System.out.print("Informe sua senha: ");
         String senha = InputScannerUtil.scanner.nextLine();
         System.out.print("Informe seu email: ");
@@ -116,6 +186,5 @@ public class UsuarioInput {
 
         return usuarioService.verificarSenhaEmail(senha, email);
     }
-
 
 }
