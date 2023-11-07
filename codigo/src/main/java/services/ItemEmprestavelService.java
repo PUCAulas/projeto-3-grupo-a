@@ -489,7 +489,7 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
 
         for (Item i : itens) {
             if (i instanceof Emprestavel) {
-                if (((Emprestavel) i).getStatusEmprestimo() == StatusEmprestimo.DISPONIVEL);
+                if (((Emprestavel) i).getStatusEmprestimo() == StatusEmprestimo.DISPONIVEL)
                     disponiveis.add((Emprestavel) i);
             }
         }
@@ -497,39 +497,7 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         return disponiveis;
     }
 
-    public void listarImprestaveis(FiltroPesquisa tipo) throws Exception {
-        List<String> valoresAtributo = new ArrayList<>();
-
-        if (getBiblioteca().getEstoque().getItens() == null) {
-            throw new Exception("Não existe nenhum item cadastrado no estoque!");
-        }
-
-        for (Item item : getBiblioteca().getEstoque().getItens()) {
-            String valor = obterValorParaTipo(item, tipo);
-
-            if (valor != null) {
-                valoresAtributo.add(valor);
-            }
-        }
-
-        if (valoresAtributo.isEmpty()) {
-            throw new Exception("Nenhum resultado encontrado!");
-        }
-
-        String option = choice(valoresAtributo);
-
-        if (tipo == FiltroPesquisa.ANO) {
-            anoPublicacao(option);
-        } else {
-            System.out.println(biblioteca.encontrarItem(tipo, option));
-        }
-
-        // Deve ser adicionado um scanner para aguardar a entrada do usuário
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Pegar emprestado");
-        scanner.nextLine();
-    }
-
+    //todo: excluir método??
     private String obterValorParaTipo(Item item, FiltroPesquisa tipo) {
         switch (tipo) {
             case TITULO:
@@ -546,6 +514,7 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         }
     }
 
+    //todo: excluir método??
     private void anoPublicacao(String ano) {
         int anoPesquisa = Integer.parseInt(ano);
         for (Item item : biblioteca.getEstoque().getItens()) {
@@ -555,6 +524,7 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         }
     }
 
+    //todo: excluir método??
     private String choice(List<String> valores) {
         System.out.println("Escolha um valor para pesquisa:");
         for (int i = 0; i < valores.size(); i++) {
@@ -602,8 +572,8 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
             System.out.println("Erro ao realizar o empréstimo: " + e.getMessage());
         }
     }
-    
-    
+
+    //todo: excluir método??
     private Item buscarItemPorId(int id) {
         for (Item item : biblioteca.getEstoque().getItens()) {
             if (item.getId() == id && item instanceof Emprestavel) {
@@ -653,7 +623,7 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         }
     }
     
-
+    // todo: Vitor vai implementar???
     public void atualizarDiasDoEmprestimo(int id, Usuario usuario) {
 
     }
