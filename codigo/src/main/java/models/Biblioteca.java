@@ -168,6 +168,19 @@ public class Biblioteca implements Relatorio {
         return item.orElse(null);
     }
 
+    public int getTotalEmprestaveis() {
+        int total = 0;
+    
+        for (Item item : estoque.getItens()) {
+            if (item instanceof Emprestavel) {
+                total++;
+            }
+        }
+    
+        return total;
+    }
+    
+
     /**
      * Obtem o valor do item a ser indicado no menu de escolha
      *

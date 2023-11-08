@@ -4,6 +4,7 @@ import main.java.enums.StatusClassificacao;
 import main.java.enums.StatusEmprestimo;
 import main.java.interfaces.GerenciarEmprestimo;
 import main.java.models.Biblioteca;
+import main.java.models.Estoque;
 import main.java.models.Usuario;
 import main.java.models.itens.*;
 
@@ -16,7 +17,7 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
 
     private Biblioteca biblioteca;
     private Emprestavel emprestavel;
-
+    private Estoque estoque;
 
     /**
      * Construtor padrao de ItemEmprestavelService
@@ -24,13 +25,13 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
     public ItemEmprestavelService() {
     }
 
-
     /**
      * Construtor padrao de ItemEmprestavelService, com biblioteca
      */
     public ItemEmprestavelService(Biblioteca biblioteca) {
         this.emprestavel = null;
         this.biblioteca = biblioteca;
+        this.estoque = biblioteca.getEstoque();
     }
 
     /**
@@ -202,11 +203,8 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         return disponiveis;
     }
 
-
-
     public void emprestar(int id, Usuario usuario) {
         try {
-            // Encontre o item com o ID especificado no estoque da biblioteca
             Emprestavel itemEmprestavel = null;
             for (Item item : biblioteca.getEstoque().getItens()) {
                 if (item.getId() == id && item instanceof Emprestavel) {
@@ -214,91 +212,101 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
                     break;
                 }
             }
-
+    
             if (itemEmprestavel == null) {
                 System.out.println("Item não encontrado no estoque da biblioteca.");
                 return;
             }
-
+    
             if (usuario.getItensEmprestados().size() == usuario.getQTD_MAX_ITENS_EMPRESTADOS()) {
                 System.out.println("O limite de itens emprestados por vez é 3");
                 return;
             }
-
+    
             for (Emprestavel emprestavel : usuario.getItensEmprestados()) {
                 if (devolucaoEmAtraso(emprestavel)) {
-                    System.out.println("Ha um item em atraso, devolva-o antes de realizar outro empréstimo.");
+                    System.out.println("Há um item em atraso, devolva-o antes de realizar outro empréstimo.");
                     System.out.println(
-                        "ID: " + emprestavel.getId() + " | Status do empréstimo: " + emprestavel.getStatusEmprestimo());
+                            "ID: " + emprestavel.getId() + " | Status do empréstimo: "
+                                    + emprestavel.getStatusEmprestimo());
                     return;
                 }
             }
+            
+            int totalEmprestaveisNoEstoque = estoque.getTotalEmprestaveisNoEstoque();
 
-            // if (((Emprestavel) itemEmprestavel).getQtdEmprestimo() >= 3); {
-            // System.out.println("Podem ser emprestados no máximo 3 itens por vez.");
-
-            // }
-
-            // Verifique o status do item
+            System.out.println("Itens emprestáveis no estoque: " + totalEmprestaveisNoEstoque);
+    
+            if (totalEmprestaveisNoEstoque == 1) {
+                System.out.println("Não pode fazer empréstimo, pois só tem 1 item na biblioteca que não foi emprestado");
+                return;
+            }
+    
             if (itemEmprestavel.getStatusEmprestimo() == StatusEmprestimo.EMPRESTADO) {
                 System.out.println("Este item já está emprestado.");
             } else {
-                // Atualize o status do item para EMPRESTADO
                 itemEmprestavel.setStatusEmprestimo(StatusEmprestimo.EMPRESTADO);
                 itemEmprestavel.setQtdEmprestimo(itemEmprestavel.getQtdEmprestimo() + 1);
                 itemEmprestavel.setDataEmprestimo(LocalDate.now());
                 usuario.addEmprestimo(itemEmprestavel);
+    
+                // Remove one item from the library's stock
+                estoque.getItens().remove(itemEmprestavel);
+    
                 System.out.println("Empréstimo realizado com sucesso.");
             }
         } catch (Exception e) {
             System.out.println("Erro ao realizar o empréstimo: " + e.getMessage());
         }
     }
-
+    
+    
 
     public void devolver(int id, Usuario usuario) {
         try {
-            // Encontre o item com o ID especificado no estoque da biblioteca
+            // Find the item with the specified ID in the user's borrowed items
             Emprestavel itemEmprestavel = null;
-            for (Item item : biblioteca.getEstoque().getItens()) {
-                if (item.getId() == id && item instanceof Emprestavel) {
-                    itemEmprestavel = (Emprestavel) item;
+            for (Emprestavel emprestavel : usuario.getItensEmprestados()) {
+                if (emprestavel.getId() == id) {
+                    itemEmprestavel = emprestavel;
                     break;
                 }
             }
-
+    
             if (itemEmprestavel == null) {
-                System.out.println("Item não encontrado no estoque da biblioteca.");
+                System.out.println("Item não encontrado nos itens emprestados pelo usuário.");
                 return;
             }
-
-            // Verifique se o item está emprestado e pertence ao usuário
-            if (itemEmprestavel.getStatusEmprestimo() == StatusEmprestimo.EMPRESTADO
-                    && itemEmprestavel.getQtdEmprestimo() > 0) {
+    
+            if (itemEmprestavel.getStatusEmprestimo() == StatusEmprestimo.EMPRESTADO) {
                 if (itemEmprestavel.getQtdEmprestimo() == 1) {
-
-                    if (devolucaoEmAtraso(itemEmprestavel))
+                    if (devolucaoEmAtraso(itemEmprestavel)) {
                         System.out.println("Item entregue em atraso.");
-
-                    // Se este for o último empréstimo do usuário, atualize o status para DISPONÍVEL
+                    }
+    
+                    // Update the status of the item to DISPONÍVEL
                     itemEmprestavel.setStatusEmprestimo(StatusEmprestimo.DISPONIVEL);
                     itemEmprestavel.setQtdEmprestimo(0);
                     itemEmprestavel.setDiaEmprestimo(0);
                     itemEmprestavel.setDataEmprestimo(null);
                     usuario.removerEmprestimo(itemEmprestavel);
+    
+                    // Add the item back to the Estoque
+                    biblioteca.getEstoque().addItem(itemEmprestavel);
                 } else {
-                    // Caso contrário, apenas diminua a quantidade de empréstimos do usuário
+                    // If the user has borrowed the same item multiple times, just decrement the count
                     itemEmprestavel.setQtdEmprestimo(itemEmprestavel.getQtdEmprestimo() - 1);
                 }
-
+    
                 System.out.println("Devolução realizada com sucesso.");
             } else {
-                System.out.println("Este item não está emprestado por você.");
+                System.out.println("Este item não está emprestado pelo usuário.");
             }
         } catch (Exception e) {
             System.out.println("Erro ao realizar a devolução: " + e.getMessage());
         }
     }
+    
 
     public boolean devolucaoEmAtraso(Emprestavel itemEmprestavel) {
         return LocalDate.now().isAfter(itemEmprestavel.getDataEmprestimo().plusDays(10));
