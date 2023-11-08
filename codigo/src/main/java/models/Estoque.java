@@ -1,10 +1,11 @@
 package main.java.models;
 
+import main.java.enums.StatusEmprestimo;
+import main.java.models.itens.Emprestavel;
 import main.java.models.itens.Item;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class Estoque {
 
@@ -63,5 +64,19 @@ public class Estoque {
         return this.getItens().size();
     }
 
+    public int getTotalEmprestaveisNoEstoque() {
+        int totalEmprestaveis = 0;
+
+        for (Item item : this.getItens()) {
+            if (item instanceof Emprestavel) {
+                Emprestavel emprestavel = (Emprestavel) item;
+                if (emprestavel.getStatusEmprestimo() == StatusEmprestimo.DISPONIVEL) {
+                    totalEmprestaveis++;
+                }
+            }
+        }
+
+        return totalEmprestaveis;
+    }
 
 }
