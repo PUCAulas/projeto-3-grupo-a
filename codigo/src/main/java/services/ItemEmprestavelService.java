@@ -30,9 +30,10 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
     /**
      * Construtor padrao de ItemEmprestavelService, com emprestavel e biblioteca
      */
-    // public ItemEmprestavelService(Emprestavel emprestavel, Biblioteca biblioteca) {
-    //     this.biblioteca = biblioteca;
-    //     this.emprestavel = emprestavel;
+    // public ItemEmprestavelService(Emprestavel emprestavel, Biblioteca biblioteca)
+    // {
+    // this.biblioteca = biblioteca;
+    // this.emprestavel = emprestavel;
     // }
 
     /**
@@ -46,8 +47,10 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
     /**
      * Cria um novo DVD
      */
-    public void criarDVD(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao, StatusEmprestimo statusEmprestimo, String diretor, Duration duracao, String idioma, String sinopse, String genero) {
-        
+    public void criarDVD(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao,
+            StatusEmprestimo statusEmprestimo, String diretor, Duration duracao, String idioma, String sinopse,
+            String genero) {
+
         DVD dvd = (DVD) emprestavel;
 
         dvd.setTitulo(titulo);
@@ -66,8 +69,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
     /**
      * Cria um novo CD
      */
-    public void criarCD(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao, StatusEmprestimo statusEmprestimo, String artista, Duration duracao, List<String> faixas, CD cd) {
-        
+    public void criarCD(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao,
+            StatusEmprestimo statusEmprestimo, String artista, Duration duracao, List<String> faixas, CD cd) {
+
         cd.setTitulo(titulo);
         cd.setDataPublicacao(dataPublicacao);
         cd.setStatusClassificacao(statusClassificacao);
@@ -82,8 +86,10 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
     /**
      * Cria um novo livro
      */
-    public void criarLivro(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao, StatusEmprestimo statusEmprestimo, String autor,
-    int numeroPaginas, String editora, String edicao, String volume, String idioma, String genero, String sinopse, Livro livro) {
+    public void criarLivro(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao,
+            StatusEmprestimo statusEmprestimo, String autor,
+            int numeroPaginas, String editora, String edicao, String volume, String idioma, String genero,
+            String sinopse, Livro livro) {
 
         livro.setTitulo(titulo);
         livro.setDataPublicacao(dataPublicacao);
@@ -104,7 +110,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
     /**
      * Atualiza um DVD
      */
-    public void atualizarDVD(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao, StatusEmprestimo statusEmprestimo, String diretor, Duration duracao, String idioma, String sinopse, String genero) {
+    public void atualizarDVD(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao,
+            StatusEmprestimo statusEmprestimo, String diretor, Duration duracao, String idioma, String sinopse,
+            String genero) {
 
         ((DVD) emprestavel).setTitulo(titulo);
         ((DVD) emprestavel).setDataPublicacao(dataPublicacao);
@@ -114,13 +122,14 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         ((DVD) emprestavel).setDuracao(duracao);
         ((DVD) emprestavel).setIdioma(idioma);
         ((DVD) emprestavel).setSinopse(sinopse);
-        ((DVD) emprestavel).setGenero(genero);      
+        ((DVD) emprestavel).setGenero(genero);
     }
 
     /**
      * Atualiza um CD
      */
-    public void atualizarCD(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao, StatusEmprestimo statusEmprestimo, String artista, Duration duracao, List<String> faixas) {
+    public void atualizarCD(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao,
+            StatusEmprestimo statusEmprestimo, String artista, Duration duracao, List<String> faixas) {
 
         ((CD) emprestavel).setTitulo(titulo);
         ((CD) emprestavel).setDataPublicacao(dataPublicacao);
@@ -134,7 +143,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
     /**
      * Atualiza um Livro
      */
-    public void atualizarLivro(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao, StatusEmprestimo statusEmprestimo, String autor, String editora, String edicao, String volume, String idioma, String genero, String sinopse, int numeroPaginas) {
+    public void atualizarLivro(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao,
+            StatusEmprestimo statusEmprestimo, String autor, String editora, String edicao, String volume,
+            String idioma, String genero, String sinopse, int numeroPaginas) {
 
         ((Livro) emprestavel).setTitulo(titulo);
         ((Livro) emprestavel).setDataPublicacao(dataPublicacao);
@@ -166,8 +177,8 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
 
         if (itens != null) {
             for (Item i : itens) {
-                if(i instanceof Emprestavel) {
-                System.out.println(i);
+                if (i instanceof Emprestavel) {
+                    System.out.println(i);
                 }
             }
         } else {
@@ -177,12 +188,13 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
 
     /**
      * Lista estoque da biblioteca
+     * 
      * @throws Exception
      */
     public List<Emprestavel> listar(Biblioteca biblioteca) throws Exception {
         List<Item> itens = biblioteca.getEstoque().getItens();
         List<Emprestavel> disponiveis = new ArrayList<>();
-        
+
         if (itens == null) {
             throw new Exception("Nenhum item encontrado no estoque.");
         }
@@ -193,11 +205,11 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
                     disponiveis.add((Emprestavel) i);
             }
         }
-        
+
         return disponiveis;
     }
 
-    //todo: excluir método??
+    // todo: excluir método??
     private String obterValorParaTipo(Item item, FiltroPesquisa tipo) {
         switch (tipo) {
             case TITULO:
@@ -214,7 +226,7 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         }
     }
 
-    //todo: excluir método??
+    // todo: excluir método??
     private void anoPublicacao(String ano) {
         int anoPesquisa = Integer.parseInt(ano);
         for (Item item : biblioteca.getEstoque().getItens()) {
@@ -224,7 +236,7 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         }
     }
 
-    //todo: excluir método??
+    // todo: excluir método??
     private String choice(List<String> valores) {
         System.out.println("Escolha um valor para pesquisa:");
         for (int i = 0; i < valores.size(); i++) {
@@ -245,27 +257,47 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
     public void emprestar(int id, Usuario usuario) {
         try {
             // Encontre o item com o ID especificado no estoque da biblioteca
-            Item itemEmprestavel = null;
+            Emprestavel itemEmprestavel = null;
             for (Item item : biblioteca.getEstoque().getItens()) {
                 if (item.getId() == id && item instanceof Emprestavel) {
-                    itemEmprestavel = item;
+                    itemEmprestavel = (Emprestavel) item;
                     break;
                 }
             }
-    
+
             if (itemEmprestavel == null) {
                 System.out.println("Item não encontrado no estoque da biblioteca.");
                 return;
             }
-    
+
+            if (usuario.getItensEmprestados().size() == usuario.getQTD_MAX_ITENS_EMPRESTADOS()) {
+                System.out.println("O limite de itens emprestados por vez é 3");
+                return;
+            }
+
+            for (Emprestavel emprestavel : usuario.getItensEmprestados()) {
+                if (devolucaoEmAtraso(emprestavel)) {
+                    System.out.println("Ha um item em atraso, devolva-o antes de realizar outro empréstimo.");
+                    System.out.println(
+                        "ID: " + emprestavel.getId() + " | Status do empréstimo: " + emprestavel.getStatusEmprestimo());
+                    return;
+                }
+            }
+
+            // if (((Emprestavel) itemEmprestavel).getQtdEmprestimo() >= 3); {
+            // System.out.println("Podem ser emprestados no máximo 3 itens por vez.");
+
+            // }
+
             // Verifique o status do item
-            if (((Emprestavel) itemEmprestavel).getStatusEmprestimo() == StatusEmprestimo.EMPRESTADO) {
+            if (itemEmprestavel.getStatusEmprestimo() == StatusEmprestimo.EMPRESTADO) {
                 System.out.println("Este item já está emprestado.");
             } else {
                 // Atualize o status do item para EMPRESTADO
-                ((Emprestavel) itemEmprestavel).setStatusEmprestimo(StatusEmprestimo.EMPRESTADO);
-                ((Emprestavel) itemEmprestavel).setQtdEmprestimo(((Emprestavel) itemEmprestavel).getQtdEmprestimo() + 1);
-                ((Emprestavel) itemEmprestavel).setDataEmprestimo(LocalDate.now());
+                itemEmprestavel.setStatusEmprestimo(StatusEmprestimo.EMPRESTADO);
+                itemEmprestavel.setQtdEmprestimo(itemEmprestavel.getQtdEmprestimo() + 1);
+                itemEmprestavel.setDataEmprestimo(LocalDate.now());
+                usuario.addEmprestimo(itemEmprestavel);
                 System.out.println("Empréstimo realizado com sucesso.");
             }
         } catch (Exception e) {
@@ -273,7 +305,7 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         }
     }
 
-    //todo: excluir método??
+    // todo: excluir método??
     private Item buscarItemPorId(int id) {
         for (Item item : biblioteca.getEstoque().getItens()) {
             if (item.getId() == id && item instanceof Emprestavel) {
@@ -282,38 +314,42 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         }
         return null;
     }
-    
 
     public void devolver(int id, Usuario usuario) {
         try {
             // Encontre o item com o ID especificado no estoque da biblioteca
-            Item itemEmprestavel = null;
+            Emprestavel itemEmprestavel = null;
             for (Item item : biblioteca.getEstoque().getItens()) {
                 if (item.getId() == id && item instanceof Emprestavel) {
-                    itemEmprestavel = item;
+                    itemEmprestavel = (Emprestavel) item;
                     break;
                 }
             }
-    
+
             if (itemEmprestavel == null) {
                 System.out.println("Item não encontrado no estoque da biblioteca.");
                 return;
             }
-    
+
             // Verifique se o item está emprestado e pertence ao usuário
-            if (((Emprestavel) itemEmprestavel).getStatusEmprestimo() == StatusEmprestimo.EMPRESTADO
-                    && ((Emprestavel) itemEmprestavel).getQtdEmprestimo() > 0) {
-                if (((Emprestavel) itemEmprestavel).getQtdEmprestimo() == 1) {
+            if (itemEmprestavel.getStatusEmprestimo() == StatusEmprestimo.EMPRESTADO
+                    && itemEmprestavel.getQtdEmprestimo() > 0) {
+                if (itemEmprestavel.getQtdEmprestimo() == 1) {
+
+                    if (devolucaoEmAtraso(itemEmprestavel))
+                        System.out.println("Item entregue em atraso.");
+
                     // Se este for o último empréstimo do usuário, atualize o status para DISPONÍVEL
-                    ((Emprestavel) itemEmprestavel).setStatusEmprestimo(StatusEmprestimo.DISPONIVEL);
-                    ((Emprestavel) itemEmprestavel).setQtdEmprestimo(0);
-                    ((Emprestavel) itemEmprestavel).setDiaEmprestimo(0);
-                    ((Emprestavel) itemEmprestavel).setDataEmprestimo(null);
+                    itemEmprestavel.setStatusEmprestimo(StatusEmprestimo.DISPONIVEL);
+                    itemEmprestavel.setQtdEmprestimo(0);
+                    itemEmprestavel.setDiaEmprestimo(0);
+                    itemEmprestavel.setDataEmprestimo(null);
+                    usuario.removerEmpresimo(itemEmprestavel);
                 } else {
                     // Caso contrário, apenas diminua a quantidade de empréstimos do usuário
-                    ((Emprestavel) itemEmprestavel).setQtdEmprestimo(((Emprestavel) itemEmprestavel).getQtdEmprestimo() - 1);
+                    itemEmprestavel.setQtdEmprestimo(itemEmprestavel.getQtdEmprestimo() - 1);
                 }
-    
+
                 System.out.println("Devolução realizada com sucesso.");
             } else {
                 System.out.println("Este item não está emprestado por você.");
@@ -322,10 +358,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
             System.out.println("Erro ao realizar a devolução: " + e.getMessage());
         }
     }
-    
-    // todo: Vitor vai implementar???
-    public void atualizarDiasDoEmprestimo(int id, Usuario usuario) {
 
+    public boolean devolucaoEmAtraso(Emprestavel itemEmprestavel) {
+        return LocalDate.now().isAfter(itemEmprestavel.getDataEmprestimo().plusDays(10));
     }
 
     public Biblioteca getBiblioteca() {
@@ -344,7 +379,7 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         this.emprestavel = emprestavel;
     }
 
-        public void setEmprestavel(Emprestavel emprestavel) {
+    public void setEmprestavel(Emprestavel emprestavel) {
         this.emprestavel = emprestavel;
     }
 

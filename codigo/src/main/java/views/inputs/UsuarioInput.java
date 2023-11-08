@@ -133,30 +133,34 @@ public class UsuarioInput {
     public static void mostrarItensEmprestados(UsuarioService usuarioService) {
         try {
             Usuario usuario = obterUsuarioCadastrado(usuarioService);
-            ItemEmprestavelService itemEmprestavelService = new ItemEmprestavelService(usuarioService.getBiblioteca());
-
+    
             System.out.println("Itens emprestados por você:");
-
-            for (Item item : usuario.getItensEmprestados()) {
-                Emprestavel emprestavel = (Emprestavel) item;
+            List<Emprestavel> emprestaveis = usuario.getItensEmprestados(); // Get the list of emprestaveis from the usuario
+            
+            System.out.println("Numero de itens: " + emprestaveis.size()); // Debugging statement
+    
+            for (Emprestavel emprestavel : usuario.getItensEmprestados()) {
                 System.out.println(
                         "ID: " + emprestavel.getId() + " | Status do empréstimo: " + emprestavel.getStatusEmprestimo());
-
             }
-
+    
             System.out.print("Digite o ID do item que deseja devolver (ou 0 para sair): ");
             int emprestavelId = InputScannerUtil.scanner.nextInt();
-
+    
             if (emprestavelId == 0) {
                 return;
             }
-
+    
+            ItemEmprestavelService itemEmprestavelService = new ItemEmprestavelService(usuarioService.getBiblioteca());
+    
             // Call the "devolver" method of the service to return the item
             itemEmprestavelService.devolver(emprestavelId, usuario);
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
         }
     }
+    
+    
 
     /**
      * Menu de exclusao de usuario
