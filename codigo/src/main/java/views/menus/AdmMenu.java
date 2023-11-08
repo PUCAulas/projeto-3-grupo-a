@@ -262,14 +262,14 @@ public class AdmMenu {
                     break;
                 case 4:
                     try {
-                        itemEmprestavelService.listar(biblioteca);
+                        itemEmprestavelService.listarDisponiveis(biblioteca);
                     } catch (Exception e) {
                         System.out.println("Erro: " + e.getMessage());
                     }
                     break;
 
                 case 5:
-                    itemEmprestavelService.listarTodos();
+                    itemEmprestavelService.listar();
                     break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");

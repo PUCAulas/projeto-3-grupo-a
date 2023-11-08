@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import main.java.enums.StatusClassificacao;
 import main.java.enums.StatusEmprestimo;
 import main.java.models.Biblioteca;
@@ -15,7 +14,6 @@ import main.java.models.itens.Emprestavel;
 import main.java.models.itens.Item;
 import main.java.models.itens.Livro;
 import main.java.services.ItemEmprestavelService;
-import main.java.services.ItemService;
 import main.java.utils.DataUtil;
 import main.java.utils.InputScannerUtil;
 import main.java.utils.ObjectFactoryUtil;

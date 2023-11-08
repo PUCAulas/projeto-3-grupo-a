@@ -102,7 +102,7 @@ public class UsuarioInput {
             // Usuario usuario = obterUsuarioCadastrado(usuarioService);
             // usuarioService.setUsuario(usuario);
             ItemEmprestavelService itemEmprestavelService = new ItemEmprestavelService(usuarioService.getBiblioteca());
-            emprestaveis = itemEmprestavelService.listar(usuarioService.getBiblioteca());
+            emprestaveis = itemEmprestavelService.listarDisponiveis(usuarioService.getBiblioteca());
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             System.out.println();

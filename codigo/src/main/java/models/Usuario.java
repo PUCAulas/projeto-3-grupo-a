@@ -118,7 +118,7 @@ public class Usuario {
      *
      * @param emprestavel item removido
      */
-    public void removerEmpresimo(Emprestavel emprestavel) {
+    public void removerEmprestimo(Emprestavel emprestavel) {
         this.getEmprestimos().remove(emprestavel);
     }
 

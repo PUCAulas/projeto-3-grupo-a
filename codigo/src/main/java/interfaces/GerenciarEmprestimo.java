@@ -19,10 +19,4 @@ public interface GerenciarEmprestimo {
      */
     void devolver(int id, Usuario usuario);
 
-    /**
-     * Atualizar a quantidade de dias de emprestimo
-     *
-     * @param emprestavel item emprestavel
-     */
-    void atualizarDiasDoEmprestimo(int id, Usuario usuario);
 }

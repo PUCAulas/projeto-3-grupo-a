@@ -1,25 +1,22 @@
 package main.java.services;
 
-import main.java.enums.FiltroPesquisa;
 import main.java.enums.StatusClassificacao;
 import main.java.enums.StatusEmprestimo;
 import main.java.interfaces.GerenciarEmprestimo;
 import main.java.models.Biblioteca;
 import main.java.models.Usuario;
 import main.java.models.itens.*;
-import main.java.utils.DataUtil;
-import main.java.utils.InputScannerUtil;
 
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class ItemEmprestavelService implements GerenciarEmprestimo {
 
     private Biblioteca biblioteca;
     private Emprestavel emprestavel;
+
 
     /**
      * Construtor padrao de ItemEmprestavelService
@@ -27,14 +24,6 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
     public ItemEmprestavelService() {
     }
 
-    /**
-     * Construtor padrao de ItemEmprestavelService, com emprestavel e biblioteca
-     */
-    // public ItemEmprestavelService(Emprestavel emprestavel, Biblioteca biblioteca)
-    // {
-    // this.biblioteca = biblioteca;
-    // this.emprestavel = emprestavel;
-    // }
 
     /**
      * Construtor padrao de ItemEmprestavelService, com biblioteca
@@ -172,7 +161,7 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
     /**
      * Lista todos os itens
      */
-    public void listarTodos() {
+    public void listar() {
         List<Item> itens = biblioteca.getEstoque().getItens();
 
         if (itens != null) {
@@ -191,7 +180,7 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
      * 
      * @throws Exception
      */
-    public List<Emprestavel> listar(Biblioteca biblioteca) throws Exception {
+    public List<Emprestavel> listarDisponiveis(Biblioteca biblioteca) throws Exception {
         List<Item> itens = biblioteca.getEstoque().getItens();
         List<Emprestavel> disponiveis = new ArrayList<>();
 
@@ -209,50 +198,7 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         return disponiveis;
     }
 
-    // todo: excluir método??
-    private String obterValorParaTipo(Item item, FiltroPesquisa tipo) {
-        switch (tipo) {
-            case TITULO:
-                return item.getTitulo();
-            case AUTOR:
-                if (item instanceof Livro) {
-                    return ((Livro) item).getAutor();
-                }
-                return null;
-            case ANO:
-                return String.valueOf(item.getDataPublicacao().getYear());
-            default:
-                return null;
-        }
-    }
 
-    // todo: excluir método??
-    private void anoPublicacao(String ano) {
-        int anoPesquisa = Integer.parseInt(ano);
-        for (Item item : biblioteca.getEstoque().getItens()) {
-            if (item.getDataPublicacao().getYear() == anoPesquisa) {
-                System.out.println(item);
-            }
-        }
-    }
-
-    // todo: excluir método??
-    private String choice(List<String> valores) {
-        System.out.println("Escolha um valor para pesquisa:");
-        for (int i = 0; i < valores.size(); i++) {
-            System.out.println(i + 1 + ". " + valores.get(i));
-        }
-        Scanner scanner = new Scanner(System.in);
-        int escolha = scanner.nextInt();
-        scanner.nextLine(); // Para consumir a nova linha
-
-        if (escolha >= 1 && escolha <= valores.size()) {
-            return valores.get(escolha - 1);
-        } else {
-            System.out.println("Escolha inválida.");
-            return null;
-        }
-    }
 
     public void emprestar(int id, Usuario usuario) {
         try {
@@ -305,15 +251,6 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         }
     }
 
-    // todo: excluir método??
-    private Item buscarItemPorId(int id) {
-        for (Item item : biblioteca.getEstoque().getItens()) {
-            if (item.getId() == id && item instanceof Emprestavel) {
-                return (Emprestavel) item;
-            }
-        }
-        return null;
-    }
 
     public void devolver(int id, Usuario usuario) {
         try {
@@ -344,7 +281,7 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
                     itemEmprestavel.setQtdEmprestimo(0);
                     itemEmprestavel.setDiaEmprestimo(0);
                     itemEmprestavel.setDataEmprestimo(null);
-                    usuario.removerEmpresimo(itemEmprestavel);
+                    usuario.removerEmprestimo(itemEmprestavel);
                 } else {
                     // Caso contrário, apenas diminua a quantidade de empréstimos do usuário
                     itemEmprestavel.setQtdEmprestimo(itemEmprestavel.getQtdEmprestimo() - 1);
