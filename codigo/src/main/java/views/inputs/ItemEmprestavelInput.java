@@ -103,7 +103,7 @@ public class ItemEmprestavelInput extends ItemInput {
         itemEmprestavelService.setEmprestavel(cd);
 
         try {
-            itemEmprestavelService.criarCD(titulo, dataPublicacao, statusClassificacao, statusEmprestimo, artista, duracao, faixas, cd);
+            itemEmprestavelService.criarCD(titulo, dataPublicacao, statusClassificacao, statusEmprestimo, artista, duracao, faixas);
             System.out.println("\nCD cadastrado com sucesso!");
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());

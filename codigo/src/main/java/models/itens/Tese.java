@@ -25,7 +25,7 @@ public final class Tese extends Item implements AutorFiltro {
      * Lista artigos da teste
      * @return lista de artigos
      */
-    public String listarArtigos() {
+    public String listarCapitulos() {
         StringBuilder capitulos = new StringBuilder();
         for (String capitulo : this.getCapitulos()) {
             capitulos.append(capitulo);
@@ -49,7 +49,7 @@ public final class Tese extends Item implements AutorFiltro {
                 + "\nData da defesa de tese: "
                 + this.getDataDefesa().format(DataUtil.fmt)
                 + "\nCapitulos: \n"
-                + this.listarArtigos();
+                + this.listarCapitulos();
 
     }
 

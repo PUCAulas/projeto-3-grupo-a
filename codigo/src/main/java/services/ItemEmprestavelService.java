@@ -59,7 +59,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
      * Cria um novo CD
      */
     public void criarCD(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao,
-            StatusEmprestimo statusEmprestimo, String artista, Duration duracao, List<String> faixas, CD cd) {
+            StatusEmprestimo statusEmprestimo, String artista, Duration duracao, List<String> faixas) {
+
+        CD cd = (CD) emprestavel; //downcasting
 
         cd.setTitulo(titulo);
         cd.setDataPublicacao(dataPublicacao);
@@ -78,7 +80,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
     public void criarLivro(String titulo, LocalDate dataPublicacao, StatusClassificacao statusClassificacao,
             StatusEmprestimo statusEmprestimo, String autor,
             int numeroPaginas, String editora, String edicao, String volume, String idioma, String genero,
-            String sinopse, Livro livro) {
+            String sinopse) {
+
+        Livro livro = (Livro) emprestavel;
 
         livro.setTitulo(titulo);
         livro.setDataPublicacao(dataPublicacao);
