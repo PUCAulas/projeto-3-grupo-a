@@ -11,9 +11,8 @@ public interface Relatorio {
      * Imprime o relatorio de um usuario
      *
      * @param usuario usuario de referencia
-     * @return relatorio do usuario
      */
-    List<Emprestavel> imprimirRelatorioUsuario(Usuario usuario);
+    void imprimirRelatorioUsuario(Usuario usuario);
 
     /**
      * Imprime relatorio dos itens

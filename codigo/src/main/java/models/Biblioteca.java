@@ -56,8 +56,9 @@ public class Biblioteca implements Relatorio {
      * @param usuario usuario de referencia
      * @return relatorio do usuario
      */
-    public List<Emprestavel> imprimirRelatorioUsuario(Usuario usuario) {
-        return null;
+    public void imprimirRelatorioUsuario(Usuario usuario) {
+        System.out.println("Relatório de usuario: ");
+        System.out.println(usuario.toString());
     }
 
     /**
@@ -170,16 +171,16 @@ public class Biblioteca implements Relatorio {
 
     public int getTotalEmprestaveis() {
         int total = 0;
-    
+
         for (Item item : estoque.getItens()) {
             if (item instanceof Emprestavel) {
                 total++;
             }
         }
-    
+
         return total;
     }
-    
+
 
     /**
      * Obtem o valor do item a ser indicado no menu de escolha

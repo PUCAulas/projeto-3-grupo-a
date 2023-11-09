@@ -129,7 +129,7 @@ public class ObjectFactoryUtil {
         try {
             Usuario usuario = new Usuario();
             usuarioService.setUsuario(usuario);
-            usuarioService.criar("Lucas Cabral Soares", "lucas@email.com.br", "123", LocalDate.now(), Perfil.USUARIO);
+            usuarioService.criar("Usuario", "usuario", "123", LocalDate.now(), Perfil.USUARIO);
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
         }
@@ -144,7 +144,7 @@ public class ObjectFactoryUtil {
         Usuario usuario = newUsuario();
         usuarioService.setUsuario(usuario);
         try {
-            usuarioService.criar("adm", "emailAdm", "senhaAdm", LocalDate.parse("21/10/1988", fmt), Perfil.ADM);
+            usuarioService.criar("Administrador", "admin", "123", LocalDate.parse("21/10/1988", fmt), Perfil.ADM);
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
         }

@@ -52,6 +52,7 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         dvd.setIdioma(idioma);
         dvd.setSinopse(sinopse);
         dvd.setGenero(genero);
+        dvd.setNumEmprestimos(0);
 
         biblioteca.getEstoque().addItem(dvd);
     }
@@ -71,6 +72,7 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         cd.setArtista(artista);
         cd.setDuracao(duracao);
         cd.setFaixas(faixas);
+        cd.setNumEmprestimos(0);
 
         biblioteca.getEstoque().addItem(cd);
     }
@@ -97,6 +99,7 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         livro.setIdioma(idioma);
         livro.setGenero(genero);
         livro.setSinopse(sinopse);
+        livro.setNumEmprestimos(0);
 
         biblioteca.getEstoque().addItem(livro);
     }
@@ -248,6 +251,8 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
                 itemEmprestavel.setStatusEmprestimo(StatusEmprestimo.EMPRESTADO);
                 itemEmprestavel.setQtdEmprestimo(itemEmprestavel.getQtdEmprestimo() + 1);
                 itemEmprestavel.setDataEmprestimo(LocalDate.now());
+                int numEmprestimos = itemEmprestavel.getNumEmprestimos();
+                itemEmprestavel.setNumEmprestimos(numEmprestimos + 1);
                 usuario.addEmprestimo(itemEmprestavel);
     
                 // Remove one item from the library's stock
