@@ -160,7 +160,7 @@ public class ItemEmprestavelInput extends ItemInput {
         try {
             itemEmprestavelService.criarLivro(titulo, dataPublicacao, statusClassificacao, statusEmprestimo, autor,
                     numeroPaginas,
-                    editora, edicao, volume, idioma, genero, sinopse, livro);
+                    editora, edicao, volume, idioma, genero, sinopse);
             System.out.println("\nLivro cadastrado com sucesso!");
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());

@@ -69,7 +69,7 @@ public class UsuarioTest {
 
     @Test
     public void removerEmprestimoTest() {
-        usuario.removerEmpresimo(emprestavel);
+        usuario.removerEmprestimo(emprestavel);
         assertEquals(0, usuario.getEmprestimos().size());
     }
 
