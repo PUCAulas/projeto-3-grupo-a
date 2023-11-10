@@ -25,7 +25,7 @@ public class UsuarioMenu {
             System.out.println("5. Pegar emprestado");
             System.out.println("6. Devolver");
             System.out.println("7. Voltar");
-            System.out.print("Opção: ");
+            System.out.print("\nOpção: ");
 
             int escolha = InputScannerUtil.scanner.nextInt();
             InputScannerUtil.scanner.nextLine();
@@ -57,9 +57,11 @@ public class UsuarioMenu {
                     try {
                         List<Emprestavel> emprestaveis = UsuarioInput.EmprestadosDisponiveis(usuarioService);
                         imprimirListaEmprestaveis(emprestaveis);
-                        //UsuarioInput.escolherItemParaEmprestimo(usuarioService);
-                        UsuarioInput.escolherItemParaEmprestimob(usuarioService);
-                        System.out.println("Empréstimo realizado com sucesso.");
+
+                        UsuarioInput.escolherItemParaEmprestimo(usuarioService);
+                        System.out.println("Empréstimo realizado com sucesso!");
+                        System.out.println("Aperte Enter para continuar...");
+                        InputScannerUtil.scanner.nextLine();
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }

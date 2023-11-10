@@ -99,8 +99,6 @@ public class UsuarioInput {
         List<Emprestavel> emprestaveis = new ArrayList<>();
 
         try {
-            // Usuario usuario = obterUsuarioCadastrado(usuarioService);
-            // usuarioService.setUsuario(usuario);
             ItemEmprestavelService itemEmprestavelService = new ItemEmprestavelService(usuarioService.getBiblioteca());
             emprestaveis = itemEmprestavelService.listarDisponiveis(usuarioService.getBiblioteca());
         } catch (Exception e) {
@@ -117,7 +115,7 @@ public class UsuarioInput {
 
 
     //todo: MODIFICAÇÃO
-    public static void escolherItemParaEmprestimob(UsuarioService usuarioService) throws Exception {
+    public static void escolherItemParaEmprestimo(UsuarioService usuarioService) throws Exception {
 
             Usuario usuario = obterUsuarioCadastrado(usuarioService);
             ItemEmprestavelService itemEmprestavelService = new ItemEmprestavelService(usuarioService.getBiblioteca());
@@ -182,7 +180,7 @@ public class UsuarioInput {
      * @param usuarioService servico de usuario
      */
     public static Usuario obterUsuarioCadastrado(UsuarioService usuarioService) throws Exception { // login
-        System.out.print("Informe sua senha: ");
+        System.out.print("\nInforme sua senha: ");
         String senha = InputScannerUtil.scanner.nextLine();
         System.out.print("Informe seu email: ");
         String email = InputScannerUtil.scanner.nextLine();
