@@ -12,6 +12,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ItemEmprestavelService implements GerenciarEmprestimo {
 
@@ -287,22 +288,22 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
      */
     public void emprestar(int id, Usuario usuario) throws Exception {
 
-        Emprestavel emprestavel = encontrarEmprestavelPorId(id); // # testar
-        verificarUnicoEmprestavelNoEstoque(); // # testar
+        Emprestavel emprestavel = encontrarEmprestavelPorId(id);
+        verificarUnicoEmprestavelNoEstoque();
 
-        usuario.verificarLimiteParaEmprestimo(); // # testar
-        usuario.emprestavelEmAtrasoDoUsuario(); // # testar
+        usuario.verificarLimiteParaEmprestimo();
+        usuario.emprestavelEmAtrasoDoUsuario();
 
         this.setEmprestimo(emprestavel);
 
-        verificarDisponibilidadeParaEmprestimo(); // # testar
+        verificarDisponibilidadeParaEmprestimo();
 
         this.getEmprestimo().setStatusEmprestimo(StatusEmprestimo.EMPRESTADO);
         this.getEmprestimo().setDataEmprestimo(LocalDate.now());
         this.getEmprestimo().setNumEmprestimos(emprestavel.getNumEmprestimos() + 1);
 
-        usuario.setQtdItensEmprestadosAtualmente(usuario.getQtdItensEmprestadosAtualmente() + 1); // # testar
-        usuario.addEmprestimo(this.getEmprestimo()); // # testar
+        usuario.setQtdItensEmprestadosAtualmente(usuario.getQtdItensEmprestadosAtualmente() + 1);
+        usuario.addEmprestimo(this.getEmprestimo());
 
         this.setEmprestimo(null);
 
@@ -324,18 +325,23 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
      * 
      * @param id
      */
-    public Emprestavel encontrarEmprestavelPorId(int id) throws Exception {
-        Emprestavel emprestavel = biblioteca.getEstoque().getItens()
-                .stream()
-                .filter(x -> x.getId() == id)
-                .findFirst()
-                .map(x -> (Emprestavel) x).orElse(null);
+   public Emprestavel encontrarEmprestavelPorId(int id) throws Exception {
+    Optional<Emprestavel> emprestavelOptional = biblioteca.getEstoque().getItens()
+            .stream()
+            .filter(x -> x.getId() == id)
+            .filter(Emprestavel.class::isInstance)
+            .map(Emprestavel.class::cast)
+            .findFirst();
 
+    Emprestavel emprestavel = emprestavelOptional.orElse(null);
 
-        if(emprestavel == null) throw new Exception("Item não encontrado no estoque!");
-
-        return emprestavel;
+    if (emprestavel == null) {
+        throw new Exception("O item não é emprestável!");
     }
+
+    return emprestavel;
+}
+
 
 
      /**
@@ -364,9 +370,9 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
      */
     public void devolver(int id, Usuario usuario) throws Exception {
 
-        Emprestavel emprestavel = usuario.acharEmprestavelPorId(id); // # testar
+        Emprestavel emprestavel = usuario.acharEmprestavelPorId(id);
 
-        Emprestavel emprestavelNoEstoque = this.encontrarEmprestavelPorId(id); // # testar
+        Emprestavel emprestavelNoEstoque = this.encontrarEmprestavelPorId(id);
 
         if(emprestavel != emprestavelNoEstoque)
             throw new Exception("O item informado não existe!");

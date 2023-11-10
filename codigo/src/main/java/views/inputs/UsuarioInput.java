@@ -1,6 +1,7 @@
 package main.java.views.inputs;
 
 import main.java.enums.Perfil;
+import main.java.enums.StatusEmprestimo;
 import main.java.models.Usuario;
 import main.java.models.itens.Emprestavel;
 import main.java.services.ItemEmprestavelService;
@@ -148,12 +149,20 @@ public class UsuarioInput {
 
             System.out.println("Quantidade de itens emprestados por você: " + emprestaveis.size());
 
-            System.out.println("Itens emprestados por você:");
-
+            System.out.println("Seu histórico de empréstimos:");
+            boolean temEmprestado = false;
             for (Emprestavel emprestavel : usuario.getItensEmprestados()) {
-                System.out.println(
+                
+                if(emprestavel.getStatusEmprestimo() == StatusEmprestimo.EMPRESTADO) {
+                    temEmprestado = true;
+                    System.out.println(
                         "ID: " + emprestavel.getId() + " | Status do empréstimo: " + emprestavel.getStatusEmprestimo());
+                }
             }
+
+            if(!temEmprestado)
+                System.out.println("Nenhum item emprestado!");
+
 
             System.out.print("Digite o ID do item que deseja devolver (ou 0 para sair): ");
             int emprestavelId = InputScannerUtil.scanner.nextInt();

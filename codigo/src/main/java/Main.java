@@ -2,6 +2,7 @@ package main.java;
 
 import java.util.NoSuchElementException;
 import main.java.models.Biblioteca;
+import main.java.models.Usuario;
 import main.java.services.ItemEmprestavelService;
 import main.java.services.ItemService;
 import main.java.services.UsuarioService;
@@ -20,7 +21,10 @@ public class Main {
         ItemEmprestavelService itemEmprestavelService = ObjectFactoryUtil.itemEmprestavelService(biblioteca);
         ObjectFactoryUtil.construirAdm(usuarioService);
         ObjectFactoryUtil.cadastrarUsuario(usuarioService);
+        Usuario usuario = biblioteca.getUsuarios().get(0);
         ObjectFactoryUtil.generateDataBase(biblioteca);
+        //simulando um emprestimo atrasado do usuario: email - admin / senha - 123
+        ObjectFactoryUtil.emprestimoFake(itemEmprestavelService, usuario);
 
         while (true) {
             System.out.println("Você é usuário ou administrador? (escolha o número abaixo)");

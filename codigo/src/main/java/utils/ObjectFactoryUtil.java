@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static main.java.utils.DataUtil.fmt;
 
@@ -135,6 +136,40 @@ public class ObjectFactoryUtil {
             Usuario usuario = new Usuario();
             usuarioService.setUsuario(usuario);
             usuarioService.criar("Usuario", "usuario", "123", LocalDate.now(), Perfil.USUARIO);
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Simula um empréstimo a um usuário cadastrado
+     *
+     * @param itemEmprestavelService
+     * @param usuario
+     */
+    public static void emprestimoFake(ItemEmprestavelService itemEmprestavelService, Usuario usuario) {
+        try {
+           Optional<Item> emprestavel = itemEmprestavelService.getBiblioteca().getEstoque().getItens()
+           .stream()
+           .filter(x -> x instanceof Emprestavel)
+           .findFirst();
+
+           emprestavel.ifPresent(item -> {
+
+                if(item instanceof Emprestavel) {
+                    Emprestavel emprestavelConvert = (Emprestavel) item;
+                
+                    itemEmprestavelService.setEmprestimo(emprestavelConvert);
+                    itemEmprestavelService.getEmprestimo().setStatusEmprestimo(StatusEmprestimo.EMPRESTADO);
+                    itemEmprestavelService.getEmprestimo().setDataEmprestimo(LocalDate.of(2023, 10, 30));
+                    itemEmprestavelService.getEmprestimo().setNumEmprestimos(emprestavelConvert.getNumEmprestimos() + 1);
+
+                    usuario.setQtdItensEmprestadosAtualmente(usuario.getQtdItensEmprestadosAtualmente() + 1);
+                    usuario.addEmprestimo(itemEmprestavelService.getEmprestimo());
+                    itemEmprestavelService.setEmprestimo(null);
+                }
+            });
+            
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
         }

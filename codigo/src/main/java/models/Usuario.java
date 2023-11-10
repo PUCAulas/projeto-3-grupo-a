@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Usuario {
+    
     private static int PROX_ID = 0;
     private final int QTD_MAX_ITENS_EMPRESTADOS = 3;
     private int id;
@@ -210,7 +211,12 @@ public class Usuario {
      * @return verdadeiro se esta atrasado
      */
     public boolean devolucaoEmAtraso(Emprestavel itemEmprestavel) {
-        return LocalDate.now().isAfter(itemEmprestavel.getDataEmprestimo().plusDays(10));
+        
+        if(itemEmprestavel.getDataEmprestimo() != null) {
+            return LocalDate.now().isAfter(itemEmprestavel.getDataEmprestimo().plusDays(10));
+        } else {
+            return false;
+        }
     }
 
     /**
