@@ -16,8 +16,8 @@ public class Usuario {
     private String nome;
     private String email;
     private LocalDate dataNascimento;
-    private int qtdItensEmprestados;
-    private List<Emprestavel> emprestaveis;
+    private int qtdItensEmprestadosAtualmente;
+    private List<Emprestavel> emprestaveis; //histórico de empréstimo
     private Perfil perfil;
 
 
@@ -76,8 +76,12 @@ public class Usuario {
         this.dataNascimento = dataNascimento;
     }
 
-    public int getQtdItensEmprestados() {
-        return qtdItensEmprestados;
+    public int getQtdItensEmprestadosAtualmente() {
+        return qtdItensEmprestadosAtualmente;
+    }
+
+    public void setQtdItensEmprestadosAtualmente(int qtd) {
+        qtdItensEmprestadosAtualmente = qtd;
     }
 
     public List<Emprestavel> getEmprestimos() {
@@ -145,6 +149,33 @@ public class Usuario {
         return this.getEmprestimos().isEmpty();
     }
 
+
+
+
+
+
+    public void verificarLimiteParaEmprestimo() throws Exception {
+        if(this.getQtdItensEmprestadosAtualmente() == this.getQTD_MAX_ITENS_EMPRESTADOS())
+            throw new Exception("O limite de itens emprestados por vez é de 3!");
+    }
+
+    public Emprestavel acharEmprestavelPorId(int id) throws Exception {
+        Emprestavel itemEmprestavel = null;
+        for (Emprestavel emprestavel : this.getItensEmprestados()) {
+            if (emprestavel.getId() == id) {
+                itemEmprestavel = emprestavel;
+                break;
+            }
+        }
+
+        if(itemEmprestavel == null)
+            throw new Exception("Item na lista do usuário não encontrado!");
+
+
+        return itemEmprestavel;
+    }
+
+
     /**
      * Imprime informacos do usuario
      *
@@ -160,11 +191,11 @@ public class Usuario {
                 + "\nData de nascimento: "
                 + this.getDataNascimento().format(DataUtil.fmt)
                 + "\nQuantidade de itens emprestados: "
-                + this.getQtdItensEmprestados()
+                + this.getQtdItensEmprestadosAtualmente()
                 + "\nQuantidade máxima de itens para empréstimo: "
                 + this.getQTD_MAX_ITENS_EMPRESTADOS()
-                + "\nEmpréstimos feitos: \n"
-                + (verificarEmprestimo() ? "Nenhum impréstimo feito!\n" : listarEmprestimo());
+                + "\nhistórico de empréstimos: \n"
+                + (verificarEmprestimo() ? "Nenhum empréstimo feito!\n" : listarEmprestimo());
     }
 
 }

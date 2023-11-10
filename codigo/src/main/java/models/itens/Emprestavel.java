@@ -11,7 +11,7 @@ public class Emprestavel extends Item {
     private StatusEmprestimo statusEmprestimo;
     private int qtdEmprestimo; // Quantos do item a pessoa pegou emprestado <<< talvez desnescessário
     private int diaEmprestimo; // Duração atual do empréstimo
-    private int numEmprestimos;
+    private int numEmprestimos; //serve para o relatório
     private LocalDate dataEmprestimo;
 
     /**

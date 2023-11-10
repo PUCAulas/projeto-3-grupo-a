@@ -114,50 +114,49 @@ public class UsuarioInput {
         return emprestaveis;
     }
 
-    public static void escolherItemParaEmprestimo(UsuarioService usuarioService) {
 
-        try {
+
+    //todo: MODIFICAÇÃO
+    public static void escolherItemParaEmprestimob(UsuarioService usuarioService) throws Exception {
+
             Usuario usuario = obterUsuarioCadastrado(usuarioService);
             ItemEmprestavelService itemEmprestavelService = new ItemEmprestavelService(usuarioService.getBiblioteca());
 
-            System.out.println("Escolha o id do item que você pegar emprestado: ");
+            System.out.print("Escolha o id do item que você quer pegar emprestado: ");
             int choice = InputScannerUtil.scanner.nextInt();
             InputScannerUtil.scanner.nextLine();
 
             itemEmprestavelService.emprestar(choice, usuario);
-        } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
-        }
+
     }
 
-    public static void mostrarItensEmprestados(UsuarioService usuarioService) {
-        try {
+
+    public static void mostrarItensEmprestados(UsuarioService usuarioService) throws Exception {
+
             Usuario usuario = obterUsuarioCadastrado(usuarioService);
-    
+
+            List<Emprestavel> emprestaveis = usuario.getItensEmprestados();
+
+            System.out.println("Quantidade de itens emprestados por você: " + emprestaveis.size());
+
             System.out.println("Itens emprestados por você:");
-            List<Emprestavel> emprestaveis = usuario.getItensEmprestados(); // Get the list of emprestaveis from the usuario
-            
-            System.out.println("Numero de itens: " + emprestaveis.size()); // Debugging statement
-    
+
             for (Emprestavel emprestavel : usuario.getItensEmprestados()) {
                 System.out.println(
                         "ID: " + emprestavel.getId() + " | Status do empréstimo: " + emprestavel.getStatusEmprestimo());
             }
-    
+
             System.out.print("Digite o ID do item que deseja devolver (ou 0 para sair): ");
             int emprestavelId = InputScannerUtil.scanner.nextInt();
-    
+
             if (emprestavelId == 0) {
                 return;
             }
-    
+
             ItemEmprestavelService itemEmprestavelService = new ItemEmprestavelService(usuarioService.getBiblioteca());
-    
-            // Call the "devolver" method of the service to return the item
+
             itemEmprestavelService.devolver(emprestavelId, usuario);
-        } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
-        }
+
     }
     
     

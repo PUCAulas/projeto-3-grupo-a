@@ -58,7 +58,7 @@ public class Biblioteca implements Relatorio {
      */
     public void imprimirRelatorioUsuario(Usuario usuario) {
         System.out.println("Relatório de usuario: ");
-        System.out.println(usuario.toString());
+        System.out.println(usuario);
     }
 
     /**

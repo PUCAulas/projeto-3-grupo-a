@@ -43,6 +43,7 @@ public class UsuarioService {
         this.usuario.setSenha(senha);
         this.usuario.setDataNascimento(dataNascimento);
         this.biblioteca.addUsuario(this.usuario);
+
         this.setUsuario(null);
     }
 
@@ -101,8 +102,10 @@ public class UsuarioService {
     public Usuario verificarSenhaEmail(String senha, String email) throws Exception {
         Usuario u = null;
         for (Usuario usuario : biblioteca.getUsuarios()) {
-            if (usuario.getSenha().equals(senha) && usuario.getEmail().equals(email))
+            if (usuario.getSenha().equals(senha) && usuario.getEmail().equals(email)) {
                 u = usuario;
+                break;
+            }
         }
 
         if (u == null)

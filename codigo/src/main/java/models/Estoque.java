@@ -64,19 +64,6 @@ public class Estoque {
         return this.getItens().size();
     }
 
-    public int getTotalEmprestaveisNoEstoque() {
-        int totalEmprestaveis = 0;
 
-        for (Item item : this.getItens()) {
-            if (item instanceof Emprestavel) {
-                Emprestavel emprestavel = (Emprestavel) item;
-                if (emprestavel.getStatusEmprestimo() == StatusEmprestimo.DISPONIVEL) {
-                    totalEmprestaveis++;
-                }
-            }
-        }
-
-        return totalEmprestaveis;
-    }
 
 }

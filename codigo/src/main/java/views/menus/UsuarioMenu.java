@@ -57,7 +57,9 @@ public class UsuarioMenu {
                     try {
                         List<Emprestavel> emprestaveis = UsuarioInput.EmprestadosDisponiveis(usuarioService);
                         imprimirListaEmprestaveis(emprestaveis);
-                        UsuarioInput.escolherItemParaEmprestimo(usuarioService);
+                        //UsuarioInput.escolherItemParaEmprestimo(usuarioService);
+                        UsuarioInput.escolherItemParaEmprestimob(usuarioService);
+                        System.out.println("Empréstimo realizado com sucesso.");
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -77,6 +79,7 @@ public class UsuarioMenu {
     }
 
     public static void imprimirListaEmprestaveis(List<Emprestavel> emprestaveis) {
+        System.out.println("Lista de itens disponíveis para empréstimo:");
         for (Emprestavel emprestavel : emprestaveis) {
             System.out.println(emprestavel);
         }

@@ -141,7 +141,7 @@ public class ObjectFactoryUtil {
      * @param usuarioService usuarioService de referencia
      */
     public static void construirAdm(UsuarioService usuarioService) {
-        Usuario usuario = newUsuario();
+        Usuario usuario = new Usuario();
         usuarioService.setUsuario(usuario);
         try {
             usuarioService.criar("Administrador", "admin", "123", LocalDate.parse("21/10/1988", fmt), Perfil.ADM);

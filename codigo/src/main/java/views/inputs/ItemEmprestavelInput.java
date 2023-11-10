@@ -56,7 +56,7 @@ public class ItemEmprestavelInput extends ItemInput {
         String genero = InputScannerUtil.scanner.nextLine();
 
         DVD dvd = ObjectFactoryUtil.newDVD();
-        itemEmprestavelService.setEmprestavel(dvd);
+        itemEmprestavelService.setEmprestimo(dvd);
 
         try {
             itemEmprestavelService.criarDVD(titulo, dataPublicacao, statusClassificacao, statusEmprestimo, diretor, duracao, idioma, sinopse, genero);
@@ -100,7 +100,7 @@ public class ItemEmprestavelInput extends ItemInput {
         inserirConteudo(faixas);
 
         CD cd = ObjectFactoryUtil.newCD();
-        itemEmprestavelService.setEmprestavel(cd);
+        itemEmprestavelService.setEmprestimo(cd);
 
         try {
             itemEmprestavelService.criarCD(titulo, dataPublicacao, statusClassificacao, statusEmprestimo, artista, duracao, faixas);
@@ -155,7 +155,7 @@ public class ItemEmprestavelInput extends ItemInput {
         String sinopse = scanner.nextLine();
 
         Livro livro = ObjectFactoryUtil.newLivro();
-        itemEmprestavelService.setEmprestavel(livro);
+        itemEmprestavelService.setEmprestimo(livro);
 
         try {
             itemEmprestavelService.criarLivro(titulo, dataPublicacao, statusClassificacao, statusEmprestimo, autor,
@@ -181,7 +181,7 @@ public class ItemEmprestavelInput extends ItemInput {
         for (Item item : biblioteca.getEstoque().getItens()) {
             if (item.getId() == id && item instanceof DVD) {
                 AdmMenu.opcoesDVD();
-                itemEmprestavelService.setEmprestavel(((Emprestavel) item));
+                itemEmprestavelService.setEmprestimo(((Emprestavel) item));
 
                 int escolha = InputScannerUtil.scanner.nextInt();
                 InputScannerUtil.scanner.nextLine();
@@ -257,7 +257,7 @@ public class ItemEmprestavelInput extends ItemInput {
         for (Item item : biblioteca.getEstoque().getItens()) {
             if (item.getId() == id && item instanceof CD) {
                 AdmMenu.opcoesCD();
-                itemEmprestavelService.setEmprestavel(((Emprestavel) item));
+                itemEmprestavelService.setEmprestimo(((Emprestavel) item));
 
                 int escolha = InputScannerUtil.scanner.nextInt();
                 InputScannerUtil.scanner.nextLine();
@@ -324,7 +324,7 @@ public class ItemEmprestavelInput extends ItemInput {
         for (Item item : biblioteca.getEstoque().getItens()) {
             if (item.getId() == id && item instanceof Livro) {
                 AdmMenu.opcoesLivro();
-                itemEmprestavelService.setEmprestavel(((Emprestavel) item));
+                itemEmprestavelService.setEmprestimo(((Emprestavel) item));
 
                 int escolha = InputScannerUtil.scanner.nextInt();
                 InputScannerUtil.scanner.nextLine();

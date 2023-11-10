@@ -10,13 +10,13 @@ public interface GerenciarEmprestimo {
      *
      * @param emprestavel item emprestavel
      */
-    void emprestar(int idItem, Usuario usuario);
+    void emprestar(int idItem, Usuario usuario) throws Exception;
 
     /**
      * Devolve um item previamente emprestado a um usuario
      *
      * @param emprestavel item emprestavel
      */
-    void devolver(int id, Usuario usuario);
+    void devolver(int id, Usuario usuario) throws Exception;
 
 }
