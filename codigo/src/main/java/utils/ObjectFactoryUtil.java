@@ -125,6 +125,11 @@ public class ObjectFactoryUtil {
         return new Livro();
     }
 
+    /**
+     * Inicia nova instancia de usuario
+     *
+     * @param usuarioService usuarioService de referencia
+     */
     public static void cadastrarUsuario(UsuarioService usuarioService) {
         try {
             Usuario usuario = new Usuario();

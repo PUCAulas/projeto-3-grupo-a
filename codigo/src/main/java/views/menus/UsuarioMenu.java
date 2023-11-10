@@ -68,7 +68,7 @@ public class UsuarioMenu {
                     break;
                 case 6:
                     try {
-                        UsuarioInput.mostrarItensEmprestados(usuarioService);
+                        UsuarioInput.obterDadosParaDevolucao(usuarioService);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -80,6 +80,11 @@ public class UsuarioMenu {
         }
     }
 
+    /**
+     * lista os itens disponiveis para emprestimo
+     * 
+     * @param emprestaveis itens emprestaveis de referencia
+     */
     public static void imprimirListaEmprestaveis(List<Emprestavel> emprestaveis) {
         System.out.println("Lista de itens disponíveis para empréstimo:");
         for (Emprestavel emprestavel : emprestaveis) {

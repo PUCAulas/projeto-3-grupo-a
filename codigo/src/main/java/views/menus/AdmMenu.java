@@ -334,6 +334,9 @@ public class AdmMenu {
         }
     }
 
+    /*
+     * opcoes de campos para serem atualizados
+     */
     public static void opcoesRevista() {
 
         System.out.println("Opção:");
@@ -345,6 +348,9 @@ public class AdmMenu {
         System.out.println("6. Artigos");
     }
 
+    /*
+     * opcoes de campos para serem atualizados
+     */
     public static void opcoesTese() {
 
         System.out.println("Opção:");
@@ -357,6 +363,9 @@ public class AdmMenu {
         System.out.println("7. Capitulos");
     }
 
+    /*
+     * opcoes de campos para serem atualizados
+     */
     public static void opcoesDVD() {
         System.out.println("Opção:");
         System.out.println("1. Título");
@@ -370,6 +379,9 @@ public class AdmMenu {
         System.out.println("9. Genero");
     }
 
+    /*
+     * opcoes de campos para serem atualizados
+     */
     public static void opcoesCD() {
         System.out.println("Opção:");
         System.out.println("1. Título");
@@ -381,6 +393,9 @@ public class AdmMenu {
         System.out.println("7. Faixas");
     }
 
+    /*
+     * opcoes de campos para serem atualizados
+     */
     public static void opcoesLivro() {
         System.out.println("Opção:");
         System.out.println("1. Título");

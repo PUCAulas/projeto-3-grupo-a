@@ -142,7 +142,7 @@ public class ItemService {
     }
 
     /**
-     * Lista itens do estoque
+     * Lista itens nao emprestaveis do estoque
      */
     public void listar() {
         List<Item> itens = biblioteca.getEstoque().getItens();

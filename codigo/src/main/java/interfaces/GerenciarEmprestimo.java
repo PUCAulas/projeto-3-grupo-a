@@ -1,22 +1,24 @@
 package main.java.interfaces;
 
 import main.java.models.Usuario;
-import main.java.models.itens.Emprestavel;
 
 public interface GerenciarEmprestimo {
 
     /**
      * Empresta um item emprestavel a um usuario
      *
-     * @param emprestavel item emprestavel
+     * @param idItem id do item emprestavel
+     * @param usuario usuario de referencia
      */
     void emprestar(int idItem, Usuario usuario) throws Exception;
 
     /**
      * Devolve um item previamente emprestado a um usuario
      *
-     * @param emprestavel item emprestavel
+     * @param id id do item emprestavel
+     * @param usuario usuario de referencia
      */
     void devolver(int id, Usuario usuario) throws Exception;
+
 
 }

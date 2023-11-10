@@ -5,11 +5,13 @@ import main.java.enums.StatusEmprestimo;
 import main.java.utils.InputScannerUtil;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class ItemInput {
 
 
+    /*
+     * escolha da classificacao etaria
+     */
     protected static StatusClassificacao escolherStatusClassificacao() {
 
         for (StatusClassificacao status : StatusClassificacao.values()) {
@@ -28,6 +30,9 @@ public class ItemInput {
 
     }
 
+    /*
+     * escolha do status do emprestimo
+     */
     protected static StatusEmprestimo escolherStatusEmprestimo() {
 
         for (StatusEmprestimo status : StatusEmprestimo.values()) {
@@ -45,6 +50,9 @@ public class ItemInput {
         }
     }
 
+    /*
+     * insere um conteudo em uma lista
+     */
     protected static void inserirConteudo(List<String> conteudo) {
         while (true) {
             String linha = InputScannerUtil.scanner.nextLine();

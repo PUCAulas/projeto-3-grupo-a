@@ -22,7 +22,7 @@ import main.java.views.menus.AdmMenu;
 public class ItemEmprestavelInput extends ItemInput {
 
     /**
-     * Menu de criacao de DVD
+     * Recebe os dados para a criação do DVD
      *
      * @param itemEmprestavelService servico de item emprestavel
      */
@@ -70,7 +70,7 @@ public class ItemEmprestavelInput extends ItemInput {
 
 
     /**
-     * Menu de criacao de CD
+     * Recebe os dados para a criação do CD
      *
      * @param itemEmprestavelService servico de item emprestavel
      */
@@ -111,7 +111,7 @@ public class ItemEmprestavelInput extends ItemInput {
     }
 
     /**
-     * Menu de criacao de livro
+     * Recebe os dados para a criação do livro
      *
      * @param itemEmprestavelService servico de item emprestavel
      */
@@ -168,7 +168,7 @@ public class ItemEmprestavelInput extends ItemInput {
     }
 
     /**
-     * Atualiza os dados de um DVD
+     * Recebe os dados para a atualização do DVD
      *
      * @param itemEmprestavelService servico de item emprestavel
      * @param biblioteca  biblioteca de referencia
@@ -244,7 +244,7 @@ public class ItemEmprestavelInput extends ItemInput {
     }
 
      /**
-     * Atualiza os dados de um CD
+     * Recebe os dados para a atualização do CD
      *
      * @param itemEmprestavelService servico de item emprestavel
      * @param biblioteca  biblioteca de referencia
@@ -311,7 +311,7 @@ public class ItemEmprestavelInput extends ItemInput {
     }
 
     /**
-     * Atualiza os dados de um livro
+     * Recebe os dados para a atualização do livro
      *
      * @param itemEmprestavelService servico de item emprestavel
      * @param biblioteca  biblioteca de referencia
@@ -402,6 +402,13 @@ public class ItemEmprestavelInput extends ItemInput {
         System.out.println("Livro não encontrado ou tipo de item incorreto!");
     }
 
+    
+    /**
+     * Recebe dados para exclusão do item
+     *
+     * @param itemEmprestavelService servico de item emprestavel
+     * @param biblioteca  biblioteca de referencia
+     */
     public static void excluirItem(ItemEmprestavelService itemEmprestavelService, Biblioteca biblioteca) {
 
         System.out.print("Informe o ID do item: ");
@@ -422,4 +429,8 @@ public class ItemEmprestavelInput extends ItemInput {
             System.out.println("Item não encontrado!");
         }
     }
+
+
+
+
 }

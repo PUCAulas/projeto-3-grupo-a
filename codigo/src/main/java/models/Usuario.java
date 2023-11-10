@@ -151,12 +151,24 @@ public class Usuario {
     }
 
 
+    /**
+     * Verifica se o limite de itens emprestados foi atingido
+     * 
+     * @throws Exception
+     */
 
     public void verificarLimiteParaEmprestimo() throws Exception {
         if(this.getQtdItensEmprestadosAtualmente() == this.getQTD_MAX_ITENS_EMPRESTADOS())
             throw new Exception("O limite de itens emprestados por vez é de 3!");
     }
 
+    /**
+     * Pesquisa um item emprestavel pelo id
+     * 
+     * @param id id do item emprestavel
+     * @return item emprestavel
+     * @throws Exception
+     */
     public Emprestavel acharEmprestavelPorId(int id) throws Exception {
         Emprestavel itemEmprestavel = null;
         for (Emprestavel emprestavel : this.getItensEmprestados()) {
@@ -173,8 +185,11 @@ public class Usuario {
         return itemEmprestavel;
     }
 
-
-
+    /**
+     * Verifica o item que esta em atraso
+     * 
+     * @throws Exception
+     */
     public void emprestavelEmAtrasoDoUsuario() throws Exception {
         Optional<Emprestavel> emprestavelEmAtraso = this.getItensEmprestados().stream()
                 .filter(this::devolucaoEmAtraso)
@@ -188,10 +203,15 @@ public class Usuario {
 
     }
 
+    /**
+     * Verifica se a devolucao esta em atraso
+     * 
+     * @param itemEmprestavel item de referencia
+     * @return verdadeiro se esta atrasado
+     */
     public boolean devolucaoEmAtraso(Emprestavel itemEmprestavel) {
         return LocalDate.now().isAfter(itemEmprestavel.getDataEmprestimo().plusDays(10));
     }
-
 
     /**
      * Imprime informacos do usuario

@@ -18,7 +18,7 @@ import main.java.views.menus.AdmMenu;
 public class ItemNaoEmprestavelInput extends ItemInput{
 
     /**
-     * Menu de criacao de revista
+     * Recebe os dados para a criação da Revista
      *
      * @param itemService servico de item
      */
@@ -53,7 +53,7 @@ public class ItemNaoEmprestavelInput extends ItemInput{
     }
 
     /**
-     * Menu de criacao de tese
+     * Recebe os dados para a criação da tese
      *
      * @param itemService servico de item
      */
@@ -93,7 +93,7 @@ public class ItemNaoEmprestavelInput extends ItemInput{
     }
 
     /**
-     * Atualiza dados de uma revista
+     * Recebe os dados para a atualização da revista
      *
      * @param itemService servico de item
      * @param biblioteca  biblioteca de referencia
@@ -166,7 +166,7 @@ public class ItemNaoEmprestavelInput extends ItemInput{
     }
 
     /**
-     * Atualiza os dados de uma tese
+     * Recebe os dados para a atualização da tese
      *
      * @param itemService servico de item
      * @param biblioteca  biblioteca de referencia
@@ -253,6 +253,12 @@ public class ItemNaoEmprestavelInput extends ItemInput{
         System.out.println("Item não encontrado ou tipo de item incorreto!");
     }
 
+    /**
+     * Recebe dados para exclusão do item
+     *
+     * @param itemService servico de item não emprestavel
+     * @param biblioteca  biblioteca de referencia
+     */
     public static void excluirItem(ItemService itemService, Biblioteca biblioteca) {
 
         System.out.print("Informe o ID do item: ");

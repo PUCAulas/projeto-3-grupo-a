@@ -1,17 +1,13 @@
 package main.java.views.inputs;
 
 import main.java.enums.Perfil;
-import main.java.models.Biblioteca;
 import main.java.models.Usuario;
 import main.java.models.itens.Emprestavel;
-import main.java.models.itens.Item;
 import main.java.services.ItemEmprestavelService;
 import main.java.services.UsuarioService;
 import main.java.utils.DataUtil;
 import main.java.utils.InputScannerUtil;
 import main.java.utils.ObjectFactoryUtil;
-import main.java.views.menus.PesquisaMenu;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -95,6 +91,13 @@ public class UsuarioInput {
         }
     }
 
+    /**
+     * Mostra os itens emprestaveis que estao disponiveis
+     * 
+     * @param usuarioService servico de usuario
+     * @return lista de emprestaveis disponiveis
+     * @throws Exception
+     */
     public static List<Emprestavel> EmprestadosDisponiveis(UsuarioService usuarioService) throws Exception {
         List<Emprestavel> emprestaveis = new ArrayList<>();
 
@@ -112,9 +115,12 @@ public class UsuarioInput {
         return emprestaveis;
     }
 
-
-
-    //todo: MODIFICAÇÃO
+    /**
+     * recebe dados do item que o usuario quer pegar emprestado
+     * 
+     * @param usuarioService servico de usuario
+     * @throws Exception
+     */
     public static void escolherItemParaEmprestimo(UsuarioService usuarioService) throws Exception {
 
             Usuario usuario = obterUsuarioCadastrado(usuarioService);
@@ -128,8 +134,13 @@ public class UsuarioInput {
 
     }
 
-
-    public static void mostrarItensEmprestados(UsuarioService usuarioService) throws Exception {
+    /**
+     * Mostra itens emprestados do usuario e recebe dados para devolucao dos itens
+     * 
+     * @param usuarioService servico de usuario
+     * @throws Exception
+     */
+    public static void obterDadosParaDevolucao(UsuarioService usuarioService) throws Exception {
 
             Usuario usuario = obterUsuarioCadastrado(usuarioService);
 
@@ -155,12 +166,10 @@ public class UsuarioInput {
 
             itemEmprestavelService.devolver(emprestavelId, usuario);
 
-    }
-    
-    
+    }   
 
     /**
-     * Menu de exclusao de usuario
+     * recebe dados para exclusao de usuario
      *
      * @param usuarioService servico de usuario
      */
@@ -175,7 +184,7 @@ public class UsuarioInput {
     }
 
     /**
-     * Menu de login de usuario
+     * recebe dados de login de usuario
      *
      * @param usuarioService servico de usuario
      */
