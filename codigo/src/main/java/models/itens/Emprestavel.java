@@ -9,8 +9,6 @@ public class Emprestavel extends Item {
 
     private final int QTD_MAX_DIAS_EMPRESTIMO = 10;
     private StatusEmprestimo statusEmprestimo;
-    private int qtdEmprestimo; // Quantos do item a pessoa pegou emprestado <<< talvez desnescessário
-    private int diaEmprestimo; // Duração atual do empréstimo
     private int numEmprestimos; //serve para o relatório
     private LocalDate dataEmprestimo;
 
@@ -44,11 +42,7 @@ public class Emprestavel extends Item {
      */
     public String auxToString() {
         if (this.getStatusEmprestimo() == StatusEmprestimo.EMPRESTADO) {
-            return "\nQuantidade do item do empréstimo: "
-                    + this.getQtdEmprestimo()
-                    + "\nDias de empréstimo: "
-                    + this.getDiaEmprestimo()
-                    + "\nData do empréstimo: "
+            return  "\nData do empréstimo: "
                     + this.getDataEmprestimo().format(DataUtil.fmt)
                     + "\nQuantidade de dias limite para o empréstimo: "
                     + this.getQTD_MAX_DIAS_EMPRESTIMO();
@@ -64,21 +58,6 @@ public class Emprestavel extends Item {
         this.statusEmprestimo = statusEmprestimo;
     }
 
-    public int getQtdEmprestimo() {
-        return qtdEmprestimo;
-    }
-
-    public void setQtdEmprestimo(int qtdEmprestimo) {
-        this.qtdEmprestimo = qtdEmprestimo;
-    }
-
-    public int getDiaEmprestimo() {
-        return diaEmprestimo;
-    }
-
-    public void setDiaEmprestimo(int diaEmprestimo) {
-        this.diaEmprestimo = diaEmprestimo;
-    }
 
     public LocalDate getDataEmprestimo() {
         return dataEmprestimo;

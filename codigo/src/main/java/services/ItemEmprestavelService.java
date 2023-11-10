@@ -226,13 +226,11 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
 
     public void emprestar(int id, Usuario usuario) throws Exception {
 
-        usuario.verificarLimiteParaEmprestimo();
-
-        emprestavelEmAtrasoDoUsuario(usuario);
-
+        Emprestavel emprestavel = encontrarEmprestavelPorId(id);
         verificarUnicoEmprestavelNoEstoque();
 
-        Emprestavel emprestavel = encontrarEmprestavelPorId(id);
+        usuario.verificarLimiteParaEmprestimo();
+        usuario.emprestavelEmAtrasoDoUsuario();
 
         this.setEmprestimo(emprestavel);
 
@@ -241,7 +239,6 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         this.getEmprestimo().setStatusEmprestimo(StatusEmprestimo.EMPRESTADO);
         this.getEmprestimo().setDataEmprestimo(LocalDate.now());
         this.getEmprestimo().setNumEmprestimos(emprestavel.getNumEmprestimos() + 1);
-
 
         usuario.setQtdItensEmprestadosAtualmente(usuario.getQtdItensEmprestadosAtualmente() + 1);
         usuario.addEmprestimo(this.getEmprestimo());
@@ -272,18 +269,6 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
     }
 
 
-    public void emprestavelEmAtrasoDoUsuario(Usuario usuario) throws Exception {
-        Optional<Emprestavel> emprestavelEmAtraso = usuario.getItensEmprestados().stream()
-                .filter(this::devolucaoEmAtraso)
-                .findFirst();
-
-        if (emprestavelEmAtraso.isPresent()) {
-            Emprestavel emprestavel = emprestavelEmAtraso.get();
-            throw new Exception("Há um item em atraso, devolva-o antes de realizar outro empréstimo. " +
-                    "ID: " + emprestavel.getId() + " | Status do empréstimo: " + emprestavel.getStatusEmprestimo());
-        }
-
-    }
 
 
     public void verificarUnicoEmprestavelNoEstoque() throws Exception {
@@ -301,10 +286,6 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
 
 
 
-
-
-
-
     public void devolver(int id, Usuario usuario) throws Exception {
 
         Emprestavel emprestavel = usuario.acharEmprestavelPorId(id);
@@ -317,23 +298,13 @@ public class ItemEmprestavelService implements GerenciarEmprestimo {
         if(emprestavelNoEstoque.getStatusEmprestimo() != StatusEmprestimo.EMPRESTADO)
             throw new Exception("O item informado já está disponível");
 
-
         emprestavelNoEstoque.setStatusEmprestimo(StatusEmprestimo.DISPONIVEL);
-        emprestavelNoEstoque.setDiaEmprestimo(0);
         emprestavelNoEstoque.setDataEmprestimo(null);
 
-        usuario.removerEmprestimo(emprestavel);
         usuario.setQtdItensEmprestadosAtualmente(usuario.getQtdItensEmprestadosAtualmente() - 1);
 
-
     }
-    
 
-
-
-    public boolean devolucaoEmAtraso(Emprestavel itemEmprestavel) {
-        return LocalDate.now().isAfter(itemEmprestavel.getDataEmprestimo().plusDays(10));
-    }
 
     public Biblioteca getBiblioteca() {
         return biblioteca;

@@ -7,6 +7,7 @@ import main.java.utils.DataUtil;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Usuario {
     private static int PROX_ID = 0;
@@ -151,9 +152,6 @@ public class Usuario {
 
 
 
-
-
-
     public void verificarLimiteParaEmprestimo() throws Exception {
         if(this.getQtdItensEmprestadosAtualmente() == this.getQTD_MAX_ITENS_EMPRESTADOS())
             throw new Exception("O limite de itens emprestados por vez é de 3!");
@@ -169,10 +167,29 @@ public class Usuario {
         }
 
         if(itemEmprestavel == null)
-            throw new Exception("Item na lista do usuário não encontrado!");
+            throw new Exception("Item emprestável na lista do usuário não encontrado!");
 
 
         return itemEmprestavel;
+    }
+
+
+
+    public void emprestavelEmAtrasoDoUsuario() throws Exception {
+        Optional<Emprestavel> emprestavelEmAtraso = this.getItensEmprestados().stream()
+                .filter(this::devolucaoEmAtraso)
+                .findFirst();
+
+        if (emprestavelEmAtraso.isPresent()) {
+            Emprestavel emprestavel = emprestavelEmAtraso.get();
+            throw new Exception("Há um item em atraso, devolva-o antes de realizar outro empréstimo. " +
+                    "ID: " + emprestavel.getId() + " | Status do empréstimo: " + emprestavel.getStatusEmprestimo());
+        }
+
+    }
+
+    public boolean devolucaoEmAtraso(Emprestavel itemEmprestavel) {
+        return LocalDate.now().isAfter(itemEmprestavel.getDataEmprestimo().plusDays(10));
     }
 
 
